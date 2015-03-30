@@ -1,5 +1,5 @@
 /**
-* Publicacion.js
+* Etiqueta.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -15,12 +15,12 @@ module.exports = {
       primaryKey: true,
       unique: true
     },
-    titulo: {
+    nombre: {
       type: 'string',
       unique: true,
       required: true
     },
-    contenido:{
+    descripcion:{
       type: 'string',
       required: true
     },
@@ -32,9 +32,13 @@ module.exports = {
       type: 'datetime',
       defaultsTo: function (){ return new Date(); }
     },
-    usuarios: {
-      collection: 'usuario',
-      via: 'publicaciones'
+    publicaciones: {
+      collection: 'publicacion',
+      via: 'etiqueta'
+    },
+    archivos: {
+      collection: 'archivo',
+      via: 'etiqueta'
     }
   }
 };

@@ -1,5 +1,5 @@
 /**
-* Publicacion.js
+* Rol.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -15,12 +15,12 @@ module.exports = {
       primaryKey: true,
       unique: true
     },
-    titulo: {
+    nombre: {
       type: 'string',
       unique: true,
       required: true
     },
-    contenido:{
+    descripcion:{
       type: 'string',
       required: true
     },
@@ -34,7 +34,15 @@ module.exports = {
     },
     usuarios: {
       collection: 'usuario',
-      via: 'publicaciones'
+      via: 'rol'
+    },
+    publicaciones: {
+      collection: 'publicacion',
+      via: 'rol'
+    },
+    archivos: {
+      collection: 'archivo',
+      via: 'rol'
     }
   }
 };
