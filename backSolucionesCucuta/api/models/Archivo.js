@@ -28,17 +28,27 @@ module.exports = {
       type: 'datetime',
       defaultsTo: function (){ return new Date(); }
     },
+    url: {
+      type: 'string',
+      required: true
+    },
     updateAt: {
       type: 'datetime',
       defaultsTo: function (){ return new Date(); }
     },
     usuarios: {
-      collection: 'usuario',
+      collection: 'Usuario',
       via: 'archivos'
     },
-    url: {
-      type: 'string',
-      required: true
+    tipo: {
+      model: 'Tipo'
+    },
+    estado: {
+      model: 'Estado'
+    },
+    etiquetas: {
+      collection: 'Etiqueta',
+      via: 'archivos'
     }
   }
 };

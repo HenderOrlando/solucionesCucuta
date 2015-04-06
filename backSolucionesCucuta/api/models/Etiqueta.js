@@ -32,13 +32,20 @@ module.exports = {
       type: 'datetime',
       defaultsTo: function (){ return new Date(); }
     },
+    usuarios: {
+      collection: 'Usuario',
+      via: 'etiquetas',
+      dominant: true
+    },
     publicaciones: {
-      collection: 'publicacion',
-      via: 'etiqueta'
+      collection: 'Publicacion',
+      via: 'etiquetas',
+      dominant: true
     },
     archivos: {
-      collection: 'archivo',
-      via: 'etiqueta'
+      collection: 'Archivo',
+      via: 'etiquetas',
+      dominant: true
     }
   }
 };

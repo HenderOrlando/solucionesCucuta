@@ -33,7 +33,17 @@ module.exports = {
       defaultsTo: function (){ return new Date(); }
     },
     usuarios: {
-      collection: 'usuario',
+      collection: 'Usuario',
+      via: 'publicaciones'
+    },
+    tipo: {
+      model: 'Tipo'
+    },
+    estado: {
+      model: 'Estado'
+    },
+    etiquetas: {
+      collection: 'Etiqueta',
       via: 'publicaciones'
     }
   }

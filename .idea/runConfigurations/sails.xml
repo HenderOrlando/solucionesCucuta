@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="sails" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/bin/node" path-to-js-file="backSolucionesCucuta/node_modules/sails/bin/sails.js" application-parameters="lift --verbose" working-dir="$PROJECT_DIR$">
+    <browser name="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" with-js-debugger="true" />
+    <RunnerSettings RunnerId="Basic" />
+    <ConfigurationWrapper RunnerId="Basic" />
+    <method />
+  </configuration>
+</component>

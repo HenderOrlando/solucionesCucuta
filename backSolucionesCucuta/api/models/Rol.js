@@ -33,16 +33,9 @@ module.exports = {
       defaultsTo: function (){ return new Date(); }
     },
     usuarios: {
-      collection: 'usuario',
-      via: 'rol'
-    },
-    publicaciones: {
-      collection: 'publicacion',
-      via: 'rol'
-    },
-    archivos: {
-      collection: 'archivo',
-      via: 'rol'
+      collection: 'Usuario',
+      via: 'roles',
+      dominant: true
     }
   }
 };

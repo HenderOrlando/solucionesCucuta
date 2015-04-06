@@ -34,14 +34,28 @@ module.exports = {
       defaultsTo: function (){ return new Date(); }
     },
     publicaciones: {
-      collection: 'publicacion',
+      collection: 'Publicacion',
       via: 'usuarios',
       dominant: true
     },
     archivos: {
-      collection: 'archivo',
+      collection: 'Archivo',
       via: 'usuarios',
       dominant: true
+    },
+    tipo: {
+      model: 'Tipo'
+    },
+    estado: {
+      model: 'Estado'
+    },
+    roles: {
+      collection: 'Rol',
+      via: 'usuarios'
+    },
+    etiquetas: {
+      collection: 'Etiqueta',
+      via: 'usuarios'
     }
   }
 };

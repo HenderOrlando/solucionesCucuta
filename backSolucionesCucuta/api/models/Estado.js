@@ -33,15 +33,15 @@ module.exports = {
       defaultsTo: function (){ return new Date(); }
     },
     usuarios: {
-      collection: 'usuario',
+      collection: 'Usuario',
       via: 'estado'
     },
     publicaciones: {
-      collection: 'publicacion',
+      collection: 'Publicacion',
       via: 'estado'
     },
     archivos: {
-      collection: 'archivo',
+      collection: 'Archivo',
       via: 'estado'
     }
   }
