@@ -47,6 +47,13 @@ module.exports.connections = {
     password: 'pTVMmXceLyPjfWN9',
     database: 'solucionCucuta2'
   },
+  mysqlServerHost: {
+    adapter: 'sails-mysql',
+    host: 'localhost',
+    user: 'solucion_cucuta',
+    password: '?@w^Byl_N!.!@sLThP',
+    database: 'solucion_cucuta'
+  },
 
   /***************************************************************************
   *                                                                          *

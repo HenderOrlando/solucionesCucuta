@@ -6,19 +6,16 @@
 */
 
 module.exports = {
-  autoPk: true,
   autoUpdatAt: true,
   autoCreateAt: true,
   attributes: {
-    id: {
-      type: 'string',
-      primaryKey: true,
-      unique: true
-    },
     titulo: {
       type: 'string',
       unique: true,
       required: true
+    },
+    slug: {
+      type: 'string'
     },
     contenido:{
       type: 'string',
@@ -46,6 +43,16 @@ module.exports = {
       collection: 'Etiqueta',
       via: 'publicaciones'
     }
+  },
+
+  // Lifecycle Callbacks
+  beforeCreate: function (values, next) {
+    if(!values.nombre){
+      return next({err: ["Debe existir un nombre!"]});
+    }
+    values.slug = this.capitalizeSlug(values.nombre);
+
+    next();
   }
 };
 

@@ -6,19 +6,16 @@
 */
 
 module.exports = {
-  autoPk: true,
   autoUpdatAt: true,
   autoCreateAt: true,
   attributes: {
-    id: {
-      type: 'string',
-      primaryKey: true,
-      unique: true
-    },
     nombre: {
       type: 'string',
       unique: true,
       required: true
+    },
+    slug: {
+      type: 'string'
     },
     descripcion:{
       type: 'string',
@@ -34,9 +31,18 @@ module.exports = {
     },
     usuarios: {
       collection: 'Usuario',
-      via: 'roles',
-      dominant: true
+      via: 'rol'
     }
+  },
+
+  // Lifecycle Callbacks
+  beforeCreate: function (values, next) {
+    if(!values.nombre){
+      return next({err: ["Debe existir un nombre!"]});
+    }
+    values.slug = this.capitalizeSlug(values.nombre);
+
+    next();
   }
 };
 

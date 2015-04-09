@@ -1,0 +1,14 @@
+<div id="#inicio" class="header uk-slidenav-position" data-uk-slideshow="{animation: 'random-fx'}">
+  <ul class="uk-slideshow uk-overlay-active">
+    <% _.each(banners, function(banner){ %>
+      <% include banner %>
+    <% }) %>
+  </ul>
+  <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+  <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+  <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-text-center uk-flex uk-flex-center uk-flex-medium">
+      <% _.each(banners, function(banner, i){ %>
+        <li data-uk-slideshow-item="<%= i %>"><a href=""></a></li>
+      <% }) %>
+  </ul>
+</div>

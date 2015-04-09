@@ -32,9 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
+  /*'/': {
     view: 'homepage'
-  }
+  }*/
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +45,71 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-
+  '/': {
+    controller: "Main",
+    action: "index"
+  },
+  'get /Login/': {
+    view: 'login',
+    locals: {
+      message: {
+        type: 'Bienvenido',
+        title: 'Entra digitando el nombre de usuario o email y la clave',
+        content: ''
+      }
+    }
+  },
+  'post /Login/': {
+    controller: "Main",
+    action: "login"
+  },
+  '/Logout/': {
+    controller: "Main",
+    action: "logout"
+  }
+  ,'/Buscar/Empresas/': {
+    controller: "Main",
+    action: "empresas"
+  }
+  ,'/Buscar/Empresas/:query': {
+    controller: "Main",
+    action: "empresas",
+    skipAssets: true
+  }
+  ,'/Buscar/Campañas/': {
+    controller: "Main",
+    action: "campanas"
+  }
+  ,'/Buscar/Campañas/:query': {
+    controller: "Main",
+    action: "campanas",
+    skipAssets: true
+  }
+  ,'/Buscar/Diseño-y-Desarrollo/': {
+    controller: "Main",
+    action: "desarrolloDiseno"
+  }
+  ,'/Buscar/Diseño-y-Desarrollo/:query': {
+    controller: "Main",
+    action: "desarrolloDiseno",
+    skipAssets: true
+  }
+  ,'/Buscar/Servicios-Inteligentes/': {
+    controller: "Main",
+    action: "serviciosInteligentes"
+  }
+  ,'/Buscar/Servicios-Inteligentes/:query': {
+    controller: "Main",
+    action: "serviciosInteligentes",
+    skipAssets: true
+  }
+  ,'/Buscar/': {
+    controller: "Main",
+    action: "buscar"
+  }
+  ,'/Buscar/:query': {
+    controller: "Main",
+    action: "buscar",
+    skipAssets: true
+  }
 };

@@ -6,19 +6,20 @@
 */
 
 module.exports = {
-  autoPk: true,
   autoUpdatAt: true,
   autoCreateAt: true,
   attributes: {
-    id: {
-      type: 'string',
-      primaryKey: true,
-      unique: true
-    },
     nombre: {
       type: 'string',
       unique: true,
       required: true
+    },
+    slug: {
+      type: 'string'
+    },
+    dominio: {
+      type: 'string',
+      size: 40
     },
     descripcion:{
       type: 'string',
@@ -32,10 +33,6 @@ module.exports = {
       type: 'datetime',
       defaultsTo: function (){ return new Date(); }
     },
-    usuarios: {
-      collection: 'Usuario',
-      via: 'tipo'
-    },
     publicaciones: {
       collection: 'Publicacion',
       via: 'tipo'
@@ -43,7 +40,25 @@ module.exports = {
     archivos: {
       collection: 'Archivo',
       via: 'tipo'
+    },
+    etiquetas: {
+      collection: 'Etiqueta',
+      via: 'tipo'
     }
+  },
+
+  // Lifecycle Callbacks
+  beforeCreate: function (values, next) {
+    if(!values.nombre){
+      return next({err: ["Debe existir un nombre!"]});
+    }
+    if(!values.dominio){
+      return next({err: ["Debe existir en un dominio!"]});
+    }
+    values.slug = this.capitalizeSlug(values.nombre);
+    values.dominio = this.capitalizeSlug(values.dominio);
+
+    next();
   }
 };
 

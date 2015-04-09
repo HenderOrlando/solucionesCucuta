@@ -6,19 +6,16 @@
 */
 
 module.exports = {
-  autoPk: true,
   autoUpdatAt: true,
   autoCreateAt: true,
   attributes: {
-    id: {
-      type: 'string',
-      primaryKey: true,
-      unique: true
-    },
     nombre: {
       type: 'string',
       unique: true,
       required: true
+    },
+    slug: {
+      type: 'string'
     },
     descripcion:{
       type: 'string',
@@ -46,7 +43,30 @@ module.exports = {
       collection: 'Archivo',
       via: 'etiquetas',
       dominant: true
+    },
+    etiquetas: {
+      collection: 'Etiqueta',
+      via: 'etiquetaPadre'
+    },
+    etiquetaPadre: {
+      model: 'Etiqueta'
+    },
+    tipo: {
+      model: 'Tipo'
+    },
+    estado: {
+      model: 'Estado'
     }
+  },
+
+  // Lifecycle Callbacks
+  beforeCreate: function (values, next) {
+    if(!values.nombre){
+      return next({err: ["Debe existir un nombre!"]});
+    }
+    values.slug = this.capitalizeSlug(values.nombre);
+
+    next();
   }
 };
 

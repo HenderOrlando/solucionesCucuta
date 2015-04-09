@@ -1,0 +1,50 @@
+<!-- Default home page -->
+<style>
+  html, body{
+    height: 100%;
+  }
+</style>
+<script type="text/javascript">
+
+  setTimeout(function sunrise () {
+
+  }, 0);
+</script>
+<% if (!req.session.authenticated){ %>
+  <div class="uk-vertical-align uk-text-center uk-height-1-1">
+    <div style="width: 250px;" class="uk-vertical-align-middle">
+      <img width="140" height="120" alt="" src="images/logo.png" class="uk-margin-bottom">
+      <div class="errors">
+        <% if (message && message.content){ %>
+        <div class="error">
+          <h4><%= __(message.type)+': '+__(message.title) %></h4>
+          <span><%= message.content %></span>
+        </div>
+        <% } %>
+      </div>
+      <form action="/Login/" method="POST" class="uk-panel uk-panel-box uk-form">
+        <div class="uk-form-row">
+          <input class="uk-width-1-1 uk-form-large" name="username" type="text" placeholder="<%= __('nombre de usuario') %>">
+        </div>
+        <div class="uk-form-row">
+          <input class="uk-width-1-1 uk-form-large" name="password" type="text" placeholder="<%= __('clave') %>">
+        </div>
+        <div class="uk-form-row">
+          <button type="submit" class="uk-width-1-1 uk-button uk-button-primary uk-button-large"><%= __('entrar') %></button>
+        </div>
+        <div class="uk-form-row uk-text-small">
+          <label class="uk-float-left"><input type="checkbox"> <%= __('recordarme') %></label>
+          <a href="#" class="uk-float-right uk-link uk-link-muted"><%= __('olvidó la clave') %>?</a>
+        </div>
+        <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+      </form>
+
+    </div>
+  </div>
+<% }else{ %>
+  <div class="uk-vertical-align uk-text-center uk-height-1-1">
+    <div class="uk-vertical-align-middle">
+      <a href="/Logout/" class="uk-button uk-button-primary uk-button-large"><%= __('salir') %></a>
+    </div>
+  </div>
+<% } %>
