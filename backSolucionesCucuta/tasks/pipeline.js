@@ -48,6 +48,7 @@ var jsFilesToInject = [
   'js/uikit/utility.min.js',
   'js/uikit/core-grid.min.js',
   'js/uikit/slideshow.min.js',
+  'js/uikit/slideshow.js',
 
   'js/uikit/*.js',
   'js/**/*.js',

@@ -2,173 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf176a6e-f8a9-4ea8-85fe-9d07ca082699" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/content.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/controllers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/footer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Etiqueta/form-etiquetas.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Publicacion/form-publicaciones.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Usuario/form-usuarios.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/form_login.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/header.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/homepage_.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/usuario/index.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/policies/isAdmin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/policies/isAuthenticated.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Etiqueta/list-etiquetas.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Publicacion/list-publicaciones.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Usuario/list-usuarios.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/navbar.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/ng-animate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/usuario/perfil.ejs" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/fabicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/images/empresas/camilocelu.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/dependencies/jquery-2.1.3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/dependencies/jquery-2.1.3.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/dependencies/jquery.lazyload.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/accordion.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/autocomplete.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/datepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/form-password.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/form-select.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/grid.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/htmleditor.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/lightbox.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/nestable.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/notify.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/pagination.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/search.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/slideshow-fx.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/slideshow.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/sortable.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/sticky.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/timepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/tooltip.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/components/upload.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/alert.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/button.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/core.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/cover.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/dropdown.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/grid.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/modal.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/nav.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/offcanvas.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/scrollspy.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/smooth-scroll.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/switcher.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/tab.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/toggle.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/touch.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/core/utility.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/uikit.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/accordion.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/accordion.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/accordion.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/autocomplete.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/autocomplete.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/autocomplete.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/datepicker.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/datepicker.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/datepicker.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/dotnav.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/dotnav.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/dotnav.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-advanced.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-advanced.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-advanced.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-file.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-file.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-file.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-password.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-password.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-password.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-select.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-select.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/form-select.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/htmleditor.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/htmleditor.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/htmleditor.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/nestable.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/nestable.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/nestable.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/notify.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/notify.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/notify.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/placeholder.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/placeholder.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/placeholder.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/progress.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/progress.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/progress.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/search.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/search.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/search.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/slidenav.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/slidenav.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/slidenav.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/slideshow.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/slideshow.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/slideshow.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/sortable.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/sortable.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/sortable.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/sticky.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/sticky.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/sticky.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/tooltip.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/tooltip.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/tooltip.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/upload.almost-flat.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/upload.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/components/upload.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/uikit.gradient.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit/uikit.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/form_login.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/views/login.ejs" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/article.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/article.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/banner.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/banner.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/content.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/content.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/figure.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/figure.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/footer.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/footer.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/footerList.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/footerList.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/header.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/header.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/nav.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/nav.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/navItem.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/navItem.ejs" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/partials/navbar.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/navbar.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Archivo.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Archivo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/ArchivoController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/ArchivoController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Estado.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Estado.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/EstadoController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/EstadoController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Etiqueta.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Etiqueta.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/EtiquetaController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/EtiquetaController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/MainController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/MainController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Publicacion.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Publicacion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/PublicacionController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/PublicacionController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Rol.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Rol.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/RolController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/RolController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Tipo.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Tipo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/TipoController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/TipoController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Usuario.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Usuario.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/UsuarioController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/UsuarioController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/blueprints.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/blueprints.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/bootstrap.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/tasks/register/compileAssets.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/tasks/register/compileAssets.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/csrf.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/csrf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/tasks/register/default.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/tasks/register/default.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/locales/es.json" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/locales/es.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/globals.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/globals.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/slideshow.min.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/form_login.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/partials/form_login.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/importer.less" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/importer.less" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/views/layout.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/layout.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/models.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/models.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/package.json" afterPath="$PROJECT_DIR$/backSolucionesCucuta/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/views/usuario/perfil.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/usuario/perfil.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/tasks/pipeline.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/tasks/pipeline.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/policies.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/policies.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/routes.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/session.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/session.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="solucionesCucuta.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -192,20 +31,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/api/controllers/MainController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5485" max-vertical-offset="10314">
-              <caret line="332" column="23" selection-start-line="332" selection-start-column="23" selection-end-line="332" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="content.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/content.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.909091" vertical-offset="179" max-vertical-offset="810">
+            <state vertical-scroll-proportion="-12.037037" vertical-offset="179" max-vertical-offset="810">
               <caret line="28" column="65" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
               <folding />
             </state>
@@ -215,7 +44,7 @@
       <file leaf-file-name="navbar.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/navbar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.5272727" vertical-offset="384" max-vertical-offset="1152">
+            <state vertical-scroll-proportion="-3.1111112" vertical-offset="384" max-vertical-offset="1152">
               <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
               <folding />
             </state>
@@ -225,28 +54,18 @@
       <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/footer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6545454" vertical-offset="0" max-vertical-offset="450">
+            <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="450">
               <caret line="2" column="80" selection-start-line="2" selection-start-column="80" selection-end-line="2" selection-end-column="80" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11707317" vertical-offset="0" max-vertical-offset="615">
+            <state vertical-scroll-proportion="-2.6666667" vertical-offset="0" max-vertical-offset="540">
               <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="homepage_.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/views/homepage_.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6246">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -255,40 +74,41 @@
       <file leaf-file-name="homepage.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2610" max-vertical-offset="14256">
-              <caret line="149" column="60" selection-start-line="149" selection-start-column="60" selection-end-line="149" selection-end-column="60" />
+            <state vertical-scroll-proportion="-14.666667" vertical-offset="2988" max-vertical-offset="14634">
+              <caret line="188" column="50" selection-start-line="188" selection-start-column="50" selection-end-line="188" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pipeline.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/tasks/pipeline.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.90128756" vertical-offset="270" max-vertical-offset="1620">
+              <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="slideshow.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/bower_components/uikit/js/components/slideshow.js">
+        <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/slideshow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="9288">
-              <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9306">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1426084435000" expanded="true" signature="5263:5286" placeholder="..." />
+                <element signature="n#!!doc" expanded="true" />
+                <marker date="1429021548866" expanded="true" signature="5327:5350" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pipeline.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/tasks/pipeline.js">
+      <file leaf-file-name="alert.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../base/uikit-2.18.0/js/core/alert.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="1602">
-              <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="uikit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/uikit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="51117" max-vertical-offset="57636">
-              <caret line="2852" column="14" selection-start-line="2852" selection-start-column="9" selection-end-line="2852" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="597" max-vertical-offset="1296">
+              <caret line="65" column="9" selection-start-line="65" selection-start-column="2" selection-end-line="65" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -302,8 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backSolucionesCucuta/config/orm.js" />
-        <option value="$PROJECT_DIR$/backSolucionesCucuta/config/http.js" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/app.js" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Publicacion/list-publicaciones.html" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Etiqueta/list-etiquetas.html" />
@@ -346,13 +164,15 @@
         <option value="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/MainController.js" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/importer.less" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/views/usuario/perfil.ejs" />
-        <option value="$PROJECT_DIR$/backSolucionesCucuta/tasks/pipeline.js" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/styles/uikit-less/core/icon.less" />
-        <option value="$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/footer.html" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/header.html" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/navbar.html" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/content.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs" />
+        <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/slideshow.js" />
+        <option value="$PROJECT_DIR$/backSolucionesCucuta/tasks/pipeline.js" />
       </list>
     </option>
   </component>
@@ -516,54 +336,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backSolucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uikit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backSolucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uikit" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="less" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -748,88 +520,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="styles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backSolucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="styles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uikit-less" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backSolucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="styles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uikit-less" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backSolucionesCucuta" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="styles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="uikit" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1099,14 +789,10 @@
     </key>
   </component>
   <component name="RunManager" selected="Node.js.sails">
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
-      <method />
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -1114,6 +800,10 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -1164,18 +854,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24952501" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24952501" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292011" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292011" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292011" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292011" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1199,48 +889,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/config/globals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/api/policies/sessionAuth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4892704" vertical-offset="0" max-vertical-offset="699">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/api/responses/forbidden.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.4723032" vertical-offset="324" max-vertical-offset="1494">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/api/responses/notFound.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3090379" vertical-offset="898" max-vertical-offset="1584">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/api/responses/ok.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.39055794" vertical-offset="273" max-vertical-offset="972">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/api/policies/isAuthenticated.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20600858" vertical-offset="0" max-vertical-offset="699">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/config/policies.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="633" max-vertical-offset="1476">
@@ -1502,68 +1150,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2610" max-vertical-offset="14256">
-          <caret line="149" column="60" selection-start-line="149" selection-start-column="60" selection-end-line="149" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/tasks/pipeline.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="288" max-vertical-offset="1602">
-          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/uikit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51117" max-vertical-offset="57636">
-          <caret line="2852" column="14" selection-start-line="2852" selection-start-column="9" selection-end-line="2852" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/bower_components/uikit/js/components/slideshow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="9288">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
-          <folding>
-            <marker date="1426084435000" expanded="true" signature="5263:5286" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/footer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6545454" vertical-offset="0" max-vertical-offset="450">
+        <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="450">
           <caret line="2" column="80" selection-start-line="2" selection-start-column="80" selection-end-line="2" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5272727" vertical-offset="384" max-vertical-offset="1152">
-          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/content.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.909091" vertical-offset="179" max-vertical-offset="810">
+        <state vertical-scroll-proportion="-12.037037" vertical-offset="179" max-vertical-offset="810">
           <caret line="28" column="65" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2232">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="699">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontSolucionesCucuta/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="674">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8130564" vertical-offset="2980" max-vertical-offset="3654">
+          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11707317" vertical-offset="0" max-vertical-offset="615">
+        <state vertical-scroll-proportion="-2.6666667" vertical-offset="0" max-vertical-offset="540">
           <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/uikit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33236152" vertical-offset="906" max-vertical-offset="57636">
+          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="4" />
+          <folding>
+            <marker date="1426084435000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1426084435000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/bower_components/uikit/js/components/slideshow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26239067" vertical-offset="432" max-vertical-offset="9288">
+          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+          <folding>
+            <marker date="1426084435000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.666667" vertical-offset="2988" max-vertical-offset="14634">
+          <caret line="188" column="50" selection-start-line="188" selection-start-column="50" selection-end-line="188" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.1111112" vertical-offset="384" max-vertical-offset="1152">
+          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../base/uikit-2.18.0/js/core/alert.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="597" max-vertical-offset="1296">
+          <caret line="65" column="9" selection-start-line="65" selection-start-column="2" selection-end-line="65" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/assets/js/uikit/slideshow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9306">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1429021548866" expanded="true" signature="5327:5350" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/tasks/pipeline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.90128756" vertical-offset="270" max-vertical-offset="1620">
+          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
           <folding />
         </state>
       </provider>

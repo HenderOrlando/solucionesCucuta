@@ -186,6 +186,7 @@
     <script src="/js/uikit/utility.min.js"></script>
     <script src="/js/uikit/core-grid.min.js"></script>
     <script src="/js/uikit/slideshow.min.js"></script>
+    <script src="/js/uikit/slideshow.js"></script>
     <script src="/js/uikit/button.min.js"></script>
     <script src="/js/uikit/cover.min.js"></script>
     <script src="/js/uikit/dropdown.min.js"></script>
@@ -570,6 +571,22 @@
         botright:   "toast-bottom-right"
       };
 
+      var checkPage = function ($http, $scope, $state, $sails, toastr, $timeout, $interval){
+        console.log('=> Check Page <=')
+        console.log(Ui)
+        // Check Slideshow
+
+        UIkit.$('[data-uk-slideshow]').each(function() {
+          console.log('Each')
+          var slideshow = UIkit.$(this);
+          console.log(slideshow)
+
+          if (!slideshow.data("slideshow")) {
+            var obj = UIkit.slideshow(slideshow, UIkit.Utils.options(slideshow.attr("data-uk-slideshow")));
+          }
+        });
+      }
+
       // Navbar Controller
       var navbarController = indexModule.controller('navbarController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
         function navbarPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
@@ -622,6 +639,7 @@
               $timeout(function(){
                 $scope.loading.page = false;
               }, 5000);
+              checkPage($http, $scope, $state, $sails, toastr, $timeout, $interval);
             });
         }
       ])
@@ -672,6 +690,7 @@
               $timeout(function(){
                 $scope.loading.page = false;
               }, 5000);
+              checkPage($http, $scope, $state, $sails, toastr, $timeout, $interval);
             });
         }
       ])
@@ -727,6 +746,7 @@
               $timeout(function(){
                 $scope.loading.page = false;
               }, 5000);
+              checkPage($http, $scope, $state, $sails, toastr, $timeout, $interval);
             });
         }
       ])
@@ -777,6 +797,7 @@
               $timeout(function(){
                 $scope.loading.page = false;
               }, 5000);
+              checkPage($http, $scope, $state, $sails, toastr, $timeout, $interval);
             });
         }
       ])
