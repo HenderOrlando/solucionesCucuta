@@ -1,0 +1,74 @@
+<div ui-view="form" ng-animate class="scale-fade uk-width-1-1"></div>
+<div class="search etiqueta-search">
+  <form class="uk-form grid uk-width-1-1">
+    <div class="uk-form-row uk-width-1-2">
+      <label for="query" class="uk-form-label uk-width-1-1">
+        Buscar
+      </label>
+      <div class="uk-form-icon uk-width-1-1">
+        <i class="uk-icon-search"></i>
+        <input type="text" id="query" ng-model="query" class="uk-form-large">
+      </div>
+    </div>
+    <div class="uk-form-row uk-width-1-2">
+      <label for="orderProp" class="uk-form-label uk-width-1-1">
+        Ordenar por
+      </label>
+      <select id="orderProp" ng-model="orderProp" class="uk-form-large uk-width-1-1">
+        <option value="nombre" selected>Alfabéticamente</option>
+        <option value="createdAt">Nuevos</option>
+        <option value="updatedAt">Actualizado recientemente</option>
+      </select>
+    </div>
+  </form>
+</div>
+
+<div class="etiquetas uk-overflow-container">
+  <ul class="uk-pagination">
+    <li class="uk-pagination-previous">
+      <a ui-sref="etiqueta.list({page:pagination.prev})" class="uk-link" ng-model="pagination.prev">
+        Ant
+      </a>
+    </li>
+    <li class="uk-pagination-current">
+      <span class="uk-link uk-link-muted" ng-model="pagination.page">
+        {{ pagination.page }}
+      </span>
+       de
+      <span class="uk-link uk-link-muted" ng-model="pagination.totalPages">
+        {{ pagination.totalPages }}
+      </span>
+    </li>
+    <li class="uk-pagination-next">
+      <a ui-sref="etiqueta.list({page:pagination.next})" class="uk-link" ng-model="pagination.next">
+        Sig
+      </a>
+    </li>
+  </ul>
+  <table class="uk-table uk-table-hover uk-table-striped">
+    <thead>
+    <tr>
+      <th colspan="4">Etiquetas</th>
+    </tr>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="toggle" ng-repeat="etiqueta in etiquetas | filter:query | orderBy:orderProp" ng-model="etiquetas" ng-animate="'toggle'">
+      <td>
+        {{ etiqueta.nombre }}
+      </td>
+      <td>
+        {{ etiqueta.descripcion }}
+      </td>
+      <td>
+        <a href="#">Ver</a>
+      </td>
+    </tr>
+    </tbody>
+    <tr></tr>
+  </table>
+</div>

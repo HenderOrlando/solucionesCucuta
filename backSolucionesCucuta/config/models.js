@@ -27,7 +27,8 @@ module.exports.models = {
   * See http://sailsjs.org/#/documentation/concepts/ORM/model-settings.html  *
   *                                                                          *
   ***************************************************************************/
-  migrate: 'alter',
+  //migrate: 'alter',
+  migrate: 'safe',
 
   createUUID: function(){
     var s = [];
@@ -42,10 +43,19 @@ module.exports.models = {
     var uuid = s.join("");
     return uuid;
   },
+
   capitalizeSlug: function (input) {
-    input = input.replace(/^./, function (match) {
+    input = input.toString().replace(/^./, function (match) {
       return match.toUpperCase();
     });
     return input.replace(/\s+/g,'');
+  },
+
+  cleanInputs: function(inputs){
+    inputs.file =
+    inputs._csrf =
+    inputs.csrf =
+        undefined;
+
   }
 };

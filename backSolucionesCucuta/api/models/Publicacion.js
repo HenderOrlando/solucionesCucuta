@@ -14,20 +14,17 @@ module.exports = {
       unique: true,
       required: true
     },
+    subtitulo: {
+      type: 'string',
+      unique: true,
+      required: true
+    },
     slug: {
       type: 'string'
     },
     contenido:{
-      type: 'string',
+      type: 'text',
       required: true
-    },
-    createAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
-    },
-    updateAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
     },
     usuarios: {
       collection: 'Usuario',
@@ -39,6 +36,10 @@ module.exports = {
     estado: {
       model: 'Estado'
     },
+    archivos: {
+      collection: 'Archivo',
+      via: 'publicaciones'
+    },
     etiquetas: {
       collection: 'Etiqueta',
       via: 'publicaciones'
@@ -47,10 +48,36 @@ module.exports = {
 
   // Lifecycle Callbacks
   beforeCreate: function (values, next) {
-    if(!values.nombre){
-      return next({err: ["Debe existir un nombre!"]});
+    this.cleanInputs(values);
+    if(!values.titulo){
+      return next({err: ["Debe existir un titulo!"]});
     }
-    values.slug = this.capitalizeSlug(values.nombre);
+    values.slug = this.capitalizeSlug(values.titulo);
+
+    if(!values.tipo){
+      Tipo.findOne({slug: 'presentacion', dominio: 'Publicacion'}, function(err, found){
+        if(err){
+          return next(err);
+        }
+        if(found){
+          values.tipo = found.id;
+        }else{
+          return next(err);
+        }
+      });
+    }
+    if(!values.estado){
+      Estado.findOne({slug: 'inactivo'}, function(err, found){
+        if(err){
+          return next(err);
+        }
+        if(found){
+          values.estado = found.id;
+        }else{
+          return next(err);
+        }
+      });
+    }
 
     next();
   }

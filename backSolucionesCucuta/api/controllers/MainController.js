@@ -15,93 +15,7 @@ module.exports = {
    * `MainController.index()`
    */
   index: function (req, res, next) {
-    var articles = [
-      {
-        attrs:    [
-          {
-            name: 'id',
-            value: 'quienesSomos'
-          }
-        ],
-        title:    'Quienes Somos',
-        metas:     [
-          {
-            name : 'escrito por',
-            value : 'Hender Orlando'
-          }
-        ],
-        subtitle: 'Quienes Somos Soluciones Cúcuta',
-        content:   [
-          {text: 'SOLUCIONES CUCUTA  es una empresa norteamericana constituida por  PSD SOLUCIONES CORPORATIVAS y un grupo de emprendedores cucuteños   en el estado de DELAWERE EE.UU con sede principal en la ciudad de Cúcuta departamento de Norte de Santander  COLOMBIA'}
-        ],
-        footer:   false,
-        media:    false
-      },
-      {
-        attrs:    [
-          {
-            name: 'id',
-            value: 'misión'
-          }
-        ],
-        title:    'Misión',
-        metas:     [
-          {
-            name : 'escrito por',
-            value : 'Hender Orlando'
-          }
-        ],
-        subtitle: 'Misión de Soluciones Cúcuta',
-        content:   [
-          {text: 'Poder brindar a las empresas,  instituciones y personas  de la región y las zonas fronterizas de nuestro país  un medio fácil  y rápido  de interacción virtual  en tiempo real  a nivel nacional e internacional, mediante el uso  de directorios digitales, campañas virtuales, redes sociales y la  comunicación web; logrando de esta manera la modernización empresarial  y estandarización de las nuevas tecnologías en nuestra región y las demás regiones fronterizas de nuestro país,  ampliando así   nuestra  comunicación comercial con el mundo.'}
-        ],
-        footer:   false,
-        media:    false
-      },
-      {
-        attrs:    [
-          {
-            name: 'id',
-            value: 'visión'
-          }
-        ],
-        title:    'Visión',
-        metas:     [
-          {
-            name : 'escrito por',
-            value : 'Hender Orlando'
-          }
-        ],
-        subtitle: 'Visión de Soluciones Cúcuta',
-        content:   [
-          {text: 'Para el año 2016 ser la empresa pionera en el uso de las nuevas tecnologías en la ciudad de Cúcuta y su área metropolitana, así como también en el departamento de NORTE DE SANTANDER y SANTANDER y  todos los departamentos fronterizos de nuestro país incluyendo de esta manera: EL CESAR, LA GUAJIRA, ARAUCA, VICHADA, GUANIA, VAUPES, AMAZONAS, PUTUMAYO, Y NARIÑO'},
-          {text: 'Para el año 2017 estar posicionados en todo el territorio nacional brindando interacción virtual  continua a nivel nacional e internacional con todas las empresas instituciones y personas  de nuestro país y los países vecinos. Así mismo plantar una sucursal en el país vecino de Panamá a fin de ampliar nuestra interacción comercial con el mundo.'}
-        ],
-        footer:   false,
-        media:    false
-      },
-      {
-        attrs:    [
-          {
-            name: 'id',
-            value: 'condicionesRestricciones'
-          }
-        ],
-        title:    'Condiciones y Restricciones',
-        metas:     [
-          {
-            name : 'escrito por',
-            value : 'Hender Orlando'
-          }
-        ],
-        subtitle: false,
-        content:   [
-          {text: 'El contrato de uso de nuestros servicios se regirá por las normas y leyes comerciales  y mercantiles del país de Colombia, en caso de ser estas leyes inconclusas e  en cuanto al uso de  nuestros servicios se regirá por las disposiciones que se den en  la legislación comercial  del estado de DELAWERE EE.UU SOLUCIONES CUCUTA es una empresa de PSD SOLUCIONES CORPORAIVAS. Todos los derechos reservados.'}
-        ],
-        footer:   false,
-        media:    false
-      }
-    ],
+    var
     figures = [
       {
         srcBase:  'images/empresas/',
@@ -123,34 +37,12 @@ module.exports = {
       },
       {
         srcBase:  'images/empresas/',
-        src:      'camilocelu.jpg',
+        src:      'camilo_celu.jpg',
         href:     '/',
         nombre:   'CamiloCelu'
       }
     ],
-    banners = [
-      {
-        srcBase:    'images/empresas/',
-        src:        'banner_telecucuta.jpg',
-        href:       '/',
-        nombre:     'TeleCúcuta',
-        descripcion:'Servicios TeleCúcuta'
-      },
-      {
-        srcBase:    'images/empresas/',
-        src:        'banner_alofamilia.jpg',
-        href:       '/',
-        nombre:     'Aló Familia',
-        descripcion:'Servicios Aló Familia'
-      },
-      {
-        srcBase:    'images/empresas/',
-        src:        'banner_psdsoluciones.jpg',
-        href:       '/',
-        nombre:     'PSD Soluciones',
-        descripcion:'Servicios PSD Soluciones'
-      }
-    ],
+    banners = [],
     brand = {
       src:    'images/logo.png',
       nombre: 'Soluciones Cúcuta',
@@ -158,82 +50,134 @@ module.exports = {
         {
           href:   '#inicio',
           src:    false,
-          nombre: 'Inicio'
-        },
-        {
-          href:   '#quienesSomos',
-          src:    false,
-          nombre: 'Quienes Somos'
-        },
-        {
-          href:   '#misión',
-          src:    false,
-          nombre: 'Misión'
-        },
-        {
-          href:   '#visión',
-          src:    false,
-          nombre: 'Visión'
-        },
-        {
-          href:   '#condicionesRestricciones',
-          src:    false,
-          nombre: 'Condiciones y Restricciones'
-        },
-        {
-          href:   '/Login/',
-          src:    false,
-          nombre: 'Entrar'
+          nombre: 'inicio'
         }
       ]
     },
-    navs = [];
-    Etiqueta.find().populate('etiquetas').sort('id ASC').exec(function (err, found){
+    navs = [],
+    publicaciones = [];
+    Publicacion.find({tipo: 3}).populateAll().sort('id ASC').exec(function(err, found){
+      if(err){
+        return res.negotiate(err);
+      }
       while (found.length){
-        var etiqueta = found.pop();
-        if(etiqueta.etiquetas.length){
-          var subnavs = [];
+        var publicacion = found.pop();
+        brand.subnavs.push({
+          href:   '#'+publicacion.slug,
+          src:    false,
+          nombre: publicacion.slug
+        });
+
+        var pub = {
+          attrs:    [
+            {
+              name: 'id',
+              value: publicacion.slug
+            }
+          ],
+          title:    publicacion.titulo,
+          metas:     [],
+          subtitle: publicacion.subtitulo,
+          content:   [publicacion.contenido],
+          footer:   false,
+          media:    false,
+          fullwidth:true
+        };
+        var autores = '';
+        for(var i = 0; i < publicacion.usuarios.length; i++){
+          var usuario = publicacion.usuarios[i];
+          autores += (i != 0?', ':'')+usuario.username;
+        }
+        if(autores){
+          pub.metas.push({
+            name : 'escrito por',
+            value : autores
+          });
+        }
+
+        var etiquetasPub = '';
+        for(var i = 0; i < publicacion.etiquetas.length; i++){
+          var etiquetas = publicacion.etiquetas[i];
+          autores += (i != 0?', ':'')+etiquetas.nombre;
+        }
+        if(etiquetasPub){
+          pub.metas.push({
+            name : 'etiquetas',
+            value : etiquetas
+          });
+        }
+
+        publicaciones.push(pub);
+
+      }
+      // Agrega Login al final
+      brand.subnavs.push({
+        href:   '/Login/',
+        src:    false,
+        nombre: 'entrar'
+      });
+      Etiqueta.find({tipo: 1}).populate('etiquetas').sort('id DESC').exec(function (err, found){
+        if(err){
+          return res.negotiate(err);
+        }
+        while (found.length){
+          var etiqueta = found.pop();
           if(etiqueta.etiquetas.length){
-            for(var i in etiqueta.etiquetas){
-              var subEtiqueta = etiqueta.etiquetas[i];
-              if(typeof subEtiqueta != 'undefined' && typeof subEtiqueta.nombre != 'undefined' && typeof subEtiqueta.slug != 'undefined'){
-                subnavs.push({
-                  href:   '/Buscar/'+etiqueta.slug+'/'+subEtiqueta.slug+'/',
-                  src:    false,
-                  nombre: subEtiqueta.nombre
+            var subnavs = [];
+            if(etiqueta.etiquetas.length){
+              for(var i in etiqueta.etiquetas){
+                var subEtiqueta = etiqueta.etiquetas[i];
+                if(subEtiqueta && subEtiqueta.nombre && subEtiqueta.slug){
+                  subnavs.push({
+                    href:   '/Buscar/'+etiqueta.slug+'/'+subEtiqueta.slug+'/',
+                    src:    false,
+                    nombre: subEtiqueta.nombre.toLowerCase()
+                  });
+                }
+              }
+            }
+            navs.push({
+              li:     true,
+              href:   '/Buscar/'+etiqueta.slug+'/',
+              src:    false,
+              nombre: etiqueta.nombre.toLowerCase(),
+              subnavs:  subnavs
+            });
+          }
+        }
+
+        Usuario.find({rol: 1}).populate('archivos',{tipo: 6, estado: 1}).exec(function(err, found){
+          if(err){
+            res.negotiate(err);
+          }
+          if(found){
+            while(found.length){
+              var usuario = found.pop(),
+                archivos = usuario.archivos;
+              if(archivos.length){
+                var archivo = archivos[0];
+                banners.push({
+                  srcBase:    '',
+                  src:        archivo.url,
+                  href:       '/',
+                  nombre:     usuario.nombre,
+                  descripcion:usuario.descripcion
                 });
               }
             }
           }
-          navs.push({
-            li:     true,
-            href:   '/Buscar/'+etiqueta.slug+'/',
-            src:    false,
-            nombre: etiqueta.nombre,
-            subnavs:  subnavs
-          });
-        }
-      }
-      res.view('homepage',{
-        "articles":       articles,
-        "figures":        figures,
-        "banners":        banners,
-        "footers":         navs,
-        "navs":           navs,
-        "brand":          brand
+          res.view('homepage');
+          /*res.view('homepage',{
+            "articles":       publicaciones,
+            "figures":        figures,
+            "banners":        banners,
+            "footers":        navs,
+            "navs":           navs,
+            "brand":          brand
+          });*/
+        });
       });
-      return;
     });
-    /*return res.view('homepage',{
-      articles:       articles,
-      figures:        figures,
-      banners:        banners,
-      navs:           navs,
-      brand:          brand
-    });*/
-    /*return res.json({
-      todo: 'index() is not implemented yet!'
-    });*/
   },
 
 
@@ -261,66 +205,300 @@ module.exports = {
         ]
       }).exec(function(err, usuario){
         if(err){
-          res.view('../assets/templates/partials/form_login.ejs',{
-            message: {
-              type: 'error',
-              title: 'búsqueda incompleta',
-              content: 'Error en la consulta, intenta mas tarde.'
-            }
-          });
+          return res.negotiate(err);
         }
         if(usuario){
           bcrypt.compare(password, usuario.password, function(err, valid){
             if(err){
-              res.view('../assets/templates/partials/form_login.ejs',{
-                message: {
-                  type: 'error',
-                  title: 'clave inválida',
-                  content: 'No se valido la clave, intenta mas tarde'
-                }
-              });
+              res.status(404);
+              res.send({
+                msgs: [
+                  {
+                    type: 'error',
+                    title: 'clave inválida',
+                    content: 'No se valido la clave, intenta mas tarde'
+                  }
+                ]
+              })
             }
             if(!valid){
-              res.view('../assets/templates/partials/form_login.ejs',{
-                message: {
-                  type: 'error',
-                  title: 'clave no valida',
-                  content: 'La clave no es valida'
-                }
-              });
+              res.status(404);
+              res.send({
+                msgs: [
+                  {
+                    type: 'error',
+                    title: 'clave no valida',
+                    content: 'La clave no es valida'
+                  }
+                ]
+              })
             }else{
               req.session.authenticated = true;
               req.session.usuario = usuario;
-              res.view('../assets/templates/partials/form_login.ejs',{
-                message: {
-                  type: 'success',
-                  title: 'bienvenido',
-                  content: 'Hola, '+usuario.username
-                }
+              res.status(200);
+              res.send({
+                redirect: '/Perfil',
+                msgs: [
+                  {
+                    type: 'success',
+                    title: 'bienvenido',
+                    content: 'Hola, '+usuario.username
+                  }
+                ]
               });
             }
           });
         }else{
-          res.view('../assets/templates/partials/form_login.ejs',{
-            message: {
-              type: 'error',
-              title: 'sin cuenta',
-              content: 'El usuario "'+username+'" no fue encontrado'
-            }
+          res.status(404);
+          res.send({
+            msgs: [
+              {
+                type: 'error',
+                title: 'sin cuenta',
+                content: 'El usuario "'+username+'" no fue encontrado'
+              }
+            ]
           });
         }
       });
-      return;
     }
-    return res.view('../assets/templates/partials/form_login.ejs',{
-      message: {
-        type: 'bienvenido',
-        title: 'entra ingresando el nombre de usuario o email y la clave',
-        content: ''
-      }
-    })
+    return;
   },
 
+  /**
+   * `MainController.getNavbarPage()`
+   */
+  getNavbarPage: function (req, res, next) {
+    var navs = [],
+      brand = {
+        src:    'images/logo.png',
+        nombre: 'Soluciones Cúcuta',
+        subnavs:  [
+          {
+            href:   '#inicio',
+            src:    false,
+            nombre: 'inicio'
+          }
+        ]
+      };
+    Publicacion.find({tipo: 3}).populateAll().sort('id ASC').exec(function(err, found) {
+      if (err) {
+        return res.negotiate(err);
+      }
+      while (found.length) {
+        var publicacion = found.pop();
+        brand.subnavs.push({
+          href: '#' + publicacion.slug,
+          src: false,
+          nombre: publicacion.slug
+        });
+      }
+      // Agrega Login al final
+      brand.subnavs.push({
+        href: '/Login/',
+        src: false,
+        nombre: 'entrar'
+      });
+      Etiqueta.find({tipo: 1}).populate('etiquetas').sort('id DESC').exec(function (err, found){
+        if(err){
+          return res.negotiate(err);
+        }
+        while (found.length){
+          var etiqueta = found.pop();
+          if(etiqueta.etiquetas.length){
+            var subnavs = [];
+            if(etiqueta.etiquetas.length){
+              for(var i in etiqueta.etiquetas){
+                var subEtiqueta = etiqueta.etiquetas[i];
+                if(subEtiqueta && subEtiqueta.nombre && subEtiqueta.slug){
+                  subnavs.push({
+                    href:   '/Buscar/'+etiqueta.slug+'/'+subEtiqueta.slug+'/',
+                    src:    false,
+                    nombre: subEtiqueta.nombre.toLowerCase()
+                  });
+                }
+              }
+            }
+            navs.push({
+              li:     true,
+              href:   '/Buscar/'+etiqueta.slug+'/',
+              src:    false,
+              nombre: etiqueta.nombre.toLowerCase(),
+              subnavs:  subnavs
+            });
+          }
+        }
+        return res.json({
+          "navs": navs,
+          "brand": brand
+        });
+      });
+    });
+  },
+
+  /**
+   * `MainController.getHeaderPage()`
+   */
+  getHeaderPage: function (req, res, next) {
+    var banners = [];
+    Usuario.find({rol: 1}).populate('archivos',{tipo: 6, estado: 1}).exec(function(err, found){
+      if(err){
+        res.negotiate(err);
+      }
+      if(found){
+        while(found.length){
+          var usuario = found.pop(),
+            archivos = usuario.archivos;
+          if(archivos.length){
+            var archivo = archivos[0];
+            banners.push({
+              srcBase:    '',
+              src:        archivo.url,
+              href:       '/',
+              nombre:     usuario.nombre,
+              descripcion:usuario.descripcion
+            });
+          }
+        }
+      }
+      return res.json({
+        "banners": banners
+      });
+    });
+  },
+
+  /**
+   * `MainController.getContentPage()`
+   */
+  getContentPage: function (req, res, next) {
+    var publicaciones = [],
+      figures = [];
+    Publicacion.find({tipo: 3}).populateAll().sort('id ASC').exec(function(err, found){
+      if(err){
+        return res.negotiate(err);
+      }
+      while (found.length){
+        var publicacion = found.pop();
+
+        var pub = {
+          attrs:    [
+            {
+              name: 'id',
+              value: publicacion.slug
+            }
+          ],
+          title:    publicacion.titulo,
+          metas:     [],
+          subtitle: publicacion.subtitulo,
+          content:   [publicacion.contenido],
+          footer:   false,
+          media:    false,
+          fullwidth:true
+        };
+        var autores = '';
+        for(var i = 0; i < publicacion.usuarios.length; i++){
+          var usuario = publicacion.usuarios[i];
+          autores += (i != 0?', ':'')+usuario.username;
+        }
+        if(autores){
+          pub.metas.push({
+            name : 'escrito por',
+            value : autores
+          });
+        }
+
+        var etiquetasPub = '';
+        for(var i = 0; i < publicacion.etiquetas.length; i++){
+          var etiquetas = publicacion.etiquetas[i];
+          autores += (i != 0?', ':'')+etiquetas.nombre;
+        }
+        if(etiquetasPub){
+          pub.metas.push({
+            name : 'etiquetas',
+            value : etiquetas
+          });
+        }
+
+        publicaciones.push(pub);
+
+      }
+
+      Usuario.find({rol: 1}).populate('archivos',{tipo: 7, estado: 1}).exec(function(err, found){
+        if(err){
+          res.negotiate(err);
+        }
+        if(found){
+          while(found.length){
+            var usuario = found.pop(),
+              archivos = usuario.archivos;
+            if(archivos.length){
+              var archivo = archivos[0];
+              figures.push({
+                srcBase:    '',
+                src:        archivo.url,
+                href:       '/',
+                nombre:     usuario.nombre,
+                descripcion:usuario.descripcion
+              });
+            }
+          }
+        }
+      });
+      return res.json({
+        "articles":       publicaciones,
+        "figures":        figures
+      });
+    });
+  },
+
+  /**
+   * `MainController.getFooterPage()`
+   */
+  getFooterPage: function (req, res, next) {
+    var footers = [];
+    Etiqueta.find({tipo: 1}).populate('etiquetas').sort('id DESC').exec(function (err, found){
+      if(err){
+        return res.negotiate(err);
+      }
+      while (found.length){
+        var etiqueta = found.pop();
+        if(etiqueta.etiquetas.length){
+          var subnavs = [];
+          if(etiqueta.etiquetas.length){
+            for(var i in etiqueta.etiquetas){
+              var subEtiqueta = etiqueta.etiquetas[i];
+              if(subEtiqueta && subEtiqueta.nombre && subEtiqueta.slug){
+                subnavs.push({
+                  href:   '/Buscar/'+etiqueta.slug+'/'+subEtiqueta.slug+'/',
+                  src:    false,
+                  nombre: subEtiqueta.nombre.toLowerCase()
+                });
+              }
+            }
+          }
+          footers.push({
+            li:     true,
+            href:   '/Buscar/'+etiqueta.slug+'/',
+            src:    false,
+            nombre: etiqueta.nombre.toLowerCase(),
+            subnavs:  subnavs
+          });
+        }
+      }
+      return res.json({
+        "footers": footers
+      });
+    });
+  },
+
+
+  /**
+   * `MainController.loginView()`
+   */
+  loginView: function (req, res) {
+    res.view('partials/form_login');
+    return;
+  },
 
   /**
    * `MainController.logout()`
@@ -345,7 +523,7 @@ module.exports = {
       .findOneBySlug(slug)
       .exec(function(err, etiqueta){
         if(err){
-          return res.serverError(err);
+          return res.negotiate(err);
         }
         if(!etiqueta){
           return next();

@@ -1,0 +1,19 @@
+
+<div class="footer uk-grid">
+  <div class="uk-width-small-1-4" ng-repeat="list in footers" ng-model="footers">
+    <ul data-uk-nav="" class="uk-nav uk-nav-side">
+      <li class="uk-nav-header">
+        <a href="{{ list.href }}">
+          {{ list.nombre.capitalize() }}
+          <div ng-if="list.subtitle">{{ list.subtitle }}</div>
+        </a>
+      </li>
+      <li ng-repeat="item in list.subnavs" ng-model="list.subnavs">
+        <a href="{{ item.href }}">
+          {{ item.nombre.capitalize() }}
+          <div nd-if="item.subtitle">{{ item.subtitle }}</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -22,16 +22,8 @@ module.exports = {
       size: 40
     },
     descripcion:{
-      type: 'string',
+      type: 'text',
       required: true
-    },
-    createAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
-    },
-    updateAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
     },
     publicaciones: {
       collection: 'Publicacion',

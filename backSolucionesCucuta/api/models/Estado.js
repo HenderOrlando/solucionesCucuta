@@ -18,16 +18,8 @@ module.exports = {
       type: 'string'
     },
     descripcion:{
-      type: 'string',
+      type: 'text',
       required: true
-    },
-    createAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
-    },
-    updateAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
     },
     usuarios: {
       collection: 'Usuario',

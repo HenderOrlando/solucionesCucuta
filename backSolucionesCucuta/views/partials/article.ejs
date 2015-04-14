@@ -1,0 +1,30 @@
+<article class="uk-article <% article.fullwidth?'uk-width-1-1':'' %>"
+  <% _.each(article.attrs, function(attr){ %>
+    <%= attr.name %><%= '=' %>"<%= attr.value %>"
+  <% }) %>>
+  <h1 class="uk-article-title" data-uk-sticky="{boundary: true, top:70, animation: 'uk-animation-slide-top'}">
+    <%= article.title %>
+  </h1>
+  <p class="uk-article-meta">
+    <% _.each(article.metas, function(meta){ %>
+      <%=: __(meta.name)|capitalize %> <%= meta.value %>"
+    <% }) %>
+  </p>
+  <% if (article.subtitle){ %>
+    <p class="uk-article-lead">
+      <%= article.subtitle %>
+    </p>
+  <% } %>
+  <% _.each(article.content, function(content){ %>
+    <p>
+      <%= content.text?content.text:content %>
+    </p>
+  <% }) %>
+  <% if (article.footer){ %>
+    <hr class="uk-article-divider">
+    <p class="uk-article-foot">
+      <%= article.footer %>
+    </p>
+  <% } %>
+
+</article>

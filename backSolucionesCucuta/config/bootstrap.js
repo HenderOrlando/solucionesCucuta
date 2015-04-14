@@ -10,7 +10,254 @@
  */
 
 module.exports.bootstrap = function(next) {
-
+  /*var usuarios = [
+    {
+      username: 'telecucuta',
+      password: 'telecucuta',
+      descripcion: 'Usuario TeleCúcuta.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'alófamilia',
+      password: 'alófamilia',
+      descripcion: 'Usuario Aló Familia.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'perfumeriaángela',
+      password: 'perfumeriaángela',
+      descripcion: 'Usuario Perfumeria Ángela.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'draudioojitos',
+      password: 'draudioojitos',
+      descripcion: 'Usuario Dr Audio Ojitos.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'lumatexlasmercedes',
+      password: 'lumatexlasmercedes',
+      descripcion: 'Usuario Lumatex las Mercedes.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'maurocel',
+      password: 'maurocel',
+      descripcion: 'Usuario Maurocel.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'maurys',
+      password: 'maurys',
+      descripcion: 'Usuario Maurys.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'odontologíapopular',
+      password: 'odontologíapopular',
+      descripcion: 'Usuario Odontología Popular.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'pulacell',
+      password: 'pulacell',
+      descripcion: 'Usuario PulaCell.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'calzadoorluis',
+      password: 'calzadoorluis',
+      descripcion: 'Usuario Calzado Orluis.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'solucionescúcuta',
+      password: 'solucionescúcuta',
+      descripcion: 'Usuario Soluciones Cúcuta.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'psdsoluciones',
+      password: 'psdsoluciones',
+      descripcion: 'Usuario PSD Soluciones.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'thelumierefilms',
+      password: 'thelumierefilms',
+      descripcion: 'Usuario The Lumiere Films.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'victormercado',
+      password: 'victormercado',
+      descripcion: 'Usuario Victor Mercado.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'camilocelu',
+      password: 'camilocelu',
+      descripcion: 'Usuario CamiloCelu.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'wzcomunicaciones',
+      password: 'wzcomunicaciones',
+      descripcion: 'Usuario WZ Comunicaciones.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'leidycel',
+      password: 'leidycel',
+      descripcion: 'Usuario LeidyCel.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'supermercadoonel',
+      password: 'supermercadoonel',
+      descripcion: 'Usuario Supermercado Onel.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'emilydiseños',
+      password: 'emilydiseños',
+      descripcion: 'Usuario Emily Diseños.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'creacionescheviton',
+      password: 'creacionescheviton',
+      descripcion: 'Usuario Creaciones Cheviton.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'bninmobiliaria',
+      password: 'bninmobiliaria',
+      descripcion: 'Usuario BN Inmobiliaria.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'cambioseltriunfo',
+      password: 'cambioseltriunfo',
+      descripcion: 'Usuario Cambios El Triunfo.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'creacionesdanayyelitza',
+      password: 'creacionesdanayyelitza',
+      descripcion: 'Usuario Creciones Dana y Yelitza.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'latiendadevale',
+      password: 'latiendadevale',
+      descripcion: 'Usuario La Tienda de Vale.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'misioncorporativa',
+      password: 'misioncorporativa',
+      descripcion: 'Usuario Misión Corporativa.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'viveresfaiber',
+      password: 'viveresfaiber',
+      descripcion: 'Usuario Vívere Faiber.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'sueñodebelleza',
+      password: 'sueñodebelleza',
+      descripcion: 'Usuario Sueño de belleza.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'serviciotecnico4g',
+      password: 'serviciotecnico4g',
+      descripcion: 'Usuario Servicio Técnico 4G.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'comunicacioneuriad',
+      password: 'comunicacioneuriad',
+      descripcion: 'Usuario Comunicaciones URIAD.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'sundertecnology',
+      password: 'sundertecnology',
+      descripcion: 'Usuario Sunder Tecnology.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'kmialarmas',
+      password: 'kmialarmas',
+      descripcion: 'Usuario KMI Alarmas.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'elcatiremoises',
+      password: 'elcatiremoises',
+      descripcion: 'Usuario El Catire Moises.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'variedadesjomaardila',
+      password: 'variedadesjomaardila',
+      descripcion: 'Usuario Variedades Joma Ardila.',
+      estado: 1,
+      rol: 1
+    },
+    {
+      username: 'mantenimientomv',
+      password: 'mantenimientomv',
+      descripcion: 'Usuario Mantenimiento MV.',
+      estado: 1,
+      rol: 1
+    }
+  ];
+  Usuario.create(usuarios).exec(function createCB(err,usuario){
+    if(err){
+      console.log(err);
+      return;
+    }
+    console.log('Creado: '+usuario);
+  });*/
+/*
   // Carga los Estados Básicos
 
   var estados = [
@@ -364,7 +611,7 @@ module.exports.bootstrap = function(next) {
         }
       })
     }
-  });
+  });*/
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   next();

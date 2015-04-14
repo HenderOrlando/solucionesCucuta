@@ -18,20 +18,12 @@ module.exports = {
       type: 'string'
     },
     descripcion:{
-      type: 'string',
+      type: 'text',
       required: true
-    },
-    createAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
     },
     url: {
       type: 'string',
       required: true
-    },
-    updateAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
     },
     usuarios: {
       collection: 'Usuario',
@@ -45,6 +37,10 @@ module.exports = {
     },
     etiquetas: {
       collection: 'Etiqueta',
+      via: 'archivos'
+    },
+    publicaciones: {
+      collection: 'Publicacion',
       via: 'archivos'
     }
   },

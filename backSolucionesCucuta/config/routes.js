@@ -47,69 +47,117 @@ module.exports.routes = {
   ***************************************************************************/
   '/': {
     controller: "Main",
-    action: "index"
-  },
-  'get /Login/': {
-    view: 'login',
+    action: "index",
     locals: {
-      message: {
-        type: 'Bienvenido',
-        title: 'Entra digitando el nombre de usuario o email y la clave',
-        content: ''
-      }
+      layout: false
     }
   },
-  'post /Login/': {
+  'get /Login': {
+    controller: 'Main',
+    action: 'loginView',
+    view: 'partials/form_login',
+    locals: {
+      layout: false
+    }
+  },
+  '/Perfil': {
+    controller: "Usuario",
+    action: "perfil",
+    view: 'usuario/perfil',
+    locals: {
+      layout: false
+    }
+  },
+  'post /Login': {
     controller: "Main",
     action: "login"
   },
-  '/Logout/': {
+  '/Logout': {
     controller: "Main",
     action: "logout"
   }
-  ,'/Buscar/Empresas/': {
+  // Get Page
+  ,'/getNavbarPage': {
     controller: "Main",
-    action: "empresas"
+    action: "getNavbarPage"
   }
-  ,'/Buscar/Empresas/:query': {
+  ,'/getHeaderPage': {
     controller: "Main",
-    action: "empresas",
-    skipAssets: true
+    action: "getHeaderPage"
   }
-  ,'/Buscar/Campañas/': {
+  ,'/getFooterPage': {
     controller: "Main",
-    action: "campanas"
+    action: "getFooterPage"
   }
-  ,'/Buscar/Campañas/:query': {
+  ,'/getContentPage': {
     controller: "Main",
-    action: "campanas",
-    skipAssets: true
+    action: "getContentPage"
   }
-  ,'/Buscar/Diseño-y-Desarrollo/': {
-    controller: "Main",
-    action: "desarrolloDiseno"
-  }
-  ,'/Buscar/Diseño-y-Desarrollo/:query': {
-    controller: "Main",
-    action: "desarrolloDiseno",
-    skipAssets: true
-  }
-  ,'/Buscar/Servicios-Inteligentes/': {
-    controller: "Main",
-    action: "serviciosInteligentes"
-  }
-  ,'/Buscar/Servicios-Inteligentes/:query': {
-    controller: "Main",
-    action: "serviciosInteligentes",
-    skipAssets: true
-  }
-  ,'/Buscar/': {
-    controller: "Main",
-    action: "buscar"
-  }
+  // Buscador
   ,'/Buscar/:query': {
     controller: "Main",
     action: "buscar",
     skipAssets: true
+  }
+  // Publicacion
+  ,'/Publicacion/Agregar': {
+    controller: "Publicacion",
+    action: "agregar",
+    skipAssets: true
+  }
+  ,'/Publicacion/Borrar': {
+    controller: "Publicacion",
+    action: "borrar",
+    skipAssets: true
+  }
+  ,'/Publicacion/Listar': {
+    controller: "Publicacion",
+    action: "listar",
+    skipAssets: true
+  }
+  // Usuario
+  ,'/Usuario/Agregar': {
+    controller: "Usuario",
+    action: "agregar",
+    skipAssets: true
+  }
+  ,'/Usuario/Borrar': {
+    controller: "Usuario",
+    action: "borrar",
+    skipAssets: true
+  }
+  ,'/Usuario/Listar': {
+    controller: "Usuario",
+    action: "listar",
+    skipAssets: true,
+  }
+  //Count
+  ,'/Archivo/count': {
+    controller: "Archivo",
+    action: "count"
+  }
+  ,'/Estado/count': {
+    action: "count",
+    controller: "Estado"
+  }
+  ,'/Etiqueta/count': {
+    action: "count",
+    controller: "Etiqueta"
+  }
+  ,'/Publicacion/count': {
+    controller: "Publicacion",
+    action: "count"
+  }
+  ,'/Rol/count': {
+    controller: "Rol",
+    action: "count"
+  }
+  ,'/Tipo/count': {
+    controller: "Tipo",
+    action: "count"
+  }
+  ,'/Usuario/count': {
+    controller: "Usuario",
+    action: "count"
   }
 };

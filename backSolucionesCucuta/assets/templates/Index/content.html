@@ -1,0 +1,39 @@
+
+<div class="content uk-grid">
+  <div class="uk-container-center uk-width-small-5-6 uk-width-medium-7-8 uk-width-large-9-10 uk-width-xlarge-11-12">
+    <div class="uk-grid">
+      <div ng-repeat="article in articles" ng-model="articles" class="uk-grid uk-width-small-4-6 uk-width-medium-6-8 uk-width-large-8-10 uk-width-xlarge-10-12">
+        <article class="uk-article" ng-class="article.fullwidth?'uk-width-1-1':''">
+          <h1 class="uk-article-title" data-uk-sticky="{boundary: true, top:70, animation: 'uk-animation-slide-top'}">
+            {{ article.title }}
+          </h1>
+          <p class="uk-article-meta">
+          <span ng-repeat="meta in article.metas" ng-model="article.meta">
+            {{ meta.name.capitalize() }} {{ meta.value }}
+          </span>
+          </p>
+          <p ng-if="article.subtitle" class="uk-article-lead">
+            {{ article.subtitle }}
+          </p>
+          <p ng-repeat="content in article.content" ng-model="article.content" class="uk-article-lead">
+            {{ content.text?content.text:content }}
+          </p>
+          <hr ng-if="article.footer" class="uk-article-divider">
+          <p ng-if="article.footer" class="uk-article-foot">
+            {{ article.footer }}
+          </p>
+
+        </article>
+      </div>
+      <div class="uk-publicity uk-width-small-2-6 uk-width-medium-2-8 uk-width-large-2-10 uk-width-xlarge-2-12">
+        <figure ng-repeat="figure in figures" ng-model="figures" class="uk-overlay uk-overlay-hover"  data-uk-scrollspy="{cls:'uk-animation-slide-right', repeat: true, delay: 200}">
+          <img class="uk-overlay-scale lazy" ng-src="{{ (figure.srcBase?figure.srcBase:'') + figure.src }}" alt="{{figure.nombre.capitalize()}}">
+          <figcaption class="uk-overlay-panel uk-flex uk-flex-center uk-flex-middle uk-text-center uk-overlay-fade uk-overlay-background">
+            {{ figure.nombre.capitalize() }}
+          </figcaption>
+          <a class="uk-position-cover" href="{{ figure.href }}"></a>
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,119 +1,786 @@
-<style type="text/css">
-  .uk-navbar{
-    background: none repeat scroll 0 0 #fff;
-    border: medium none;
-    border-radius: 0;
-    box-shadow: 0 -5px 10px -10px #000 inset;
-    height: 70px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-  }
-  .uk-navbar > a{
-    height: 100%;
-  }
-  .uk-navbar > .uk-navbar-flip,
-  .uk-navbar > .uk-navbar-flip .uk-button{
-    font-size: 16px;
-  }
-  .uk-navbar-brand{
-    height: 100%;
-    padding: 0;
-  }
-  .uk-navbar-brand > img{
-    width: 90%;
-  }
-  .uk-overlay-panel{
-    padding-top: 85px;
-  }
-  img + .uk-overlay-panel{
-    padding: 20px 30px;
-  }
-  .uk-overlay-background{
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8)
-  }
-  [data-uk-sticky].uk-active{
-    background: #eee;
-  }
-  ul.uk-slideshow{
-    margin-top: 70px;
-  }
-  ul.uk-slideshow > li.uk-active > .uk-cover-background{
-    background-color: #fff;
-    background-size: contain;
-  }
-  .uk-dotnav-contrast > * > * {
-    background: none repeat scroll 0 0 rgba(50, 50, 50, 0.4);
-  }
-  .uk-dotnav-contrast > * > *:active, .uk-dotnav-contrast > .uk-active > * {
-    background: none repeat scroll 0 0 rgba(15, 15, 15, 0.9);
-  }
-  .uk-form input:not([type]), .uk-form input[type="color"], .uk-form input[type="date"], .uk-form input[type="datetime-local"], .uk-form input[type="datetime"], .uk-form input[type="email"], .uk-form input[type="month"], .uk-form input[type="number"], .uk-form input[type="password"], .uk-form input[type="search"], .uk-form input[type="tel"], .uk-form input[type="text"], .uk-form input[type="time"], .uk-form input[type="url"], .uk-form input[type="week"], .uk-form select, .uk-form textarea{
-    border-style: none none solid;
-  }
-  .footer{
-    box-shadow: 0 0 10px -5px #000 inset;
-  }
-  .uk-grid + .uk-grid.footer{
-    margin-top: 0;
-  }
-  .uk-article + .uk-article{
-    padding-top: 0;
-  }
-  .content{
-    background: #eee;
-    padding: 2.5% 0;
-  }
-  .content .uk-article{
-    background: none repeat scroll 0 0 #fff;
-    box-shadow: 0 0 10px -8px #000;
-    padding-bottom: 10px;
-  }
-  .content .uk-article + .uk-article{
-    padding-top: 10px;
-  }
-  @media screen and (max-width:960px) {
-    .uk-navbar-brand{
-      height: auto;
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Soluciones Cúcuta - Inicio</title>
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <!--STYLES-->
+  <link rel="stylesheet" href="/styles/uikit/uikit.almost-flat.min.css">
+  <link rel="stylesheet" href="/styles/uikit/slideshow.almost-flat.min.css">
+  <link rel="stylesheet" href="/styles/uikit/sticky.almost-flat.min.css">
+  <link rel="stylesheet" href="/styles/uikit/dotnav.almost-flat.min.css">
+  <link rel="stylesheet" href="/styles/angular-toastr.min.css">
+  <link rel="stylesheet" href="/styles/fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="/styles/importer.css">
+  <link rel="stylesheet" href="/styles/ng-animate.css">
+  <link rel="stylesheet" href="/styles/uikit/dotnav.min.css">
+  <link rel="stylesheet" href="/styles/uikit/slideshow.min.css">
+  <link rel="stylesheet" href="/styles/uikit/sticky.min.css">
+  <link rel="stylesheet" href="/styles/uikit/uikit.min.css">
+  <!--STYLES END-->
+
+  <style type="text/css">
+    body.loading{
+      overflow: hidden;
     }
-  }
-  @media screen and (max-width:768px) {
-    .uk-navbar{
-      height: auto;
-      position: relative;
-      display: inline-block;
-    }
-    .uk-navbar-brand{
+    .uk-cover.loading-page{
+      height: 100%;
+      left: 0;
+      position: fixed;
+      top: 0;
       width: 100%;
+      background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+      color: #fff;
+      z-index: 9;
     }
-    [data-uk-sticky]{
-      margin-top: -70px;
+    .uk-cover.loading-page .fa{
+      font-size: 100px;
     }
-    ul.uk-slideshow{
-      margin-top: 0;
+    .header.uk-slidenav-position{
+      position: relative;
+      box-shadow: 0 0 10px 0 #000;
+    }
+    .uk-navbar{
+      background: none repeat scroll 0 0 #fff;
+      border: medium none;
+      border-radius: 0;
+      box-shadow: 0 -5px 10px -10px #000 inset;
+      height: 70px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+    }
+    .uk-navbar > a{
+      height: 100%;
+    }
+    .uk-navbar > .uk-navbar-flip,
+    .uk-navbar > .uk-navbar-flip .uk-button{
+      font-size: 16px;
+    }
+    .uk-navbar-brand{
+      height: 100%;
+      padding: 0;
+    }
+    .uk-navbar-brand > img{
+      width: 90%;
     }
     .uk-overlay-panel{
-      padding-top: 15px;
+      padding-top: 85px;
     }
-  }
-</style>
+    img + .uk-overlay-panel{
+      padding: 20px 30px;
+    }
+    .uk-overlay-background{
+      background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8)
+    }
+    [data-uk-sticky].uk-active{
+      background: #eee;
+    }
+    ul.uk-slideshow{
+      margin-top: 70px;
+    }
+    ul.uk-slideshow > li.uk-active > .uk-cover-background{
+      background-color: #fff;
+      background-size: contain;
+    }
+    .uk-dotnav-contrast > * > * {
+      background: none repeat scroll 0 0 rgba(50, 50, 50, 0.4);
+    }
+    .uk-dotnav-contrast > * > *:active, .uk-dotnav-contrast > .uk-active > * {
+      background: none repeat scroll 0 0 rgba(15, 15, 15, 0.9);
+    }
+    .uk-form input:not([type]), .uk-form input[type="color"], .uk-form input[type="date"], .uk-form input[type="datetime-local"], .uk-form input[type="datetime"], .uk-form input[type="email"], .uk-form input[type="month"], .uk-form input[type="number"], .uk-form input[type="password"], .uk-form input[type="search"], .uk-form input[type="tel"], .uk-form input[type="text"], .uk-form input[type="time"], .uk-form input[type="url"], .uk-form input[type="week"], .uk-form select, .uk-form textarea{
+      border-style: none none solid;
+    }
+    .footer{
+      box-shadow: 0 0 10px -5px #000 inset;
+    }
+    .uk-grid + .uk-grid.footer{
+      margin-top: 0;
+    }
+    .uk-article + .uk-article{
+      padding-top: 0;
+    }
+    .content{
+      background: #eee;
+      padding: 2.5% 0;
+    }
+    .content .uk-article{
+      background: none repeat scroll 0 0 #fff;
+      box-shadow: 0 0 10px -8px #000;
+      padding-bottom: 10px;
+    }
+    .content .uk-article + .uk-article{
+      padding-top: 10px;
+    }
+    @media screen and (max-width:960px) {
+      .uk-navbar-brand{
+        height: auto;
+      }
+    }
+    @media screen and (max-width:768px) {
+      .uk-navbar{
+        height: auto;
+        position: relative;
+        display: inline-block;
+      }
+      .uk-navbar-brand{
+        width: 100%;
+      }
+      [data-uk-sticky]{
+        margin-top: -70px;
+      }
+      ul.uk-slideshow{
+        margin-top: 0;
+      }
+      .uk-overlay-panel{
+        padding-top: 15px;
+      }
+    }
+  </style>
+</head>
+<body ng-app="indexModule" ng-cloak ng-class="loading.page?'loading':''">
 
-<% include ../assets/templates/partials/navbar %>
+  <div ui-view="navbar" class="uk-width-1-1" data-uk-observe></div>
 
-<% include ../assets/templates/partials/header %>
+  <div ui-view="header" class="uk-width-1-1" data-uk-observe></div>
 
-<% include ../assets/templates/partials/content %>
+  <div ui-view="content" class="uk-width-1-1" data-uk-observe></div>
 
-<% include ../assets/templates/partials/footer %>
+  <div ui-view="footer" class="uk-width-1-1" data-uk-observe></div>
 
-<script type="text/javascript">
+  <div ng-show="loading.page" class="uk-cover loading-page toggle" ng-animate>
+    <div class="uk-vertical-align uk-text-center uk-height-1-1">
+      <div class="uk-vertical-align-middle">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
+    </div>
+  </div>
 
-  setTimeout(function sunrise () {
-    $("img.lazy").lazyload();
-    $("ul.uk-navbar-nav > li.uk-button-group > button[href]").on('click', function(){
-      var este = $(this);
-      window.location = $(this).attr('href');
-    });
-  }, 0);
-</script>
+  <!--TEMPLATES-->
+  <script type="text/javascript" src="/jst.js"></script>
+  <!--TEMPLATES END-->
+
+  <div id="javascripts">
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/components/tinymce.min.js"></script>
+    <script src="/js/dependencies/components/lodash.min.js"></script>
+    <script src="/js/dependencies/components/lodash.undescore.min.js"></script>
+    <script src="/js/dependencies/components/angular.js"></script>
+    <script src="/js/dependencies/components/angular-animate.min.js"></script>
+    <script src="/js/dependencies/components/angular-flow-standalone.min.js"></script>
+    <script src="/js/dependencies/components/angular-sails.min.js"></script>
+    <script src="/js/dependencies/components/angular-toastr.min.js"></script>
+    <script src="/js/dependencies/components/angular-toastr.tpls.min.js"></script>
+    <script src="/js/dependencies/components/angular-ui-router.min.js"></script>
+    <script src="/js/dependencies/components/angular-ui-tinymce.js"></script>
+    <script src="/js/dependencies/components/angular-ui-utils-ieshiv.min.js"></script>
+    <script src="/js/dependencies/components/angular-ui-utils.min.js"></script>
+    <script src="/js/dependencies/components/angular-utils-pagination-dir.js"></script>
+    <script src="/js/dependencies/jquery-2.1.3.min.js"></script>
+    <script src="/js/dependencies/lazysizes.min.js"></script>
+    <script src="/js/uikit/core.min.js"></script>
+    <script src="/js/uikit/utility.min.js"></script>
+    <script src="/js/uikit/core-grid.min.js"></script>
+    <script src="/js/uikit/slideshow.min.js"></script>
+    <script src="/js/uikit/button.min.js"></script>
+    <script src="/js/uikit/cover.min.js"></script>
+    <script src="/js/uikit/dropdown.min.js"></script>
+    <script src="/js/uikit/grid.min.js"></script>
+    <script src="/js/uikit/modal.min.js"></script>
+    <script src="/js/uikit/nav.min.js"></script>
+    <script src="/js/uikit/offcanvas.min.js"></script>
+    <script src="/js/uikit/scrollspy.min.js"></script>
+    <script src="/js/uikit/slideshow-fx.min.js"></script>
+    <script src="/js/uikit/smooth-scroll.min.js"></script>
+    <script src="/js/uikit/sticky.min.js"></script>
+    <script src="/js/uikit/touch.min.js"></script>
+    <script src="/js/uikit/uikit.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers.js"></script>
+    <!--SCRIPTS END-->
+    <script type="text/javascript">
+      window.sails_locals = { _csrf: "<%= _csrf %>" };
+
+
+      /*** => APPS <= ***/
+
+
+      var indexModule = angular.module("indexModule",['ui.router', 'ngSails', 'toastr', 'ngAnimate']);
+
+      /*** => FILTERS <= ***/
+      /*angular.module('indexModule', []).
+        filter('capitalize', function() {
+          return function(input, all) {
+            return (!!input) ? input.replace(/([^\W_]+[^\s-]*) *//*g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
+          }
+        });*/
+
+      indexModule.config(function ($stateProvider, $urlRouterProvider){
+        $urlRouterProvider.otherwise('/');
+        $stateProvider
+          .state('inicio',{
+            url: '/',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('campañas',{
+            url: '/Campañas',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('campañas.search',{
+            url: '/Campañas/Search/{query}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('campañas.etiqueta',{
+            url: '/Campañas/{etiqueta}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('empresas',{
+            url: '/Empresas',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('empresas.search',{
+            url: '/Empresas/Search/{query}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('empresas.etiqueta',{
+            url: '/Empresas/{etiqueta}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('desarrollo-y-diseño',{
+            url: '/Desarrollo-y-Diseño',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('desarrollo-y-diseño.search',{
+            url: '/Desarrollo-y-Diseño/Search/{query}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('desarrollo-y-diseño.etiqueta',{
+            url: '/Desarrollo-y-Diseño/{etiqueta}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('servicios-inteligentes',{
+            url: '/Servicios-Inteligentes',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('servicios-inteligentes.search',{
+            url: '/Servicios-Inteligentes/Search/{query}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+          .state('servicios-inteligentes.etiqueta',{
+            url: '/Servicios-Inteligentes/{etiqueta}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'header': {
+                template: JST["assets/templates/Index/header.html"],
+                controller: 'headerController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
+        ;
+      });
+
+      indexModule.config(function(toastrConfig) {
+        angular.extend(toastrConfig, {
+          allowHtml: false,
+          closeButton: false,
+          closeHtml: '<button>&times;</button>',
+          containerId: 'toast-container',
+          extendedTimeOut: 1000,
+          iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+          },
+          maxOpened: 0,
+          messageClass: 'toast-message',
+          newestOnTop: true,
+          onHidden: null,
+          onShown: null,
+          positionClass: 'toast-top-right',
+          preventDuplicates: false,
+          progressBar: false,
+          tapToDismiss: true,
+          target: 'body',
+          templates: {
+            toast: 'directives/toast/toast.html',
+            progressbar: 'directives/progressbar/progressbar.html'
+          },
+          timeOut: 5000,
+          titleClass: 'toast-title',
+          toastClass: 'toast'
+        });
+      });
+      String.prototype.capitalize = function() {
+        return this.replace(/\w\S*/g, function(txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+      }
+
+
+
+      /*** => CONTROLLERS <= ***/
+
+
+      //Functions
+      var animations = [
+        "toggle",
+        "spin-toggle",
+        "scale-fade",
+        "scale-fade-in",
+        "bouncy-scale-in",
+        "flip-in",
+        "slide-left",
+        "slide-right",
+        "slide-top",
+        "slide-down",
+        "bouncy-slide-left",
+        "bouncy-slide-right",
+        "bouncy-slide-top",
+        "bouncy-slide-down",
+        "rotate-in"
+      ];
+      var postitionsToastr = {
+        topfull:    "toast-top-full-width",
+        botfull:    "toast-bottom-full-width",
+        topcenter:  "toast-top-center",
+        botcenter:  "toast-bottom-center",
+        topleft:    "toast-top-left",
+        botleft:    "toast-bottom-left",
+        topright:   "toast-top-right",
+        botright:   "toast-bottom-right"
+      };
+
+      // Navbar Controller
+      var navbarController = indexModule.controller('navbarController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
+        function navbarPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
+
+          if (!$scope.loading) {
+            $scope.loading = {};
+          }
+          $scope.loading.page = true;
+
+          var
+            splitName = $state.current.name.split('.'),
+            params = $state.params,
+            namespace = splitName[0].toLowerCase(),
+            action = splitName[1]?splitName[1].toLowerCase():'',
+            uri = "/getNavbarPage/?namespace="+namespace;
+
+          $scope.namespace = splitName[0];
+
+          $scope.pagination = {
+            page: params.page || 1
+            ,total: 0
+            ,limit: params.limit || 10
+            ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
+          };
+
+          $http.get(uri)
+            .success(function(data, status, headers, jwr){
+              console.log('=> Navbar <=')
+              console.log(data.navs)
+              console.log(data.brand)
+              console.log('=> Navbar <=')
+              $scope.navs = [];
+              if(data.navs){
+                $scope.navs = data.navs;
+              }
+              $scope.brand = {};
+              if(data.brand){
+                $scope.brand = data.brand;
+              }
+            })
+            .error(function (data, status, headers, jwr) {
+              toastr.clear();
+
+              toastr.info('No se encontró navegación de "'+namespace+'"',null,{
+                closeButton: true,
+                positionClass: 'toast-bottom-right'
+              });
+            })
+            .finally(function(){
+              $timeout(function(){
+                $scope.loading.page = false;
+              }, 5000);
+            });
+        }
+      ])
+
+      // Header Controller
+      var headerController = indexModule.controller('headerController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
+        function headerPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
+          if (!$scope.loading) {
+            $scope.loading = {};
+          }
+          $scope.loading.page = true;
+
+          var
+            splitName = $state.current.name.split('.'),
+            params = $state.params,
+            namespace = splitName[0].toLowerCase(),
+            action = splitName[1]?splitName[1].toLowerCase():'',
+            uri = "/getHeaderPage/?namespace="+namespace;
+
+          $scope.namespace = splitName[0];
+
+          $scope.pagination = {
+            page: params.page || 1
+            ,total: 0
+            ,limit: params.limit || 10
+            ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
+          };
+
+          $http.get(uri)
+            .success(function(data, status, headers, jwr){
+              console.log('=> Header <=')
+              console.log(data.banners)
+              console.log('=> Header <=')
+              $scope.banners = [];
+              if(data.banners){
+                $scope.banners = data.banners;
+              }
+            })
+            .error(function (data, status, headers, jwr) {
+              toastr.clear();
+
+              toastr.info('No se encontró navegación de "'+namespace+'"',null,{
+                closeButton: true,
+                positionClass: 'toast-bottom-right'
+              });
+            })
+            .finally(function(){
+              $timeout(function(){
+                $scope.loading.page = false;
+              }, 5000);
+            });
+        }
+      ])
+
+      // Content Controller
+      var contentController = indexModule.controller('contentController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
+        function contentPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
+          if (!$scope.loading) {
+            $scope.loading = {};
+          }
+          $scope.loading.page = true;
+
+          var
+            splitName = $state.current.name.split('.'),
+            params = $state.params,
+            namespace = splitName[0].toLowerCase(),
+            action = splitName[1]?splitName[1].toLowerCase():'',
+            uri = "/getContentPage/?namespace="+namespace;
+
+          $scope.namespace = splitName[0];
+
+          $scope.pagination = {
+            page: params.page || 1
+            ,total: 0
+            ,limit: params.limit || 10
+            ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
+          };
+
+          $http.get(uri)
+            .success(function(data, status, headers, jwr){
+              console.log('=> Content <=')
+              console.log(data.articles)
+              console.log(data.figures)
+              console.log('=> Content <=')
+              $scope.articles = [];
+              if(data.articles){
+                $scope.articles = data.articles;
+              }
+              $scope.figures = [];
+              if(data.figures){
+                $scope.figures = data.figures;
+              }
+            })
+            .error(function (data, status, headers, jwr) {
+              toastr.clear();
+
+              toastr.info('No se encontró navegación de "'+namespace+'"',null,{
+                closeButton: true,
+                positionClass: 'toast-bottom-right'
+              });
+            })
+            .finally(function(){
+              $timeout(function(){
+                $scope.loading.page = false;
+              }, 5000);
+            });
+        }
+      ])
+
+      // Footer Controller
+      var footerController = indexModule.controller('footerController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
+        function footerPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
+          if (!$scope.loading) {
+            $scope.loading = {};
+          }
+          $scope.loading.page = true;
+
+          var
+            splitName = $state.current.name.split('.'),
+            params = $state.params,
+            namespace = splitName[0].toLowerCase(),
+            action = splitName[1]?splitName[1].toLowerCase():'',
+            uri = "/getFooterPage/?namespace="+namespace;
+
+          $scope.namespace = splitName[0];
+
+          $scope.pagination = {
+            page: params.page || 1
+            ,total: 0
+            ,limit: params.limit || 10
+            ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
+          };
+
+          $http.get(uri)
+            .success(function(data, status, headers, jwr){
+              console.log('=> Footer <=')
+              console.log(data.footers)
+              console.log('=> Footer <=')
+              $scope.footers = [];
+              if(data.footers){
+                $scope.footers = data.footers;
+              }
+            })
+            .error(function (data, status, headers, jwr) {
+              toastr.clear();
+
+              toastr.info('No se encontró navegación de "'+namespace+'"',null,{
+                closeButton: true,
+                positionClass: 'toast-bottom-right'
+              });
+            })
+            .finally(function(){
+              $timeout(function(){
+                $scope.loading.page = false;
+              }, 5000);
+            });
+        }
+      ])
+
+    </script>
+  </div>
+</body>
