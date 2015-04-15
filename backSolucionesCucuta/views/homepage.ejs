@@ -14,10 +14,6 @@
   <link rel="stylesheet" href="/styles/fonts/font-awesome.min.css">
   <link rel="stylesheet" href="/styles/importer.css">
   <link rel="stylesheet" href="/styles/ng-animate.css">
-  <link rel="stylesheet" href="/styles/uikit/dotnav.min.css">
-  <link rel="stylesheet" href="/styles/uikit/slideshow.min.css">
-  <link rel="stylesheet" href="/styles/uikit/sticky.min.css">
-  <link rel="stylesheet" href="/styles/uikit/uikit.min.css">
   <!--STYLES END-->
 
   <style type="text/css">
@@ -115,6 +111,18 @@
     .content .uk-article + .uk-article{
       padding-top: 10px;
     }
+    #soluciones-cucuta-navbar a{
+      border: medium none;
+      display: inline-block;
+    }
+    #soluciones-cucuta-navbar a.active{
+      border-bottom: 2px solid #f44f4f;
+      border-bottom-right-radius: 5px;
+      box-shadow: 0 -5px 10px -10px #f40f0f;
+    }
+    .uk-thumbnail:hover{
+      box-shadow: 0 25px 5px -25px #f40f0f;
+    }
     @media screen and (max-width:960px) {
       .uk-navbar-brand{
         height: auto;
@@ -143,13 +151,13 @@
 </head>
 <body ng-app="indexModule" ng-cloak ng-class="loading.page?'loading':''">
 
-  <div ui-view="navbar" class="uk-width-1-1" data-uk-observe></div>
+  <div ui-view="navbar" class="uk-width-1-1"></div>
 
-  <div ui-view="header" class="uk-width-1-1" data-uk-observe></div>
+  <div ui-view="header" class="uk-width-1-1"></div>
 
-  <div ui-view="content" class="uk-width-1-1" data-uk-observe></div>
+  <div ui-view="content" class="uk-width-1-1"></div>
 
-  <div ui-view="footer" class="uk-width-1-1" data-uk-observe></div>
+  <div ui-view="footer" class="uk-width-1-1"></div>
 
   <div ng-show="loading.page" class="uk-cover loading-page toggle" ng-animate>
     <div class="uk-vertical-align uk-text-center uk-height-1-1">
@@ -182,11 +190,11 @@
     <script src="/js/dependencies/components/angular-utils-pagination-dir.js"></script>
     <script src="/js/dependencies/jquery-2.1.3.min.js"></script>
     <script src="/js/dependencies/lazysizes.min.js"></script>
+    <script src="/js/uikit/uikit.js"></script>
     <script src="/js/uikit/core.min.js"></script>
     <script src="/js/uikit/utility.min.js"></script>
     <script src="/js/uikit/core-grid.min.js"></script>
     <script src="/js/uikit/slideshow.min.js"></script>
-    <script src="/js/uikit/slideshow.js"></script>
     <script src="/js/uikit/button.min.js"></script>
     <script src="/js/uikit/cover.min.js"></script>
     <script src="/js/uikit/dropdown.min.js"></script>
@@ -199,11 +207,11 @@
     <script src="/js/uikit/smooth-scroll.min.js"></script>
     <script src="/js/uikit/sticky.min.js"></script>
     <script src="/js/uikit/touch.min.js"></script>
-    <script src="/js/uikit/uikit.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/controllers.js"></script>
     <!--SCRIPTS END-->
     <script type="text/javascript">
+
       window.sails_locals = { _csrf: "<%= _csrf %>" };
 
 
@@ -211,14 +219,6 @@
 
 
       var indexModule = angular.module("indexModule",['ui.router', 'ngSails', 'toastr', 'ngAnimate']);
-
-      /*** => FILTERS <= ***/
-      /*angular.module('indexModule', []).
-        filter('capitalize', function() {
-          return function(input, all) {
-            return (!!input) ? input.replace(/([^\W_]+[^\s-]*) *//*g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
-          }
-        });*/
 
       indexModule.config(function ($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise('/');
@@ -244,8 +244,8 @@
               }
             }
           })
-          .state('campañas',{
-            url: '/Campañas',
+          .state('nav',{
+            url: '/{nav}',
             views: {
               'navbar': {
                 template: JST["assets/templates/Index/navbar.html"],
@@ -265,218 +265,8 @@
               }
             }
           })
-          .state('campañas.search',{
-            url: '/Campañas/Search/{query}',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('campañas.etiqueta',{
-            url: '/Campañas/{etiqueta}',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('empresas',{
-            url: '/Empresas',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('empresas.search',{
-            url: '/Empresas/Search/{query}',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('empresas.etiqueta',{
-            url: '/Empresas/{etiqueta}',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('desarrollo-y-diseño',{
-            url: '/Desarrollo-y-Diseño',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('desarrollo-y-diseño.search',{
-            url: '/Desarrollo-y-Diseño/Search/{query}',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('desarrollo-y-diseño.etiqueta',{
-            url: '/Desarrollo-y-Diseño/{etiqueta}',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('servicios-inteligentes',{
-            url: '/Servicios-Inteligentes',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('servicios-inteligentes.search',{
-            url: '/Servicios-Inteligentes/Search/{query}',
-            views: {
-              'navbar': {
-                template: JST["assets/templates/Index/navbar.html"],
-                controller: 'navbarController'
-              },
-              'header': {
-                template: JST["assets/templates/Index/header.html"],
-                controller: 'headerController'
-              },
-              'content': {
-                template: JST["assets/templates/Index/content.html"],
-                controller: 'contentController'
-              },
-              'footer': {
-                template: JST["assets/templates/Index/footer.html"],
-                controller: 'footerController'
-              }
-            }
-          })
-          .state('servicios-inteligentes.etiqueta',{
-            url: '/Servicios-Inteligentes/{etiqueta}',
+          .state('nav.subnav',{
+            url: '/{subnav}',
             views: {
               'navbar': {
                 template: JST["assets/templates/Index/navbar.html"],
@@ -572,81 +362,116 @@
       };
 
       var checkPage = function ($http, $scope, $state, $sails, toastr, $timeout, $interval){
-        console.log('=> Check Page <=')
-        console.log(Ui)
-        // Check Slideshow
-
+        // Reset Slideshow
         UIkit.$('[data-uk-slideshow]').each(function() {
-          console.log('Each')
-          var slideshow = UIkit.$(this);
-          console.log(slideshow)
+          var $ele = UIkit.$(this);
+          $ele.removeData("slideshow");
+          $timeout(function(){
+            var component = UIkit.slideshow($ele, UIkit.Utils.options($ele.attr("data-uk-slideshow")));
+          }, 100);
+        });
+        // Reset Stiky
+        UIkit.$("[data-uk-sticky]").each(function(){
 
-          if (!slideshow.data("slideshow")) {
-            var obj = UIkit.slideshow(slideshow, UIkit.Utils.options(slideshow.attr("data-uk-slideshow")));
-          }
+          var $ele = UIkit.$(this);
+          $ele.removeData("sticky");
+
+          $timeout(function(){
+            var component = UIkit.sticky($ele, UIkit.Utils.options($ele.attr('data-uk-sticky')));
+          }, 100);
+        });
+        // Reset ScrollSpy
+        UIkit.$("[data-uk-scrollspy]").each(function(){
+
+          var $ele = UIkit.$(this);
+          $ele.removeData("scrollspy");
+
+          $timeout(function(){
+            var component = UIkit.scrollspy($ele, UIkit.Utils.options($ele.attr('data-uk-scrollspy')));
+          }, 100);
         });
       }
 
       // Navbar Controller
       var navbarController = indexModule.controller('navbarController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
         function navbarPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
+          if(!$scope.loaded || !$scope.loaded.navbar){
+            if(!$scope.loaded){
+              $scope.loaded = {};
+            }
+            if (!$scope.all) {
+              $scope.all = {};
+            }
+            if (!$scope.loading) {
+              $scope.loading = {};
+            }
+            $scope.loading.page = true;
 
-          if (!$scope.loading) {
-            $scope.loading = {};
-          }
-          $scope.loading.page = true;
+            var
+              splitName = $state.current.name.split('.'),
+              params = $state.params,
+              namespace = splitName[0].toLowerCase(),
+              query = "",
+              uriname = '';
 
-          var
-            splitName = $state.current.name.split('.'),
-            params = $state.params,
-            namespace = splitName[0].toLowerCase(),
-            action = splitName[1]?splitName[1].toLowerCase():'',
-            uri = "/getNavbarPage/?namespace="+namespace;
-
-          $scope.namespace = splitName[0];
-
-          $scope.pagination = {
-            page: params.page || 1
-            ,total: 0
-            ,limit: params.limit || 10
-            ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
-          };
-
-          $http.get(uri)
-            .success(function(data, status, headers, jwr){
-              console.log('=> Navbar <=')
-              console.log(data.navs)
-              console.log(data.brand)
-              console.log('=> Navbar <=')
-              $scope.navs = [];
-              if(data.navs){
-                $scope.navs = data.navs;
+            if(namespace != 'inicio'){
+              if(params.nav){
+                query += "?nav="+params.nav;
+                uriname += params.nav.capitalize();
+                if(params.subnav){
+                  query += "&subnav="+params.subnav;
+                  uriname += params.nav.capitalize();
+                }
               }
-              $scope.brand = {};
-              if(data.brand){
-                $scope.brand = data.brand;
-              }
-            })
-            .error(function (data, status, headers, jwr) {
-              toastr.clear();
+            }
 
-              toastr.info('No se encontró navegación de "'+namespace+'"',null,{
-                closeButton: true,
-                positionClass: 'toast-bottom-right'
+            $scope.pagination = {
+              page: params.page || 1
+              ,total: 0
+              ,limit: params.limit || 10
+              ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
+            };
+
+            $http.get("/getNavbarPage"+query)
+              .success(function(data, status, headers, jwr){
+                /*console.log('=> Navbar <=')
+                 console.log(data.navs)
+                 console.log(data.brand)
+                 console.log('=> Navbar <=')*/
+                $scope.navs = [];
+                if(data.navs){
+                  $scope.navs = data.navs;
+                }
+                $scope.brand = {};
+                if(data.brand){
+                  $scope.brand = data.brand;
+                }
+              })
+              .error(function (data, status, headers, jwr) {
+                toastr.clear();
+
+                toastr.info('No se encontró navegación de "'+namespace+'"',null,{
+                  closeButton: true,
+                  positionClass: 'toast-bottom-right'
+                });
+              })
+              .finally(function(){
+                $timeout(function(){
+                  $scope.loading.page = false;
+                }, 5000);
+                checkPage($http, $scope, $state, $sails, toastr, $timeout, $interval);
+                $scope.loaded.navbar = true;
               });
-            })
-            .finally(function(){
-              $timeout(function(){
-                $scope.loading.page = false;
-              }, 5000);
-              checkPage($http, $scope, $state, $sails, toastr, $timeout, $interval);
-            });
+          }
         }
       ])
 
       // Header Controller
       var headerController = indexModule.controller('headerController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
         function headerPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
+          if (!$scope.all) {
+            $scope.all = {};
+          }
           if (!$scope.loading) {
             $scope.loading = {};
           }
@@ -656,8 +481,19 @@
             splitName = $state.current.name.split('.'),
             params = $state.params,
             namespace = splitName[0].toLowerCase(),
-            action = splitName[1]?splitName[1].toLowerCase():'',
-            uri = "/getHeaderPage/?namespace="+namespace;
+            query = "",
+            uriname = '';
+
+          if(namespace != 'inicio'){
+            if(params.nav){
+              query += "?nav="+params.nav;
+              uriname += params.nav.capitalize();
+              if(params.subnav){
+                query += "&subnav="+params.subnav;
+                uriname += params.nav.capitalize();
+              }
+            }
+          }
 
           $scope.namespace = splitName[0];
 
@@ -668,11 +504,11 @@
             ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
           };
 
-          $http.get(uri)
+          $http.get("/getHeaderPage"+query)
             .success(function(data, status, headers, jwr){
-              console.log('=> Header <=')
-              console.log(data.banners)
-              console.log('=> Header <=')
+              /*console.log('=> Header <=')
+               console.log(data.banners)
+               console.log('=> Header <=')*/
               $scope.banners = [];
               if(data.banners){
                 $scope.banners = data.banners;
@@ -698,62 +534,89 @@
       // Content Controller
       var contentController = indexModule.controller('contentController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
         function contentPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
-          if (!$scope.loading) {
-            $scope.loading = {};
-          }
-          $scope.loading.page = true;
+          if(!$scope.loaded || !$scope.loaded.footer){
+            if(!$scope.loaded){
+              $scope.loaded = {};
+            }
+            if (!$scope.all) {
+              $scope.all = {};
+            }
+            if (!$scope.loading) {
+              $scope.loading = {};
+            }
+            $scope.loading.page = true;
 
-          var
-            splitName = $state.current.name.split('.'),
-            params = $state.params,
-            namespace = splitName[0].toLowerCase(),
-            action = splitName[1]?splitName[1].toLowerCase():'',
-            uri = "/getContentPage/?namespace="+namespace;
+            var
+              splitName = $state.current.name.split('.'),
+              params = $state.params,
+              namespace = splitName[0].toLowerCase(),
+              query = "",
+              uriname = '';
 
-          $scope.namespace = splitName[0];
-
-          $scope.pagination = {
-            page: params.page || 1
-            ,total: 0
-            ,limit: params.limit || 10
-            ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
-          };
-
-          $http.get(uri)
-            .success(function(data, status, headers, jwr){
-              console.log('=> Content <=')
-              console.log(data.articles)
-              console.log(data.figures)
-              console.log('=> Content <=')
-              $scope.articles = [];
-              if(data.articles){
-                $scope.articles = data.articles;
+            if(namespace != 'inicio'){
+              if(params.nav){
+                query += "?nav="+params.nav;
+                uriname += params.nav.capitalize();
+                if(params.subnav){
+                  query += "&subnav="+params.subnav;
+                  uriname += params.nav.capitalize();
+                }
               }
-              $scope.figures = [];
-              if(data.figures){
-                $scope.figures = data.figures;
-              }
-            })
-            .error(function (data, status, headers, jwr) {
-              toastr.clear();
+            }
 
-              toastr.info('No se encontró navegación de "'+namespace+'"',null,{
-                closeButton: true,
-                positionClass: 'toast-bottom-right'
+            $scope.pagination = {
+              page: params.page || 1
+              ,total: 0
+              ,limit: params.limit || 10
+              ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
+            };
+
+            $http.get("/getContentPage"+query)
+              .success(function(data, status, headers, jwr){
+                /*console.log('=> Content <=')
+                 console.log(data.articles)
+                 console.log(data.figures)
+                 console.log('=> Content <=')*/
+                $scope.articles = [];
+                if(data.articles){
+                  $scope.articles = data.articles;
+                }
+                $scope.clientes = [];
+                if(data.clientes){
+                  $scope.clientes = data.clientes;
+                }
+                $scope.figures = [];
+                if(data.figures){
+                  $scope.figures = data.figures;
+                }
+              })
+              .error(function (data, status, headers, jwr) {
+                toastr.clear();
+
+                toastr.info('No se encontró navegación de "'+namespace+'"',null,{
+                  closeButton: true,
+                  positionClass: 'toast-bottom-right'
+                });
+              })
+              .finally(function(){
+                $timeout(function(){
+                  $scope.loading.page = false;
+                }, 5000);
+                $timeout(function(){
+                  checkPage($http, $scope, $state, $sails, toastr, $timeout, $interval);
+                }, 2000);
+                $scope.loaded.footer = true;
               });
-            })
-            .finally(function(){
-              $timeout(function(){
-                $scope.loading.page = false;
-              }, 5000);
-              checkPage($http, $scope, $state, $sails, toastr, $timeout, $interval);
-            });
+          }
         }
       ])
 
       // Footer Controller
       var footerController = indexModule.controller('footerController',['$http', '$scope','$state', '$sails', 'toastr', '$timeout', '$interval',
         function footerPartial($http, $scope, $state, $sails, toastr, $timeout, $interval) {
+          if (!$scope.all) {
+            $scope.all = {};
+          }
           if (!$scope.loading) {
             $scope.loading = {};
           }
@@ -763,10 +626,19 @@
             splitName = $state.current.name.split('.'),
             params = $state.params,
             namespace = splitName[0].toLowerCase(),
-            action = splitName[1]?splitName[1].toLowerCase():'',
-            uri = "/getFooterPage/?namespace="+namespace;
+            query = "",
+            uriname = '';
 
-          $scope.namespace = splitName[0];
+          if(namespace != 'inicio'){
+            if(params.nav){
+              query += "?nav="+params.nav;
+              uriname += params.nav.capitalize();
+              if(params.subnav){
+                query += "&subnav="+params.subnav;
+                uriname += params.nav.capitalize();
+              }
+            }
+          }
 
           $scope.pagination = {
             page: params.page || 1
@@ -775,11 +647,11 @@
             ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
           };
 
-          $http.get(uri)
+          $http.get('/getFooterPage'+query)
             .success(function(data, status, headers, jwr){
-              console.log('=> Footer <=')
-              console.log(data.footers)
-              console.log('=> Footer <=')
+              /*console.log('=> Footer <=')
+               console.log(data.footers)
+               console.log('=> Footer <=')*/
               $scope.footers = [];
               if(data.footers){
                 $scope.footers = data.footers;

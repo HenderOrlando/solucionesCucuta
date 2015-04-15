@@ -1,15 +1,17 @@
 
 <div id="#inicio" class="header uk-slidenav-position" data-uk-slideshow="{animation: 'random-fx'}">
   <ul class="uk-slideshow uk-overlay-active">
-    <li ng-repeat="banner in banners" ng-model="banners">
+    <li ng-repeat="banner in banners">
       <img ng-src="{{ (banner.srcBase?banner.srcBase:'') +  banner.src }}" alt="{{ banner.nombre.capitalize() }}">
 
       <div class="uk-overlay-panel uk-overlay-background uk-overlay-right uk-overlay-slide-right uk-width-1-4">
-        <h3>{{ banner.nombre.capitalize() }}</h3>
+        <h2>{{ banner.nombre.capitalize() }}</h2>
         <p>
           {{ banner.descripcion }}
         </p>
-        <button href="{{ banner.href }}" class="uk-button uk-button-primary">Conocer más</button>
+        <a ui-sref="{{banner.sref}}" class="uk-button uk-button-primary" ui-sref-active="active">
+          Conocer más
+        </a>
 
       </div>
     </li>
@@ -17,7 +19,7 @@
   <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
   <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
   <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-text-center uk-flex uk-flex-center uk-flex-medium">
-    <li ng-repeat="banner in banners" ng-model="banners" data-uk-slideshow-item="{{ $index }}">
+    <li ng-repeat="banner in banners" data-uk-slideshow-item="{{ $index }}">
       <a href=""></a>
     </li>
   </ul>

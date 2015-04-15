@@ -45,6 +45,10 @@ module.exports.models = {
   },
 
   capitalizeSlug: function (input) {
+    return input.replace(/\s+/g,'').toLowerCase();
+  },
+
+  capitalizeTxt: function (input) {
     input = input.toString().replace(/^./, function (match) {
       return match.toUpperCase();
     });

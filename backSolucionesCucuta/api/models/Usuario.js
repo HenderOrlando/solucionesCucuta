@@ -58,7 +58,7 @@ module.exports = {
     },
     // Functions
     hasRol: function(roles){
-      return this.rol.slug == roles.slug;
+      return this.rol.slug.toLowerCase() == roles.slug.toLowerCase();
       /*Usuario.find(this).populate('roles',roles).exec(function(err, usuario){
        if(usuarios[0].roles.length){
        return true;

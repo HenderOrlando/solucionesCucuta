@@ -43,13 +43,12 @@ var jsFilesToInject = [
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
+  'js/uikit/uikit.min.js',
+  'js/uikit/uikit.js',
   'js/uikit/core.min.js',
-
   'js/uikit/utility.min.js',
   'js/uikit/core-grid.min.js',
   'js/uikit/slideshow.min.js',
-  'js/uikit/slideshow.js',
-
   'js/uikit/*.js',
   'js/**/*.js',
 ];

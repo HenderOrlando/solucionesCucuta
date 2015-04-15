@@ -8,7 +8,7 @@
     <div class="uk-dropdown uk-dropdown-small uk-dropdown-width-3">
       <ul class="uk-nav uk-nav-dropdown uk-grid uk-dropdown-grid">
         <li class="uk-width-1-3" ng-repeat="subnav in brand.subnavs" ng-model="brand.subnavs">
-          <a href="{{ subnav.href }}">
+          <a ui-sref="{{subnav.sref}}" ui-sref-active="active">
             {{ subnav.nombre.capitalize()}}
           </a>
         </li>
@@ -19,9 +19,9 @@
     <ul class="uk-navbar-nav uk-width-small-1-1 uk-text-center">
       <li ng-repeat="nav in navs" ng-model="navs" ng-class="nav.li?'uk-button-group uk-width-small-1-5 uk-width-medium-1-5':'uk-navbar-brand uk-width-small-1-1 uk-width-medium-1-6'" {{!nav.li?'data-uk-dropdown="{mode:'click'}"':''}}>
 
-      <button ng-if="nav.href" href="{{ nav.href }}" data-url="{{ nav.href }}" class="uk-button uk-button-link">
+      <a ng-if="nav.sref" ui-sref="{{nav.sref}}" ui-sref-active="active" class="uk-button uk-button-link">
         {{ nav.nombre.capitalize() }}
-      </button>
+      </a>
       <div ng-if="nav.subnavs" data-uk-dropdown="{mode:'click',justify:'#soluciones-cucuta-navbar'}">
 
         <a href="" ng-class=" nav.src?'uk-navbar-brand':'uk-button uk-button-link'">
@@ -32,7 +32,7 @@
         <div class="uk-dropdown uk-dropdown-small uk-dropdown-width-3">
           <ul class="uk-nav uk-nav-dropdown uk-grid uk-dropdown-grid">
             <li class="uk-width-1-3" ng-repeat="subnav in nav.subnavs" ng-model="nav.subnavs">
-              <a href="{{ subnav.href }}">
+              <a ui-sref="{{subnav.sref}}" ui-sref-active="active" ui-sref-active="active">
                 {{ subnav.nombre.capitalize() }}
               </a>
             </li>
