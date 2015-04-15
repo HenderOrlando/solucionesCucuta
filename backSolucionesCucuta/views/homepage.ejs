@@ -120,8 +120,17 @@
       border-bottom-right-radius: 5px;
       box-shadow: 0 -5px 10px -10px #f40f0f;
     }
-    .uk-thumbnail:hover{
-      box-shadow: 0 25px 5px -25px #f40f0f;
+    a.uk-thumbnail{
+      border-radius: 0;
+    }
+    a.uk-thumbnail:focus,
+    a.uk-thumbnail:hover{
+      border-color: #eee;
+      box-shadow: 0 0 20px -15px #f40f0f;
+    }
+    #uk-content > div,
+    #uk-content > article{
+      margin-top: 25px;
     }
     @media screen and (max-width:960px) {
       .uk-navbar-brand{
@@ -286,6 +295,23 @@
               }
             }
           })
+          .state('usuario',{
+            url: '/{usuario}',
+            views: {
+              'navbar': {
+                template: JST["assets/templates/Index/navbar.html"],
+                controller: 'navbarController'
+              },
+              'content': {
+                template: JST["assets/templates/Index/content.html"],
+                controller: 'contentController'
+              },
+              'footer': {
+                template: JST["assets/templates/Index/footer.html"],
+                controller: 'footerController'
+              }
+            }
+          })
         ;
       });
 
@@ -321,6 +347,7 @@
           toastClass: 'toast'
         });
       });
+
       String.prototype.capitalize = function() {
         return this.replace(/\w\S*/g, function(txt) {
           return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();

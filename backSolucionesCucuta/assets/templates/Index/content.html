@@ -2,8 +2,8 @@
 <div class="content uk-grid">
   <div class="uk-container-center uk-width-small-5-6 uk-width-medium-7-8 uk-width-large-9-10 uk-width-xlarge-11-12">
     <div class="uk-grid">
-      <div id="uk-content" class="uk-grid uk-width-small-4-6 uk-width-medium-6-8 uk-width-large-8-10 uk-width-xlarge-10-12">
-        <article ng-if="articles.length > 0" ng-repeat="article in articles track by $index" class="uk-article" ng-class="article.fullwidth?'uk-width-1-1':''" data-uk-scrollspy="{cls:'uk-animation-fade'}">
+      <div id="uk-content" class="uk-width-small-4-6 uk-width-medium-6-8 uk-width-large-8-10 uk-width-xlarge-10-12">
+        <article class="article" ng-if="articles.length > 0" ng-repeat="article in articles track by $index" class="uk-article" ng-class="article.fullwidth?'uk-width-1-1':''" data-uk-scrollspy="{cls:'uk-animation-fade'}">
           <a ng-if="article.sref" ui-sref="{{article.sref}}">
             <h1 class="uk-article-title" data-uk-sticky="{boundary: true, top:70, animation: 'uk-animation-slide-top'}">
               {{ article.title }}
@@ -29,7 +29,7 @@
           </p>
 
         </article>
-        <div ng-if="clientes.length > 0" ng-repeat="cliente in clientes track by $index"  data-uk-scrollspy="{}" class="uk-width-1-1">
+        <div ng-if="clientes.length > 0" ng-repeat="cliente in clientes track by $index"  data-uk-scrollspy="{}" class="uk-width-1-1 cliente">
           <a class="uk-thumbnail uk-grid" ng-href="{{ cliente.href?cliente.href:'' }}" ui-sref="{{ cliente.sref }}">
             <div class="uk-small-1-1 uk-width-medium-4-10">
               <img class="uk-overlay-scale" ng-src="{{ (cliente.srcBase?cliente.srcBase:'') + cliente.src }}" alt="{{cliente.nombre.capitalize()}}">
@@ -51,7 +51,7 @@
           <figcaption class="uk-overlay-panel uk-flex uk-flex-center uk-flex-middle uk-text-center uk-overlay-fade uk-overlay-background">
             {{ figure.nombre.capitalize() }}
           </figcaption>
-          <a class="uk-position-cover" href="{{ figure.sref }}"></a>
+          <a class="uk-position-cover" ui-sref="{{ figure.sref }}"></a>
         </figure>
       </div>
     </div>
