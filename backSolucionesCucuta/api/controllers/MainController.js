@@ -109,7 +109,7 @@ module.exports = {
   getNavbarPage: function (req, res, next) {
     var navs = [],
       brand = {
-        src:    'images/logo.png',
+        src:    '/images/logo.png',
         nombre: 'Soluciones Cúcuta',
         subnavs:  [
           {

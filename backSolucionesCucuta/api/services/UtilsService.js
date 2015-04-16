@@ -11,24 +11,33 @@ module.exports = {
           for(var i in etiqueta.etiquetas){
             var subEtiqueta = etiqueta.etiquetas[i];
             if(subEtiqueta && subEtiqueta.nombre && subEtiqueta.slug){
-              var sref = 'nav({ nav: "'+etiqueta.slug+'"})';
-              sref = 'nav.subnav({ nav: "'+etiqueta.slug+'", subnav: "'+subEtiqueta.slug+'"})';
-              subnavs.push({
-                sref:   sref,
-                src:    false,
-                nombre: subEtiqueta.nombre.toLowerCase()
-              });
+              var sref = 'nav.subnav({ nav: "'+etiqueta.slug+'", subnav: "'+subEtiqueta.slug+'"})',
+                sub = {
+                  sref:   sref,
+                  src:    false,
+                  nombre: subEtiqueta.nombre.toLowerCase()
+                };
+              /*if(subEtiqueta.archivos.length && subEtiqueta.archivos[0].url){
+                sub.src = subEtiqueta.archivos[0].url;
+              }*/
+              if(subEtiqueta.icon){
+                sub.icon = subEtiqueta.icon;
+              }
+              subnavs.push(sub);
             }
           }
         }
-        var sref = 'nav({ nav: "'+etiqueta.slug+'"})';
-        nav.push({
+        var sref = 'nav({ nav: "'+etiqueta.slug+'"})', sub = {
           li:     true,
           sref:   sref,
           src:    false,
           nombre: etiqueta.nombre.toLowerCase(),
           subnavs:  subnavs
-        });
+        };
+        if(etiqueta.icon){
+          sub.icon = etiqueta.icon;
+        }
+        nav.push(sub);
       }
     }
     return nav;

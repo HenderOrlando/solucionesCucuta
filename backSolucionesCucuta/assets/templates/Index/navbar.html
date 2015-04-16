@@ -2,14 +2,17 @@
 <nav id="soluciones-cucuta-navbar" class="uk-navbar uk-flex uk-flex-middle uk-flex-center">
   <div class="uk-navbar-brand uk-width-small-1-1 uk-width-medium-1-6" data-uk-dropdown="{mode:'click',justify:'#soluciones-cucuta-navbar'}">
     <a href="" class="uk-navbar-brand">
-      <img ng-src="{{ brand.src }}" alt="{{ brand.nombre.capitalize() }}">
+      <img image-lazy-src="{{ brand.src }}" class="lazyload" alt="{{ brand.nombre.capitalize() }}">
     </a>
 
     <div class="uk-dropdown uk-dropdown-small uk-dropdown-width-3">
       <ul class="uk-nav uk-nav-dropdown uk-grid uk-dropdown-grid">
         <li class="uk-width-1-3" ng-repeat="subnav in brand.subnavs" ng-model="brand.subnavs">
           <a ui-sref="{{subnav.sref}}" ui-sref-active="active">
-            {{ subnav.nombre.capitalize()}}
+            <i ng-if="subnav.icon" class="fa" ng-class="subnav.icon"></i>
+            <span class="uk-visible-large" >
+              {{ subnav.nombre.capitalize()}}
+            </span>
           </a>
         </li>
       </ul>
@@ -20,12 +23,15 @@
       <li ng-repeat="nav in navs" ng-model="navs" ng-class="nav.li?'uk-button-group uk-width-small-1-5 uk-width-medium-1-5':'uk-navbar-brand uk-width-small-1-1 uk-width-medium-1-6'" {{!nav.li?'data-uk-dropdown="{mode:'click'}"':''}}>
 
       <a ng-if="nav.sref" ui-sref="{{nav.sref}}" ui-sref-active="active" class="uk-button uk-button-link">
-        {{ nav.nombre.capitalize() }}
+        <i ng-if="nav.icon" class="fa" ng-class="nav.icon"></i>
+        <span class="uk-visible-large" >
+          {{ nav.nombre.capitalize() }}
+        </span>
       </a>
       <div ng-if="nav.subnavs" data-uk-dropdown="{mode:'click',justify:'#soluciones-cucuta-navbar'}">
 
         <a href="" ng-class=" nav.src?'uk-navbar-brand':'uk-button uk-button-link'">
-          <img ng-if="nav.src" ng-src="{{ nav.src }}" alt="{{ nav.nombre.capitalize() }}">
+          <img ng-if="nav.src" image-lazy-src="{{ nav.src }}" class="lazyload" alt="{{ nav.nombre.capitalize() }}">
           <i ng-if="!nav.src" class="fa fa-chevron-down"></i>
         </a>
 
@@ -33,7 +39,10 @@
           <ul class="uk-nav uk-nav-dropdown uk-grid uk-dropdown-grid">
             <li class="uk-width-1-3" ng-repeat="subnav in nav.subnavs" ng-model="nav.subnavs">
               <a ui-sref="{{subnav.sref}}" ui-sref-active="active" ui-sref-active="active">
-                {{ subnav.nombre.capitalize() }}
+                <i ng-if="subnav.icon" class="fa" ng-class="subnav.icon"></i>
+                <span class="uk-visible-large" >
+                  {{ subnav.nombre.capitalize() }}
+                </span>
               </a>
             </li>
           </ul>

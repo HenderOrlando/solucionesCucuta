@@ -17,6 +17,9 @@ module.exports = {
     slug: {
       type: 'string'
     },
+    icon: {
+      type: 'string'
+    },
     descripcion:{
       type: 'text',
       required: true
