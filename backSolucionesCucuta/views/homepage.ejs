@@ -552,7 +552,7 @@
               ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
             };
 
-            $http.get("/getNavbarPage"+query)
+            $sails.get("/getNavbarPage"+query)
               .success(function(data, status, headers, jwr){
                 /*console.log('=> Navbar <=')
                  console.log(data.navs)
@@ -624,7 +624,7 @@
             ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
           };
 
-          $http.get("/getHeaderPage"+query)
+          $sails.get("/getHeaderPage"+query)
             .success(function(data, status, headers, jwr){
               /*console.log('=> Header <=')
                console.log(data.banners)
@@ -691,7 +691,7 @@
               ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
             };
 
-            $http.get("/getContentPage"+query)
+            $sails.get("/getContentPage"+query)
               .success(function(data, status, headers, jwr){
                 /*console.log('=> Content <=')
                  console.log(data.articles)
@@ -767,7 +767,7 @@
             ,sort: typeof params.sort != 'string'?'nombre ASC':params.sort
           };
 
-          $http.get('/getFooterPage'+query)
+          $sails.get('/getFooterPage'+query)
             .success(function(data, status, headers, jwr){
               /*console.log('=> Footer <=')
                console.log(data.footers)

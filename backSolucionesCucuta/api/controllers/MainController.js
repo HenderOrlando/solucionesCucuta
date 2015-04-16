@@ -356,11 +356,13 @@ module.exports = {
                   }
 
                   var etiquetasPub = '';
-                  for(var i = 0; i < publicacion.etiquetas.length; i++){
-                    var etiquetas = publicacion.etiquetas[i];
-                    autores += (i != 0?', ':'')+etiquetas.nombre;
+                  if(publicacion.etiquetas){
+                    for(var i = 0; i < publicacion.etiquetas.length; i++){
+                      var etiquetas = publicacion.etiquetas[i];
+                      autores += (i != 0?', ':'')+etiquetas.nombre;
+                    }
                   }
-                  if(etiquetasPub){
+                  if(etiquetasPub != ''){
                     pub.metas.push({
                       name : 'etiquetas',
                       value : etiquetas
