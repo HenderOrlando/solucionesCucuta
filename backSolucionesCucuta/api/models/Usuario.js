@@ -26,6 +26,10 @@ module.exports = {
       type: 'text',
       required: true
     },
+    email:{
+      type: 'string',
+      required: true
+    },
     slug: {
       type: 'string'
     },

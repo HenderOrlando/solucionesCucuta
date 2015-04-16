@@ -267,108 +267,114 @@ module.exports = {
         if(err){
           res.negotiate(err);
         }
-        var
-          total = usuarios.length,
-          _total = total,
-          items = [];
+        if(usuarios){
+          var
+            total = usuarios.length,
+            _total = total,
+            items = [];
 
-        if(_total > limit){
-          _total = limit
-        }
+          if(_total > limit){
+            _total = limit
+          }
 
-        // Figures
-        for(var i = 0; i <= _total; i++){
-          var rand = Math.floor(Math.random()*(total));
-          if(items.indexOf(rand) >= 0){
-            i--;
+          // Figures
+          for(var i = 0; i <= _total; i++){
+            var rand = Math.floor(Math.random()*(total));
+            if(items.indexOf(rand) >= 0){
+              i--;
+            }else{
+              items.push(rand);
+              var figure = convertUsuario(usuarios[rand]);
+              if(figure){
+                figures.push(figure);
+              }
+            }
+          }
+
+          // Clientes o Publicaciones según navegación
+          if(nav){
+            // Clientes
+            for(var i=0; i<usuarios.length; i++){
+              var cliente = usuarios[i];
+              for(var j = 0; j < cliente.etiquetas.length; j++){
+                var etiqueta = cliente.etiquetas[j];
+                sails.log.debug('etiqueta('+etiqueta.slug.toLowerCase()+') == nav('+nav.toLowerCase()+') => '+etiqueta.slug.toLowerCase() == nav.toLowerCase());
+                sails.log.debug('etiqueta('+etiqueta.slug.toLowerCase()+') == subnav('+(subnav && subnav.toLowerCase())+') => '+etiqueta.slug.toLowerCase() == nav.toLowerCase());
+                if((!subnav && etiqueta.slug.toLowerCase() == nav.toLowerCase()) || (subnav && etiqueta.slug.toLowerCase() == subnav.toLowerCase())){
+                  clientes.push(convertUsuario(cliente));
+                  break;
+                }
+              }
+            }
+            return rtaJson(publicaciones, figures, clientes);
+
           }else{
-            items.push(rand);
-            var figure = convertUsuario(usuarios[rand]);
-            if(figure){
-              figures.push(figure);
-            }
-          }
-        }
+            // Publicaciones
+            Publicacion.find({tipo: 3})
+              .populateAll()
+              .sort('id ASC')
+              .exec(function(err, publicaciones){
+                if(err){
+                  return res.negotiate(err);
+                }
+                total = publicaciones.length;
+                last = Math.floor(total/limit)+ 1;
+                // Fix page
+                page = page > last || page < first?first:page;
 
-        // Clientes o Publicaciones según navegación
-        if(nav){
-          // Clientes
-          for(var i=0; i<usuarios.length; i++){
-            var cliente = usuarios[i];
-            for(var j = 0; j < cliente.etiquetas.length; j++){
-              var etiqueta = cliente.etiquetas[j];
-              sails.log.debug('etiqueta('+etiqueta.slug.toLowerCase()+') == nav('+nav.toLowerCase()+') => '+etiqueta.slug.toLowerCase() == nav.toLowerCase());
-              sails.log.debug('etiqueta('+etiqueta.slug.toLowerCase()+') == subnav('+(subnav && subnav.toLowerCase())+') => '+etiqueta.slug.toLowerCase() == nav.toLowerCase());
-              if((!subnav && etiqueta.slug.toLowerCase() == nav.toLowerCase()) || (subnav && etiqueta.slug.toLowerCase() == subnav.toLowerCase())){
-                clientes.push(convertUsuario(cliente));
-                break;
-              }
-            }
-          }
-          return rtaJson(publicaciones, figures, clientes);
+                var iPub = 0;
+                while (iPub < publicaciones.length){
+                  var publicacion = publicaciones[iPub];
 
-        }else{
-          // Publicaciones
-          Publicacion.find({tipo: 3})
-            .populateAll()
-            .sort('id ASC')
-            .exec(function(err, publicaciones){
-              if(err){
-                return res.negotiate(err);
-              }
-              total = publicaciones.length;
-              last = Math.floor(total/limit)+ 1;
-              // Fix page
-              page = page > last || page < first?first:page;
-
-              var iPub = 0;
-              while (iPub < publicaciones.length){
-                var publicacion = publicaciones[iPub];
-
-                var pub = {
-                  attrs:    [
-                    {
-                      name: 'id',
-                      value: publicacion.slug
+                  var pub = {
+                    attrs:    [
+                      {
+                        name: 'id',
+                        value: publicacion.slug
+                      }
+                    ],
+                    title:    publicacion.titulo,
+                    metas:     [],
+                    subtitle: publicacion.subtitulo,
+                    content:   [publicacion.contenido],
+                    footer:   false,
+                    media:    false,
+                    fullwidth:true
+                  };
+                  var autores = '';
+                  if(publicacion.usuarios){
+                    for(var i = 0; i < publicacion.usuarios.length; i++){
+                      var usuario = publicacion.usuarios[i];
+                      autores += (i != 0?', ':'')+usuario.username;
                     }
-                  ],
-                  title:    publicacion.titulo,
-                  metas:     [],
-                  subtitle: publicacion.subtitulo,
-                  content:   [publicacion.contenido],
-                  footer:   false,
-                  media:    false,
-                  fullwidth:true
-                };
-                var autores = '';
-                for(var i = 0; i < publicacion.usuarios.length; i++){
-                  var usuario = publicacion.usuarios[i];
-                  autores += (i != 0?', ':'')+usuario.username;
-                }
-                if(autores){
-                  pub.metas.push({
-                    name : 'escrito por',
-                    value : autores
-                  });
-                }
+                  }
+                  if(autores.length){
+                    pub.metas.push({
+                      name : 'escrito por',
+                      value : autores
+                    });
+                  }
 
-                var etiquetasPub = '';
-                for(var i = 0; i < publicacion.etiquetas.length; i++){
-                  var etiquetas = publicacion.etiquetas[i];
-                  autores += (i != 0?', ':'')+etiquetas.nombre;
-                }
-                if(etiquetasPub){
-                  pub.metas.push({
-                    name : 'etiquetas',
-                    value : etiquetas
-                  });
-                }
+                  var etiquetasPub = '';
+                  for(var i = 0; i < publicacion.etiquetas.length; i++){
+                    var etiquetas = publicacion.etiquetas[i];
+                    autores += (i != 0?', ':'')+etiquetas.nombre;
+                  }
+                  if(etiquetasPub){
+                    pub.metas.push({
+                      name : 'etiquetas',
+                      value : etiquetas
+                    });
+                  }
 
-                publicaciones.push(pub);
-                iPub++;
-              }
-              return rtaJson(publicaciones, figures, clientes);
-            });
+                  publicaciones.push(pub);
+                  iPub++;
+                }
+                return rtaJson(publicaciones, figures, clientes);
+              });
+          }
+        }else{
+          res.notFound();
         }
 
       });
