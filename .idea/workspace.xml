@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cf176a6e-f8a9-4ea8-85fe-9d07ca082699" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Etiqueta.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/models/Etiqueta.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/MainController.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/MainController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/api/services/UtilsService.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/api/services/UtilsService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/content.html" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/content.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/cors.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/cors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/header.html" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs" afterPath="$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/navbar.html" afterPath="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Index/navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backSolucionesCucuta/config/env/production.js" afterPath="$PROJECT_DIR$/backSolucionesCucuta/config/env/production.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="cf176a6e-f8a9-4ea8-85fe-9d07ca082699" name="Default" comment="" />
     <ignored path="solucionesCucuta.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1102,14 +1091,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.70553935" vertical-offset="484" max-vertical-offset="1170">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.69527894" vertical-offset="486" max-vertical-offset="1566">
@@ -1216,14 +1197,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/config/env/development.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="699">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/config/cors.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1512">
@@ -1232,10 +1205,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/config/env/development.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="699">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/config/env/production.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6695279" vertical-offset="18" max-vertical-offset="792">
           <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backSolucionesCucuta/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.39067057" vertical-offset="268" max-vertical-offset="1170">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
