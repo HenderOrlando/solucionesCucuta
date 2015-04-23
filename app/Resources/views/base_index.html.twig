@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Soluciones Cúcuta{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets
+            'bundles/app/css/uikit.min.css'
+            'bundles/app/css/uikit.gradient.min.css'
+            'bundles/app/css/components/codeMirror.css'
+            'bundles/app/css/components/*.min.css'
+            'bundles/app/css/components/*.gradient.min.css'
+            output='css/compiled/main.css' filter='?uglifycss' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block header %}{% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
+        <div class="uk-hidden">
+            {% block javascripts %}
+                {% javascripts
+                '@AppBundle/Resources/public/js/jquery-2.1.3.min.js'
+                '@AppBundle/Resources/public/js/uikit.min.js'
+                '@AppBundle/Resources/public/js/components/codeMirror.js'
+                '@AppBundle/Resources/public/js/components/codeMirrorMode.markdown.js'
+                '@AppBundle/Resources/public/js/components/codeMirrorAddonMode.overlay.js'
+                '@AppBundle/Resources/public/js/components/codeMirrorMode.xml.js'
+                '@AppBundle/Resources/public/js/components/codeMirrorMode.gfm.js'
+                '@AppBundle/Resources/public/js/components/marked.min.js'
+                '@AppBundle/Resources/public/js/core/*.js'
+                '@AppBundle/Resources/public/js/components/slideshow.min.js'
+                '@AppBundle/Resources/public/js/components/*.js'
+                output='js/compiled/main.js' filter='uglifyjs2' %}
+                <script src="{{ asset_url }}"></script>
+                {% endjavascripts %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
