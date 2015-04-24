@@ -1,0 +1,43 @@
+{#
+  Created by hender on 24/04/15.
+#}
+
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Administración</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Archivo</th>
+                <th>No. Veces Mostrada</th>
+                <th>No. Clicks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {#{% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('usuario_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.username }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.rol }}</td>
+                <td>{{ entity.descripcion }}</td>
+                <td>{{ entity.slug }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('usuario_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('usuario_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}#}
+        </tbody>
+    </table>
+{% endblock -%}

@@ -1,5 +1,33 @@
 {% extends "AppBundle:Page:index.html.twig" %}
 
 {% block body %}
+    <div id="header">
+        <div class="uk-margin-large-top uk-slidenav-position" uk-width data-uk-slideshow="{animation: 'random-fx'}">
+            <ul class="uk-slideshow">
+                {% for bs in bannersSuperiores %}
+                    <li class="uk-overlay-hover">
+                        <img class="uk-overlay-spin" src="{{ bs.getWebPath }}" alt="{{ bs.nombre }}">
+                        <div class="uk-overlay-panel uk-overlay-background uk-overlay-bottom uk-overlay-slide-bottom">
+                            <h3>{{ bs.usuario.nombre }}</h3>
+                            <p>{{ bs.descripcion?bs.descripcion:bs.usuario.descripcion }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+            <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom-right uk-flex-center">
+                {% for i,bs in bannersSuperiores %}
+                    <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+        <h1 class="uk-text-center">{{ cliente.nombre }}</h1>
+    </div>
+{% endblock %}
+
+{% block footer %}
 
 {% endblock %}

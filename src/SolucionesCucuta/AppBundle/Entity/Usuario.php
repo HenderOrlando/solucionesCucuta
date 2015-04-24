@@ -3,6 +3,7 @@
 namespace SolucionesCucuta\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Proxies\__CG__\SolucionesCucuta\AppBundle\Entity\Etiqueta;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -539,16 +540,33 @@ class Usuario implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return \SolucionesCucuta\AppBundle\Entity\Archivo
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getBannerLateral(){
+    public function getBannersLaterales($all = true){
         $bannersLaterales = $this->getArchivos()->filter(
-            function(Archivo $archivo){
+            function(Archivo $archivo) use ($all){
+                if(!$all){
+                    $archivo->getEtiquetas()->exists(function($key, Etiqueta $etiqueta){
+                        return $etiqueta->getSlug() === 'principal';
+                    });
+                }
                 return $archivo->getTipo()->getSlug() == 'banner-lateral';
             }
         );
-        if($bannersLaterales)
+        if($bannersLaterales){
+            return $bannersLaterales;
+        }
+        return null;
+    }
+
+    /**
+     * @return \SolucionesCucuta\AppBundle\Entity\Archivo
+     */
+    public function getBannerLateral($plural = false){
+        $bannersLaterales = $this->getBannersLaterales(false);
+        if($bannersLaterales){
             return $bannersLaterales->first();
+        }
         return null;
     }
 

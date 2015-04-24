@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PageController extends Controller
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/login/", name="login")
      * @Template()
      */
     public function loginAction(Request $request)
@@ -79,7 +79,7 @@ class PageController extends Controller
     }
 
     /**
-     * @Route("/Search", name="search")
+     * @Route("/Search/", name="search")
      */
     public function searchAction(Request $request)
     {
@@ -98,8 +98,20 @@ class PageController extends Controller
         return JsonResponse::create($rta);
     }
 
+
     /**
-     * @Route("/{slug}", name="cliente")
+     * @Route("/admin/", name="clientes_admin")
+     * @Template()
+     */
+    public function clientesAdminAction()
+    {
+        return array(
+            // ...
+        );
+    }
+
+    /**
+     * @Route("/{slug}/", name="cliente")
      * @Template()
      */
     public function clienteAction()
@@ -109,22 +121,11 @@ class PageController extends Controller
             );
     }
     /**
-     * @Route("/lista-de-{slug}", name="clientes")
+     * @Route("/lista-de-{slug}/", name="clientes")
      * @Route("/lista-de-{slugpadre}/{slughijo}", name="clientes_hijo")
      * @Template()
      */
     public function clientesAction()
-    {
-        return array(
-                // ...
-            );
-    }
-
-    /**
-     * @Route("/admin", name="clientes_admin")
-     * @Template()
-     */
-    public function clientesAdminAction()
     {
         return array(
                 // ...

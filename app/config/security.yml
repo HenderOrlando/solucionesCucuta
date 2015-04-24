@@ -46,7 +46,7 @@ security:
                 use_referer:  true
             logout:
                 path:   logout
-                target: /
+                target: clientes_admin
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
