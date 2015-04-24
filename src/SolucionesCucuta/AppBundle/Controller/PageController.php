@@ -120,4 +120,15 @@ class PageController extends Controller
             );
     }
 
+    /**
+     * @Route("/admin", name="clientes_admin")
+     * @Template()
+     */
+    public function clientesAdminAction()
+    {
+        return array(
+                // ...
+            );
+    }
+
 }
