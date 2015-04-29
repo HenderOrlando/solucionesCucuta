@@ -22,6 +22,7 @@ class UsuarioType extends AbstractType
             ->add('password')
             ->add('estado')
             ->add('rol')
+            ->add('etiquetas')
         ;
     }
     

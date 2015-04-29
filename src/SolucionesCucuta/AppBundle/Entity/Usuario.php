@@ -89,6 +89,11 @@ class Usuario implements AdvancedUserInterface, \Serializable
     private $rol;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Etiqueta", inversedBy="usuarios")
+     */
+    private $etiquetas;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime", nullable=true)
@@ -527,6 +532,39 @@ class Usuario implements AdvancedUserInterface, \Serializable
     }
 
     /**
+     * Add etiquetas
+     *
+     * @param \SolucionesCucuta\AppBundle\Entity\Etiqueta $etiquetas
+     * @return Estado
+     */
+    public function addEtiqueta(\SolucionesCucuta\AppBundle\Entity\Etiqueta $etiquetas)
+    {
+        $this->etiquetas[] = $etiquetas;
+
+        return $this;
+    }
+
+    /**
+     * Remove etiquetas
+     *
+     * @param \SolucionesCucuta\AppBundle\Entity\Etiqueta $etiquetas
+     */
+    public function removeEtiqueta(\SolucionesCucuta\AppBundle\Entity\Etiqueta $etiquetas)
+    {
+        $this->etiquetas->removeElement($etiquetas);
+    }
+
+    /**
+     * Get etiquetas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEtiquetas()
+    {
+        return $this->etiquetas;
+    }
+
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
@@ -546,7 +584,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
         $bannersLaterales = $this->getArchivos()->filter(
             function(Archivo $archivo) use ($all){
                 if(!$all){
-                    $archivo->getEtiquetas()->exists(function($key, Etiqueta $etiqueta){
+                    $archivo->getEtiquetas()->exists(function($key, $etiqueta){
                         return $etiqueta->getSlug() === 'principal';
                     });
                 }

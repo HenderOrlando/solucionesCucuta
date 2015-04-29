@@ -95,6 +95,11 @@ class Etiqueta
      */
     private $publicaciones;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="etiquetas")
+     */
+    private $usuarios;
+
     /*** =========================================================================== ***/
 
     /**
@@ -409,9 +414,9 @@ class Etiqueta
      * @param \SolucionesCucuta\AppBundle\Entity\Publicacion $publicaciones
      * @return Etiqueta
      */
-    public function addPublicacione(\SolucionesCucuta\AppBundle\Entity\Publicacion $publicaciones)
+    public function addPublicacion(\SolucionesCucuta\AppBundle\Entity\Publicacion $publicacion)
     {
-        $this->publicaciones[] = $publicaciones;
+        $this->publicaciones[] = $publicacion;
 
         return $this;
     }
@@ -421,9 +426,9 @@ class Etiqueta
      *
      * @param \SolucionesCucuta\AppBundle\Entity\Publicacion $publicaciones
      */
-    public function removePublicacione(\SolucionesCucuta\AppBundle\Entity\Publicacion $publicaciones)
+    public function removePublicacion(\SolucionesCucuta\AppBundle\Entity\Publicacion $publicacion)
     {
-        $this->publicaciones->removeElement($publicaciones);
+        $this->publicaciones->removeElement($publicacion);
     }
 
     /**
@@ -434,6 +439,39 @@ class Etiqueta
     public function getPublicaciones()
     {
         return $this->publicaciones;
+    }
+
+    /**
+     * Add usuarios
+     *
+     * @param \SolucionesCucuta\AppBundle\Entity\Usuario $usuario
+     * @return Etiqueta
+     */
+    public function addUsuario(\SolucionesCucuta\AppBundle\Entity\Usuario $usuario)
+    {
+        $this->usuarios[] = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Remove usuarios
+     *
+     * @param \SolucionesCucuta\AppBundle\Entity\Usuario $usuario
+     */
+    public function removeUsuario(\SolucionesCucuta\AppBundle\Entity\Usuario $usuario)
+    {
+        $this->usuarios->removeElement($usuario);
+    }
+
+    /**
+     * Get usuarios
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsuarios()
+    {
+        return $this->usuarios;
     }
 
     /**

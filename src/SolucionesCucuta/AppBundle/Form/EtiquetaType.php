@@ -21,6 +21,7 @@ class EtiquetaType extends AbstractType
             ->add('padre')
             ->add('tipo')
             ->add('estado')
+            ->add('usuarios')
         ;
     }
     

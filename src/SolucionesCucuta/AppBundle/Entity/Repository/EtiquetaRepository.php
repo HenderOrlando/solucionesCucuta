@@ -28,4 +28,5 @@ class EtiquetaRepository extends EntityRepository
         }
         return $qb->getQuery()->getResult();
     }
+
 }

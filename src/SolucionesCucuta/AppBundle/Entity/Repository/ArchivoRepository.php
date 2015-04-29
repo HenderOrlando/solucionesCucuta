@@ -29,4 +29,28 @@ class ArchivoRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function getArchivosTipoBySlug($tipo, $slug, $slughijo, $results = true){
+        $qb = $this->getArchivosTipo($tipo, null);
+
+        $qb->innerjoin('a.usuario', 'au')
+            ->leftJoin('au.etiquetas', 'aue')
+            ;
+        if(is_string($slughijo)){
+            $qb->andWhere($qb->expr()->eq('aue.slug',$qb->expr()->literal($slughijo)));
+        }else{
+            $qb
+                ->andWhere($qb->expr()->eq('aue.slug',$qb->expr()->literal($slug)))
+                /*->leftJoin('ue.hijos', 'ue_hijo')
+                ->orWhere('ue_hijo.slug=u.etiquetas')*/
+            ;
+        }
+        if($results === null){
+            return $qb;
+        }
+        if(!$results){
+            return $qb->getQuery();
+        }
+        return $qb->getQuery()->getResult();
+    }
+
 }
