@@ -13,6 +13,7 @@
                 <th>Url</th>
                 <th>Usuario</th>
                 <th>Tipo</th>
+                <th>Vista Previa</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -27,14 +28,17 @@
                 <td>{{ entity.usuario }}</td>
                 <td>{{ entity.tipo }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('archivo_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('archivo_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    <img src="{{ asset(entity.getWebPath) }}" class="uk-responsive-width" alt="{{ entity.nombre }}" width="140px" />
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('archivo_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('archivo_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

@@ -23,6 +23,7 @@ class ArchivoType extends AbstractType
             ->add('file')
             ->add('usuario')
             ->add('publicacion')
+            ->add('link')
         ;
     }
     

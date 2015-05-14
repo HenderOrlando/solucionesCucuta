@@ -472,7 +472,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
     }
 
     public function __toString(){
-        return $this->getNombre();
+        return $this->getNombre()?$this->getNombre():$this->getEmail();
     }
 
     public function isAccountNonExpired()
@@ -610,6 +610,84 @@ class Usuario implements AdvancedUserInterface, \Serializable
 
     public function getSrcBannerLateral(){
         $archivo = $this->getBannerLateral();
+        if(is_object($archivo) && method_exists($archivo,'getWebPath')){
+            return $archivo->getWebPath();
+        }
+        return '#';
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBannersSuperiores($all = true){
+        $bannersSuperiores = $this->getArchivos()->filter(
+            function(Archivo $archivo) use ($all){
+                if(!$all){
+                    $archivo->getEtiquetas()->exists(function($key, $etiqueta){
+                        return $etiqueta->getSlug() === 'principal';
+                    });
+                }
+                return $archivo->getTipo()->getSlug() == 'banner-superior';
+            }
+        );
+        if($bannersSuperiores){
+            return $bannersSuperiores;
+        }
+        return null;
+    }
+
+    /**
+     * @return \SolucionesCucuta\AppBundle\Entity\Archivo
+     */
+    public function getBannerSuperior($plural = false){
+        $bannersSuperiores = $this->getBannersSuperiores(false);
+        if($bannersSuperiores){
+            return $bannersSuperiores->first();
+        }
+        return null;
+    }
+
+    public function getSrcBannerSuperior(){
+        $archivo = $this->getBannerSuperior();
+        if(is_object($archivo) && method_exists($archivo,'getWebPath')){
+            return $archivo->getWebPath();
+        }
+        return '#';
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRedesSociales($all = true){
+        $bannersSuperiores = $this->getArchivos()->filter(
+            function(Archivo $archivo) use ($all){
+                if(!$all){
+                    $archivo->getEtiquetas()->exists(function($key, $etiqueta){
+                        return $etiqueta->getSlug() === 'principal';
+                    });
+                }
+                return $archivo->getTipo()->getSlug() == 'red-social';
+            }
+        );
+        if($bannersSuperiores){
+            return $bannersSuperiores;
+        }
+        return null;
+    }
+
+    /**
+     * @return \SolucionesCucuta\AppBundle\Entity\Archivo
+     */
+    public function getRedSocial($plural = false){
+        $bannersSuperiores = $this->getRedesSociales(false);
+        if($bannersSuperiores){
+            return $bannersSuperiores->first();
+        }
+        return null;
+    }
+
+    public function getSrcRedSocial(){
+        $archivo = $this->getRedSocial();
         if(is_object($archivo) && method_exists($archivo,'getWebPath')){
             return $archivo->getWebPath();
         }

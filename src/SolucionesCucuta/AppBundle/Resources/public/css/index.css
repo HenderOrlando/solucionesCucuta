@@ -107,6 +107,19 @@ html,
     margin-top: 0;
 }
 
+.redes-sociales{
+    position: absolute;
+    top: 0;
+    right: 0px;
+    height: 20%;
+    text-align: right;
+}
+.redes-sociales img{
+    background: rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    margin-left: -5px;
+}
+
 @media (min-width: 960px){
     .uk-navbar-brand:before, .uk-navbar-content:before, .uk-navbar-toggle:before{
         display: inline-block;

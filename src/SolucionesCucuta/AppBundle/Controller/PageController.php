@@ -2,6 +2,8 @@
 
 namespace SolucionesCucuta\AppBundle\Controller;
 
+use SolucionesCucuta\AppBundle\Entity\Archivo;
+use SolucionesCucuta\AppBundle\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -62,7 +64,7 @@ class PageController extends Controller
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Archivo');
-        $bs = $repository->getArchivosTipo('banner-superior');
+        $bs = $repository->getArchivosTipo('banner-superior-presentacion');
 
         $repository = $this->getDoctrine()->getRepository('AppBundle:Etiqueta');
         $menus = $repository->getEtiquetasTipo('menu');
@@ -139,6 +141,96 @@ class PageController extends Controller
     }
 
     /**
+     * @Route("/registrar-usuario/", name="registrarUsuario")
+     */
+    public function registrarAction(Request $request)
+    {
+        $email = $request->get('email', false);
+        $msg = 'Muchas gracias, recibirá información en su email';
+        $error = false;
+
+        if(!$email){
+            $msg = 'El email es necesario';
+            $error = true;
+        }else{
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Usuario');
+            $usuario = $repository->findOneBy(array('email' => $email));
+
+            if(!$usuario){
+                $em = $this->getDoctrine()->getManager();
+                $usuario = new Usuario();
+                $usuario->setEmail($email);
+                $em->persist($usuario);
+                $em->flush();
+            }else{
+                //$msg = $usuario->getNombre().' te encuentras registrado';
+            }
+        }
+
+        return new JsonResponse(array(
+            'msg' => $msg,
+            'error' => $error
+        ));
+    }
+
+    /**
+     * @Route("/Sumar/{event}/{id}", name="suma_print_click")
+     * @Template()
+     */
+    public function sumaAction(Request $request, $event, $id){
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('AppBundle:Archivo');
+        $noHash = $repo->findByHash(NULL);
+        if(count($noHash)){
+            $em->transactional(function($em) use ($noHash){
+                foreach($noHash as $el){
+                    $el->setHash();
+                    $em->persist($el);
+                }
+            });
+        }
+        $obj = $repo->findOneByHash($id);
+        $rta = array(
+            'type'  => 'error',
+            'title' => 'Archivo no Exncontrado',
+            'text'  => 'El archivo buscado no se encuentra disponible.',
+        );
+        if($obj){
+            $event = strtolower($event);
+            $mod = false;
+            if($event == 'print'){
+                $obj->addPrint();
+                $mod = true;
+                $rta = array(
+                    'title' => 'Conteo de Impresiones',
+                    'text'  => 'Se agregó una impresión más a "'.$obj->getNombre().'".',
+                );
+            }elseif($event == 'click'){
+                $obj->addClick();
+                $mod = true;
+                $rta = array(
+                    'title' => "Conteo de Click's",
+                    'text'  => 'Se agregó un click más a "'.$obj->getNombre().'".',
+                );
+            }else{
+                $rta = array(
+                    'type'  => 'error',
+                    'title' => 'Evento no identificado',
+                    'text'  => 'El evento enviado no fué identificado.',
+                );
+            }
+            if($mod){
+                $em->persist($obj);
+                $em->flush();
+                $rta = array_merge($rta, array(
+                    'type'  => 'success'
+                ));
+            }
+        }
+        return new JsonResponse($rta);
+    }
+
+    /**
      * @Route("/lista-de-{slug}/", name="clientes")
      * @Route("/lista-de-{slugpadre}/{slughijo}", name="clientes_hijo")
      * @Template()
@@ -202,5 +294,4 @@ class PageController extends Controller
             'bannersSuperiores' => $bs,
         );
     }
-
 }

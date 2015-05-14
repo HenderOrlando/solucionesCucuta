@@ -27,7 +27,9 @@
         {% for i,cliente in clientes %}
             <div class="uk-grid uk-width-small-1-1 uk-width-medium-1-2" data-uk-grid-margin="">
                 <div class="uk-width-medium-1-2 {% if i is odd %}uk-visible-small{% endif %}">
-                    <h1>{{ cliente.nombre }}</h1>
+                    <a href="{{ path('cliente',{slug: cliente.slug}) }}">
+                        <h1>{{ cliente.nombre }}</h1>
+                    </a>
                     <h2>{{ cliente.email }}</h2>
                     <p>
                         {{ cliente.descripcion }}
@@ -37,13 +39,13 @@
                     {% if cliente.archivos|length %}
                         {% if cliente.archivos|length == 1 %}
                             {% set archivo = cliente.archivos | first %}
-                            <img src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}">
+                            <img src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
                         {% else %}
                             <div class="uk-slidenav-position" uk-width data-uk-slideshow="{animation: 'random-fx'}">
                                 <ul class="uk-slideshow">
                                     {% for archivo in cliente.archivos %}
                                         <li class="uk-overlay">
-                                            <img class="uk-overlay-spin" src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}">
+                                            <img class="uk-overlay-spin" src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
                                             <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-ignore">
                                                 <h3>{{ archivo.nombre }}</h3>
                                                 <p>{{ archivo.descripcion }}</p>
@@ -64,7 +66,9 @@
                 </div>
                 {% if i is odd %}
                     <div class="uk-width-medium-1-2 uk-hidden-small">
-                        <h1>{{ cliente.nombre }}</h1>
+                        <a href="{{ path('cliente',{slug: cliente.slug}) }}">
+                            <h1>{{ cliente.nombre }}</h1>
+                        </a>
                         <h2>{{ cliente.email }}</h2>
                         <p>
                             {{ cliente.descripcion }}

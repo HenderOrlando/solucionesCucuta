@@ -27,6 +27,13 @@ class Archivo
     /**
      * @var string
      *
+     * @ORM\Column(name="hash", type="string", length=255, nullable=true)
+     */
+    private $hash;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nombre", type="string", length=255, nullable=true)
      */
     private $nombre;
@@ -48,9 +55,30 @@ class Archivo
     /**
      * @var string
      *
+     * @ORM\Column(name="link", type="text", nullable=true)
+     */
+    private $link;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
     private $url;
+
+    /**
+     * @var number
+     *
+     * @ORM\Column(name="num_clicks", type="bigint", nullable=false, options={"unsigned"=true, "default" = 0})
+     */
+    private $clicks;
+
+    /**
+     * @var number
+     *
+     * @ORM\Column(name="num_print", type="bigint", nullable=false, options={"unsigned"=true, "default" = 0})
+     */
+    private $prints;
 
     /**
      * @ORM\ManyToOne(targetEntity="Tipo", inversedBy="archivos")
@@ -106,6 +134,8 @@ class Archivo
      */
     public function __construct()
     {
+        $this->clicks = 0;
+        $this->prints = 0;
         $this->createdat = $this->updatedat = new \DateTime('now');
         $this->etiquetas = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -214,6 +244,99 @@ class Archivo
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return Archivo
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * set clicks
+     *
+     * @param integer $clicks
+     * @return Archivo
+     */
+    public function setClicks($clicks)
+    {
+        $this->clicks = $clicks;
+
+        return $this;
+    }
+
+    /**
+     * Add click
+     *
+     * @return Archivo
+     */
+    public function addClick()
+    {
+        $this->clicks++;
+
+        return $this;
+    }
+
+    /**
+     * Get clicks
+     *
+     * @return integer
+     */
+    public function getClicks()
+    {
+        return $this->clicks;
+    }
+
+    /**
+     * set prints
+     *
+     * @param integer $prints
+     * @return Archivo
+     */
+    public function setPrints($prints)
+    {
+        $this->prints = $prints;
+
+        return $this;
+    }
+
+    /**
+     * Add print
+     *
+     * @return Archivo
+     */
+    public function addPrint()
+    {
+        $this->prints++;
+
+        return $this;
+    }
+
+    /**
+     * Get prints
+     *
+     * @return integer
+     */
+    public function getPrints()
+    {
+        return $this->prints;
     }
 
     /**
@@ -445,6 +568,7 @@ class Archivo
             $filename = sha1(uniqid(mt_rand(), true));
             $this->url = $filename.'.'.$this->getFile()->guessExtension();
         }
+        $this->setHash();
     }
     /**
      * @ORM\PostPersist()
@@ -524,5 +648,18 @@ class Archivo
     public function getPublicacion()
     {
         return $this->publicacion;
+    }
+
+    public function getHash(){
+        if(!$this->hash){
+            $this->setHash();
+        }
+        return $this->hash;
+    }
+
+    public function setHash(){
+        $this->hash = sha1($this->getId().'-'.$this->getSlug());
+
+        return $this;
     }
 }
