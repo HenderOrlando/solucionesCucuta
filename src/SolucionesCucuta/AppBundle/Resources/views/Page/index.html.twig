@@ -61,8 +61,8 @@
                         </li>
                     {%  endfor %}
                     <li class="uk-height-1-1 uk-vertical-align">
-                        <form class="uk-search" data-uk-search="{flipDropdown:true, source:'{{ path('search') }}'}">
-                            <input class="uk-search-field" type="search" placeholder="search..." autocomplete="off">
+                        <form action="{{ path('search') }}" class="uk-search" data-uk-search="{msgResultsHeader: 'Resltados',msgMoreResults: 'Más Resultados',flipDropdown:true, source:'{{ path('search') }}'}">
+                            <input class="uk-search-field" type="search" placeholder="que busca?" autocomplete="off">
                             <div class="uk-dropdown uk-dropdown-flip uk-dropdown-search" aria-expanded="false"></div>
                         </form>
                     </li>
@@ -78,8 +78,8 @@
     </nav>
     <div id="offcanvas" class="uk-offcanvas">
         <div class="uk-offcanvas-bar">
-            <form class="uk-search" data-uk-search="{flipDropdown:true, source:'{{ path('search') }}'}">
-                <input class="uk-search-field" type="search" placeholder="search..." autocomplete="off">
+            <form class="uk-search" data-uk-search="{msgResultsHeader: 'Resltados de la Búsqueda',msgMoreResults: 'Más Resultados',flipDropdown:true, source:'{{ path('search') }}'}">
+                <input class="uk-search-field" type="search" placeholder="que busca?" autocomplete="off">
                 <div class="uk-dropdown uk-dropdown-search" aria-expanded="false"></div>
             </form>
             <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
@@ -110,9 +110,6 @@
 {% endblock %}
 
 {% block body %}
-    <div class="uk-cover">
-        <iframe data-uk-cover src="https://www.youtube.com/embed/OUCqpG2nCzA" frameborder="0" allowfullscreen></iframe>
-    </div>
     <div id="header">
         <div class="uk-slidenav-position uk-width"  data-uk-slideshow="{animation: 'random-fx'}">
             <ul class="uk-slideshow">
@@ -171,7 +168,10 @@
             {% endif %}
         </div>
     </div>
-    <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+    <div class="uk-width-7-10 uk-container-center">
+        <iframe data-uk-cover src="https://www.youtube.com/embed/OUCqpG2nCzA" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="uk-container uk-container-center uk-margin-top-remove uk-margin-large-bottom">
 
         {#<div class="uk-grid" data-uk-grid-margin="">
             <div class="uk-width-medium-1-1">

@@ -240,7 +240,12 @@ class TipoController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('tipo_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array(
+                'label' => 'Borrar',
+                'attr'  => array(
+                    'class' => 'uk-button uk-button-large uk-button-danger'
+                ),
+            ))
             ->getForm()
         ;
     }

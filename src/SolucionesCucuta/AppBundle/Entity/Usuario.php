@@ -3,7 +3,6 @@
 namespace SolucionesCucuta\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Proxies\__CG__\SolucionesCucuta\AppBundle\Entity\Etiqueta;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -678,7 +677,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
     /**
      * @return \SolucionesCucuta\AppBundle\Entity\Archivo
      */
-    public function getRedSocial($plural = false){
+    public function getRedSocial(){
         $bannersSuperiores = $this->getRedesSociales(false);
         if($bannersSuperiores){
             return $bannersSuperiores->first();

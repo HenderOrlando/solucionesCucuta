@@ -1,48 +1,52 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Estado</h1>
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ entity.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ entity.slug }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ entity.descripcion }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('estado') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('estado_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="uk-width-9-10 uk-container-center">
+        <h1>Estado</h1>
+        <div class="uk-overflow-container">
+            <table class="uk-table uk-table-hover uk-table-striped uk-table-middle">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{ entity.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Slug</th>
+                        <td>{{ entity.slug }}</td>
+                    </tr>
+                    <tr>
+                        <th>Descripcion</th>
+                        <td>{{ entity.descripcion }}</td>
+                    </tr>
+                    <tr>
+                        <th>Createdat</th>
+                        <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Updatedat</th>
+                        <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            <div class="uk-button-group uk-margin">
+                                <a href="{{ path('estado') }}" class="uk-button uk-button-large">
+                                    Volver a la lista
+                                </a>
+                                <a href="{{ path('estado_edit', {'id': entity.id}) }}" class="uk-button uk-button-large">
+                                    Editar
+                                </a>
+                                {{ form(delete_form) }}
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 {% endblock %}

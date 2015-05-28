@@ -2,6 +2,7 @@
 
 namespace SolucionesCucuta\AppBundle\Controller;
 
+use Proxies\__CG__\SolucionesCucuta\AppBundle\Entity\Etiqueta;
 use SolucionesCucuta\AppBundle\Entity\Archivo;
 use SolucionesCucuta\AppBundle\Entity\Usuario;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -84,11 +85,13 @@ class PageController extends Controller
     }
 
     /**
-     * @Route("/Search/results.json", name="search")
+     * @Route("/Search", name="search")
+     * @Route("/Search/", name="search_")
+     * @Template()
      */
     public function searchAction(Request $request)
     {
-        $query = $request->get('query', false);
+        $query = $request->get('search', false);
         $repository = $this->getDoctrine()->getRepository('AppBundle:Usuario');
         $usuarios = $repository->searchCliente($query);
         $rta = array('results' => array());
@@ -96,12 +99,48 @@ class PageController extends Controller
             $rta['results'][] = array(
                 'value' => $usuario->getId(),
                 'title' => $usuario->getNombre(),
+                'classStyle' => 'cliente',
                 'url'   => $this->generateUrl('cliente',array('slug' => $usuario->getSlug())),
                 'text'  => $usuario->getDescripcion()
             );
         }
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Etiqueta');
+        $etiquetas = $repository->searchEtiquetasTipo($query, 'menu');
+        foreach($etiquetas as $etiqueta){
+            //$etiqueta = new Etiqueta();
+            if($etiqueta->getPadre()){
+                $title = $etiqueta->getPadre()->getNombre().'/'.$etiqueta->getNombre().'/';
+                $url = $this->generateUrl('clientes_hijo',array(
+                    'slugpadre' => $etiqueta->getPadre()->getSlug(),
+                    'slughijo' => $etiqueta->getSlug(),
+                ));
+            }else{
+                $title = $etiqueta->getNombre().'/';
+                $url = $this->generateUrl('clientes',array('slug' => $etiqueta->getSlug()));
+            }
+            $rta['results'][] = array(
+                'value' => $etiqueta->getId(),
+                'title' => $title,
+                'classStyle' => 'etiqueta',
+                'url'   => $url,
+                'text'  => $etiqueta->getDescripcion()
+            );
+        }
+        
+        if($request->isXmlHttpRequest()){
+            return JsonResponse::create($rta);
+        }
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Archivo');
+        $bs = $repository->getArchivosTipo('banner-superior');
 
-        return JsonResponse::create($rta);
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Etiqueta');
+        $menus = $repository->getEtiquetasTipo('menu');
+
+        return array(
+            'menus' => $menus,
+            'clientes' => $usuarios,
+            'bannersSuperiores' => $bs,
+        );
     }
 
 
@@ -235,7 +274,7 @@ class PageController extends Controller
      * @Route("/lista-de-{slugpadre}/{slughijo}", name="clientes_hijo")
      * @Template()
      */
-    public function clientesAction(Request $request)
+    public function clientesAction(Request $request, $clientes = null)
     {
         $slug = $request->get('slug', $request->get('slugpadre', false));
         $slughijo = $request->get('slughijo', false);
@@ -243,6 +282,7 @@ class PageController extends Controller
         if(!$slug){
             throw $this->createNotFoundException('Necesita el nombre de la sección para buscar empresas');
         }
+
         $repository = $this->getDoctrine()->getRepository('AppBundle:Usuario');
         $clientes = $repository->getClientesBySlug($slug, $slughijo);
 
@@ -256,10 +296,36 @@ class PageController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Etiqueta');
         $menus = $repository->getEtiquetasTipo('menu');
 
+        if($slughijo){
+            $tag = $repository->findOneBy(array('slug' => $slughijo));
+        }else{
+            $tag = $repository->findOneBy(array('slug' => $slug));
+        }
+        if($tag){
+            $infografia = null;
+            while(!$infografia){
+                $infografia = $tag->getInfografias();
+                if(count($infografia) <= 0){
+                    if($tag->getParent()){
+                        $tag = $tag->getParent();
+                    }else{
+                        $infografia = true;
+                    }
+                }
+            }
+            if(method_exists($infografia,'first')){
+                $infografia = $infografia->first();
+            }else{
+                $infografia = null;
+            }
+        }
+
         return array(
             'menus' => $menus,
             'clientes' => $clientes,
             'bannersSuperiores' => $bs,
+            'infografia' => $infografia,
+            'submenus' => count($tag->getHijos())?$tag->getHijos():array(),
         );
     }
 

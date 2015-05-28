@@ -12,7 +12,7 @@ html,
 .uk-navbar > .uk-container.uk-container-center{
     height : 100%;
 }
-#header + .uk-container.uk-container-center,
+#header ~ .uk-container.uk-container-center,
 .uk-navbar > .uk-container.uk-container-center > .uk-navbar-brand{
     background: #fff;
     padding: 5px;
@@ -74,15 +74,18 @@ html,
 .uk-search-field{
     height: 50px;
     border: none;
-    width: 40px;
+    /*width: 40px;*/
+    width: 180px;
+    background: #eee;
+    font: 400 14px / 20px "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-.uk-search:hover > .uk-search-field,
+/*.uk-search:hover > .uk-search-field,
 .uk-search-field:active,
 .uk-search-field:focus{
     width: 180px;
     background: #eee;
     font: 400 14px / 20px "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
+}*/
 .uk-offcanvas-bar .uk-search:hover > .uk-search-field,
 .uk-offcanvas-bar .uk-search-field:active,
 .uk-offcanvas-bar .uk-search-field:focus{

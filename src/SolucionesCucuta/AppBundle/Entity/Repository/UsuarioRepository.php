@@ -94,14 +94,24 @@ class UsuarioRepository extends EntityRepository
     public function searchCliente($query){
         $qb = $this->createQueryBuilder('u');
         $qb ->innerJoin('u.etiquetas', 'ue');
+        $qb ->leftJoin('u.estado', 'uestado');
+        $qb ->leftJoin('u.rol', 'ur');
+        $querySlug = $this->slugify($query);
         if(is_string($query)){
-            $query = $this->slugify($query);
             $qb
-                ->orWhere($qb->expr()->like('ue.slug',$qb->expr()->literal($query)))
-                ->orWhere($qb->expr()->like('u.slug',$qb->expr()->literal($query)))
+                ->andWhere($qb->expr()->like('uestado.slug',$qb->expr()->literal('activo')))
+                ->andWhere($qb->expr()->like('ur.slug',$qb->expr()->literal('cliente')))
+                ->andWhere(
+                    $qb->expr()->like('ue.slug',$qb->expr()->literal('%'.$querySlug.'%')).' OR '.
+                    $qb->expr()->like('u.slug',$qb->expr()->literal('%'.$querySlug.'%')).' OR '.
+                    $qb->expr()->like('u.descripcion',$qb->expr()->literal('%'.$query.'%')).' OR '.
+                    $qb->expr()->like('u.descripcion',$qb->expr()->literal('%'.$querySlug.'%')).' OR '.
+                    $qb->expr()->like('u.email',$qb->expr()->literal('%'.$querySlug.'%'))
+                )
+                /*->orWhere($qb->expr()->like('ue.slug',$qb->expr()->literal('%'.$querySlug.'%')))
+                ->orWhere($qb->expr()->like('u.slug',$qb->expr()->literal('%'.$querySlug.'%')))*/
             ;
         }
-
         return $qb->getQuery()->getResult();
     }
     public function slugify($text)

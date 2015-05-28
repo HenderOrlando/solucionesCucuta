@@ -29,4 +29,65 @@ class EtiquetaRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+
+    public function searchEtiqueta($query, $results = true){
+        $qb = $this->createQueryBuilder('e');
+        $querySlug = $this->slugify($query);
+        if(is_string($query)){
+            $qb
+                ->andWhere(
+                    $qb->expr()->like('e.slug',$qb->expr()->literal('%'.$querySlug.'%')). 'OR '.
+                    $qb->expr()->like('e.descripcion',$qb->expr()->literal('%'.$query.'%')). 'OR '.
+                    $qb->expr()->like('e.descripcion',$qb->expr()->literal('%'.$querySlug.'%'))
+                )
+            ;
+        }
+        else{
+            return null;
+        }
+        if($results === null){
+            return $qb;
+        }
+        if(!$results){
+            return $qb->getQuery();
+        }
+        return $qb->getQuery()->getResult();
+    }
+
+    public function searchEtiquetasTipo($query, $tipo){
+        $querySlug = $this->slugify($query);
+        $qb = $this->searchEtiqueta($query, null);
+        $result = array();
+        if($qb){
+            $qb ->join('e.tipo', 'et')
+                ->andWhere($qb->expr()->eq('et.slug',$qb->expr()->literal($tipo)))
+            ;
+            $result = $qb->getQuery()->getResult();
+        }
+        return $result;
+    }
+    public function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        if (empty($text))
+        {
+            return 'n-a';
+        }
+
+        return $text;
+    }
 }

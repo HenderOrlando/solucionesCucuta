@@ -1,51 +1,47 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Tipo list</h1>
-
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Slug</th>
-                <th>Dominio</th>
-                <th>Descripcion</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('tipo_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nombre }}</td>
-                <td>{{ entity.slug }}</td>
-                <td>{{ entity.dominio }}</td>
-                <td>{{ entity.descripcion }}</td>
-                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('tipo_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('tipo_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('tipo_new') }}">
-                Create a new entry
+    <div class="uk-width-9-10 uk-container-center">
+        <h1>Lista de Tipos</h1>
+        <div class="uk-overflow-container">
+            <table class="uk-table uk-table-hover uk-table-striped uk-table-middle">
+                <thead>
+                    <tr>
+                        <th class="uk-text-center">Id</th>
+                        <th class="uk-text-center">Nombre</th>
+                        <th class="uk-text-center">Slug</th>
+                        <th class="uk-text-center">Dominio</th>
+                        <th class="uk-text-center">Descripcion</th>
+                        <th class="uk-text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('tipo_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.nombre }}</td>
+                        <td>{{ entity.slug }}</td>
+                        <td>{{ entity.dominio }}</td>
+                        <td>{{ entity.descripcion }}</td>
+                        {#<td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                        <td>
+                            <a href="{{ path('tipo_show', { 'id': entity.id }) }}" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">
+                                Mostrar
+                            </a>
+                            <a href="{{ path('tipo_edit', { 'id': entity.id }) }}" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="uk-button-group uk-margin">
+            <a href="{{ path('tipo_new') }}" class="uk-button uk-button-large">
+                Crear Nuevo Tipo
             </a>
-        </li>
-    </ul>
-    {% endblock %}
+        </div>
+    </div>
+{% endblock %}

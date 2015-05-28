@@ -240,7 +240,12 @@ class EtiquetaController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('etiqueta_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array(
+                'label' => 'Borrar',
+                'attr'  => array(
+                    'class' => 'uk-button uk-button-large uk-button-danger'
+                ),
+            ))
             ->getForm()
         ;
     }

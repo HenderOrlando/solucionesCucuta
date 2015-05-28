@@ -1,64 +1,61 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Usuario</h1>
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ entity.username }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ entity.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ entity.descripcion }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ entity.slug }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ entity.password }}</td>
-            </tr>
-            <tr>
-                <th>Salt</th>
-                <td>{{ entity.salt }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('usuario') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('usuario_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
+    <div class="uk-width-9-10 uk-container-center">
+        <h1>Usuario</h1>
+        <div class="uk-overflow-container">
+            <table class="uk-table uk-table-hover uk-table-striped uk-table-middle">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ entity.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ entity.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{ entity.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Descripcion</th>
+                        <td>{{ entity.descripcion }}</td>
+                    </tr>
+                    <tr>
+                        <th>Slug</th>
+                        <td>{{ entity.slug }}</td>
+                    </tr>
+                    <tr>
+                        <th>Creado el</th>
+                        <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Actualizado el</th>
+                        <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            <div class="uk-button-group uk-margin">
+                                <a href="{{ path('usuario') }}" class="uk-button uk-button-large">
+                                    Volver a la lista
+                                </a>
+                                <a href="{{ path('usuario_edit', {'id': entity.id}) }}" class="uk-button uk-button-large">
+                                    Editar
+                                </a>
+                                {{ form(delete_form) }}
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </ul>
 {% endblock %}

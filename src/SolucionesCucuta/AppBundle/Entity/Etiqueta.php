@@ -510,4 +510,24 @@ class Etiqueta
     public function __toString(){
         return $this->getNombre();
     }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInfografias($all = true){
+        $infografias = $this->getArchivos()->filter(
+            function(Archivo $archivo) use ($all){
+                if(!$all){
+                    $archivo->getEtiquetas()->exists(function($key, $etiqueta){
+                        return $etiqueta->getSlug() === 'principal';
+                    });
+                }
+                return $archivo->getTipo()->getSlug() == 'infografia';
+            }
+        );
+        if($infografias){
+            return $infografias;
+        }
+        return null;
+    }
 }
