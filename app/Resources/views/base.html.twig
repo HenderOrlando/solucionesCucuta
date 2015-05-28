@@ -13,83 +13,97 @@
     <nav class="uk-navbar uk-margin-large-bottom">
         
         <ul class="uk-navbar-nav">
-            <li class="uk-parent" data-uk-dropdown="">
-                <a href="{{ path('archivo') }}">Archivos</a>
-    
-                <div class="uk-dropdown uk-dropdown-navbar">
-                    <ul class="uk-nav uk-nav-navbar">
-                        <li>
-                            <a href="{{ path('archivo_new') }}">Agregar Archivo</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="uk-parent" data-uk-dropdown="">
-                <a href="{{ path('estado') }}">Estados</a>
-    
-                <div class="uk-dropdown uk-dropdown-navbar">
-                    <ul class="uk-nav uk-nav-navbar">
-                        <li>
-                            <a href="{{ path('estado_new') }}">Agregar Estado</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="uk-parent" data-uk-dropdown="">
-                <a href="{{ path('etiqueta') }}">Etiquetas</a>
-        
-                <div class="uk-dropdown uk-dropdown-navbar">
-                    <ul class="uk-nav uk-nav-navbar">
-                        <li>
-                            <a href="{{ path('etiqueta_new') }}">Agregar Etiqueta</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="uk-parent" data-uk-dropdown="">
-                <a href="{{ path('publicacion') }}">Publicaciones</a>
-        
-                <div class="uk-dropdown uk-dropdown-navbar">
-                    <ul class="uk-nav uk-nav-navbar">
-                        <li>
-                            <a href="{{ path('publicacion_new') }}">Agregar Publicación</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="uk-parent" data-uk-dropdown="">
-                <a href="{{ path('rol') }}">Roles</a>
-        
-                <div class="uk-dropdown uk-dropdown-navbar">
-                    <ul class="uk-nav uk-nav-navbar">
-                        <li>
-                            <a href="{{ path('rol_new') }}">Agregar Rol</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="uk-parent" data-uk-dropdown="">
-                <a href="{{ path('tipo') }}">Tipos</a>
-        
-                <div class="uk-dropdown uk-dropdown-navbar">
-                    <ul class="uk-nav uk-nav-navbar">
-                        <li>
-                            <a href="{{ path('tipo_new') }}">Agregar Tipo</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="uk-parent" data-uk-dropdown="">
-                <a href="{{ path('usuario') }}">Usuarios</a>
-        
-                <div class="uk-dropdown uk-dropdown-navbar">
-                    <ul class="uk-nav uk-nav-navbar">
-                        <li>
-                            <a href="{{ path('usuario_new') }}">Agregar Usuario</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            {% if is_granted('ROLE_ADMINISTRADOR') or is_granted('ROLE_ADMINISTRADOR-DE-CLIENTES') %}
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href="{{ path('archivo') }}">Archivos</a>
+
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li>
+                                <a href="{{ path('archivo_new') }}">Agregar Archivo</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMINISTRADOR') %}
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href="{{ path('estado') }}">Estados</a>
+
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li>
+                                <a href="{{ path('estado_new') }}">Agregar Estado</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMINISTRADOR') %}
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href="{{ path('etiqueta') }}">Etiquetas</a>
+
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li>
+                                <a href="{{ path('etiqueta_new') }}">Agregar Etiqueta</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMINISTRADOR') %}
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href="{{ path('publicacion') }}">Publicaciones</a>
+
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li>
+                                <a href="{{ path('publicacion_new') }}">Agregar Publicación</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMINISTRADOR') %}
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href="{{ path('rol') }}">Roles</a>
+
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li>
+                                <a href="{{ path('rol_new') }}">Agregar Rol</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMINISTRADOR') %}
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href="{{ path('tipo') }}">Tipos</a>
+
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li>
+                                <a href="{{ path('tipo_new') }}">Agregar Tipo</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMINISTRADOR') or is_granted('ROLE_ADMINISTRADOR-DE-CLIENTES') %}
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href="{{ path('usuario') }}">Usuarios</a>
+
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li>
+                                <a href="{{ path('usuario_new') }}">Agregar Usuario</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
         </ul>
         
         <div class="uk-navbar-flip">
@@ -107,4 +121,9 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {% javascripts
+    '@AppBundle/Resources/public/js/admin.js'
+    output='js/compiled/main__admin.js' filter='?uglifyjs2' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
