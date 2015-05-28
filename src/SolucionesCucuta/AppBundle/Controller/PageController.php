@@ -301,15 +301,17 @@ class PageController extends Controller
         }else{
             $tag = $repository->findOneBy(array('slug' => $slug));
         }
+        $tag_ = $tag;
         if($tag){
             $infografia = null;
-            while(!$infografia){
+            while(is_null($infografia)){
                 $infografia = $tag->getInfografias();
                 if(count($infografia) <= 0){
-                    if($tag->getParent()){
-                        $tag = $tag->getParent();
+                    $infografia = null;
+                    if($tag->getPadre()){
+                        $tag = $tag->getPadre();
                     }else{
-                        $infografia = true;
+                        $infografia = false;
                     }
                 }
             }
@@ -325,7 +327,7 @@ class PageController extends Controller
             'clientes' => $clientes,
             'bannersSuperiores' => $bs,
             'infografia' => $infografia,
-            'submenus' => count($tag->getHijos())?$tag->getHijos():array(),
+            'submenus' => count($tag_->getHijos())?$tag_->getHijos():array(),
         );
     }
 

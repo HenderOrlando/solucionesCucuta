@@ -27,14 +27,15 @@
         <div class="uk-width-1-1 uk-grid">
             <div class="{% if infografia is null %}uk-width-1-1{% else %}uk-width-1-2{% endif %}">
                 {% if submenus %}
-                    <div class="uk-accordion" data-uk-accordion>
+                    <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
                         {% for i,submenu in submenus %}
                             <h3 class="uk-accordion-title">
-                                <a href="{{ path('clientes',{'slug': submenu.slug}) }}">
-                                    {{  submenu.nombre }}
-                                </a>
+                                {{  submenu.nombre }}
                             </h3>
                             <div class="uk-accordion-content">
+                                <a href="{{ path('clientes_hijo',{'slughijo': submenu.slug, 'slugpadre': submenu.padre.slug}) }}">
+                                    ir a {{  submenu.nombre }}
+                                </a>
                                 <p>
                                     {{ submenu.descripcion }}
                                 </p>
@@ -51,9 +52,55 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                {% for i,cliente in clientes %}
-                    <div class="uk-grid uk-width-small-1-1 uk-width-medium-1-1" data-uk-grid-margin="">
-                        <div class="uk-width-medium-1-2 {% if i is odd %}uk-visible-small{% endif %}">
+            </div>
+            <div class="uk-width-1-2 {% if infografia is null %}uk-hidden{% endif %}">
+                {% if infografia %}
+                    <img class="uk-border-rounded" src="/{{ infografia.getWebPath }}" alt="{{ infografia.nombre }}" data-slug="{{ infografia.slug }}" data-id="{{ infografia.getHash }}">
+                {% endif %}
+            </div>
+            {% for i,cliente in clientes %}
+                <div class="uk-grid uk-width-small-1-1 uk-width-medium-1-2" data-uk-grid-margin="">
+                    <div class="uk-width-medium-1-2 {% if i is odd %}uk-visible-small{% endif %}">
+                        <a href="{{ path('cliente',{slug: cliente.slug}) }}">
+                            <h1>{{ cliente.nombre }}</h1>
+                        </a>
+                        <h2>{{ cliente.email }}</h2>
+                        <p>
+                            {{ cliente.descripcion }}
+                        </p>
+                    </div>
+                    <div class="uk-text-center uk-width-medium-1-2">
+                        {% if cliente.archivos|length %}
+                            {% if cliente.archivos|length == 1 %}
+                                {% set archivo = cliente.archivos | first %}
+                                <img class="uk-border-rounded" src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
+                            {% else %}
+                                <div class="uk-slidenav-position" uk-width data-uk-slideshow="{animation: 'random-fx'}">
+                                    <ul class="uk-slideshow">
+                                        {% for archivo in cliente.archivos %}
+                                            <li class="uk-overlay">
+                                                <img class="uk-overlay-spin" src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
+                                                <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-ignore">
+                                                    <h3>{{ archivo.nombre }}</h3>
+                                                    <p>{{ archivo.descripcion }}</p>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+                                    <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+                                    <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+                                        {% for i,archivo in cliente.archivos %}
+                                            <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+                    {% if i is odd %}
+                        <div class="uk-width-medium-1-2 uk-hidden-small">
                             <a href="{{ path('cliente',{slug: cliente.slug}) }}">
                                 <h1>{{ cliente.nombre }}</h1>
                             </a>
@@ -62,56 +109,10 @@
                                 {{ cliente.descripcion }}
                             </p>
                         </div>
-                        <div class="uk-text-center uk-width-medium-1-2">
-                            {% if cliente.archivos|length %}
-                                {% if cliente.archivos|length == 1 %}
-                                    {% set archivo = cliente.archivos | first %}
-                                    <img class="uk-border-rounded" src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
-                                {% else %}
-                                    <div class="uk-slidenav-position" uk-width data-uk-slideshow="{animation: 'random-fx'}">
-                                        <ul class="uk-slideshow">
-                                            {% for archivo in cliente.archivos %}
-                                                <li class="uk-overlay">
-                                                    <img class="uk-overlay-spin" src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
-                                                    <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-ignore">
-                                                        <h3>{{ archivo.nombre }}</h3>
-                                                        <p>{{ archivo.descripcion }}</p>
-                                                    </div>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                        <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-                                        <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
-                                        <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
-                                            {% for i,archivo in cliente.archivos %}
-                                                <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                {% endif %}
-                            {% endif %}
-                        </div>
+                    {% endif %}
 
-                        {% if i is odd %}
-                            <div class="uk-width-medium-1-2 uk-hidden-small">
-                                <a href="{{ path('cliente',{slug: cliente.slug}) }}">
-                                    <h1>{{ cliente.nombre }}</h1>
-                                </a>
-                                <h2>{{ cliente.email }}</h2>
-                                <p>
-                                    {{ cliente.descripcion }}
-                                </p>
-                            </div>
-                        {% endif %}
-
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="uk-width-1-2 {% if infografia is null %}uk-hidden{% endif %}">
-                {% if infografia is not null %}
-                    <img class="uk-border-rounded" src="/{{ infografia.getWebPath }}" alt="{{ infografia.nombre }}" data-slug="{{ infografia.slug }}" data-id="{{ infografia.getHash }}">
-                {% endif %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
