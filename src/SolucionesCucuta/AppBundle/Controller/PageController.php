@@ -286,9 +286,9 @@ class PageController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Usuario');
         $clientes = $repository->getClientesBySlug($slug, $slughijo);
 
-        if(empty($clientes)){
+        /*if(empty($clientes)){
             throw $this->createNotFoundException(ucfirst($slug).' no encontradas');
-        }
+        }*/
 
         $repository = $this->getDoctrine()->getRepository('AppBundle:Archivo');
         $bs = $repository->getArchivosTipoBySlug('banner-superior', $slug, $slughijo);

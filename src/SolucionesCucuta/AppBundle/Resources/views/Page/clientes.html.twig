@@ -26,6 +26,18 @@
     <div id="cliente-item" class="uk-grid uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
         <div class="uk-width-1-1 uk-grid">
             <div class="{% if infografia is null %}uk-width-1-1{% else %}uk-width-1-2{% endif %}">
+                {% if clientes | length <= 0 %}
+                    <form id="registroUsuario" name="registro" action="{{ url('registrarUsuario') }}" class="uk-form">
+                        <div class="">
+                            <label class="uk-form-label" for="">Quieres ser el primero?</label>
+                            <div class="uk-form-icon">
+                                <i class="uk-icon-envelope-o"></i>
+                                <input name=email type="email" placeholder="Escribe tu Email" class="uk-form-large" />
+                            </div>
+                            <button type="submit" class="uk-button uk-button-primary uk-button-large uk-margin-left">Sí quiero!!</button>
+                        </div>
+                    </form>
+                {% endif %}
                 {% if submenus %}
                     <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
                         {% for i,submenu in submenus %}
