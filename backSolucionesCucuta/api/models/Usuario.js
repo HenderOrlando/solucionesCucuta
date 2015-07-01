@@ -6,9 +6,6 @@
 */
 
 module.exports = {
-  autoPk: true,
-  autoUpdatAt: true,
-  autoCreateAt: true,
   attributes: {
     id: {
       type: 'string',
@@ -32,6 +29,22 @@ module.exports = {
     updateAt: {
       type: 'datetime',
       defaultsTo: function (){ return new Date(); }
+    },
+    cliente: {
+      model: 'cliente'
+    },
+    rol: {
+      model: 'rol'
+    },
+    tipo: {
+      model: 'tipo'
+    },
+    estado: {
+      model: 'estado'
+    },
+    etiquetas: {
+      collection: 'etiqueta',
+      via: 'usuarios'
     },
     publicaciones: {
       collection: 'publicacion',

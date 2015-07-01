@@ -6,13 +6,14 @@
 */
 
 module.exports = {
-  autoPk: true,
-  autoUpdatAt: true,
-  autoCreateAt: true,
   attributes: {
     id: {
       type: 'string',
       primaryKey: true,
+      unique: true
+    },
+    slug: {
+      type: 'string',
       unique: true
     },
     nombre: {

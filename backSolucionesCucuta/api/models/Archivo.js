@@ -7,12 +7,16 @@
 
 module.exports = {
   autoPk: true,
-  autoUpdatAt: true,
+  autoUpdateAt: true,
   autoCreateAt: true,
   attributes: {
     id: {
       type: 'string',
       primaryKey: true,
+      unique: true
+    },
+    slug: {
+      type: 'string',
       unique: true
     },
     nombre: {
@@ -32,13 +36,29 @@ module.exports = {
       type: 'datetime',
       defaultsTo: function (){ return new Date(); }
     },
-    usuarios: {
-      collection: 'usuario',
-      via: 'archivos'
+    rol: {
+      model: 'rol'
     },
     url: {
       type: 'string',
       required: true
+    },
+    rol: {
+      model: 'rol'
+    },
+    tipo: {
+      model: 'tipo'
+    },
+    estado: {
+      model: 'estado'
+    },
+    etiquetas: {
+      collection: 'etiqueta',
+      via: 'archivos'
+    },
+    usuarios: {
+      collection: 'usuario',
+      via: 'archivos'
     }
   }
 };

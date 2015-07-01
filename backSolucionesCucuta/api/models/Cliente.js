@@ -1,32 +1,19 @@
 /**
-* Publicacion.js
+* Cliente.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
 module.exports = {
-  autoPk: true,
-  autoUpdateAt: true,
-  autoCreateAt: true,
   attributes: {
     id: {
       type: 'string',
       primaryKey: true,
       unique: true
     },
-    slug: {
-      type: 'string',
-      unique: true
-    },
-    titulo: {
-      type: 'string',
-      unique: true,
-      required: true
-    },
-    contenido:{
-      type: 'string',
-      required: true
+    usuario: {
+      model: 'usuario'
     },
     createAt: {
       type: 'datetime',
@@ -47,11 +34,7 @@ module.exports = {
     },
     etiquetas: {
       collection: 'etiqueta',
-      via: 'publicaciones'
-    },
-    usuarios: {
-      collection: 'usuario',
-      via: 'publicaciones'
+      via: 'usuarios'
     }
   }
 };

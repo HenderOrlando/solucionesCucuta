@@ -6,13 +6,14 @@
 */
 
 module.exports = {
-  autoPk: true,
-  autoUpdatAt: true,
-  autoCreateAt: true,
   attributes: {
     id: {
       type: 'string',
       primaryKey: true,
+      unique: true
+    },
+    slug: {
+      type: 'string',
       unique: true
     },
     nombre: {
@@ -34,11 +35,18 @@ module.exports = {
     },
     publicaciones: {
       collection: 'publicacion',
-      via: 'etiqueta'
+      via: 'etiquetas',
+      dominant: true
     },
     archivos: {
       collection: 'archivo',
-      via: 'etiqueta'
+      via: 'etiquetas',
+      dominant: true
+    },
+    usuarios: {
+      collection: 'usuario',
+      via: 'etiquetas',
+      dominant: true
     }
   }
 };
