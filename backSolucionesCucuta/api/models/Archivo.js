@@ -6,6 +6,7 @@
 */
 
 module.exports = {
+<<<<<<< HEAD
   autoPk: true,
   autoUpdateAt: true,
   autoCreateAt: true,
@@ -19,23 +20,35 @@ module.exports = {
       type: 'string',
       unique: true
     },
+=======
+  autoUpdatAt: true,
+  autoCreateAt: true,
+  attributes: {
+>>>>>>> origin/master
     nombre: {
       type: 'string',
       unique: true,
       required: true
     },
+    slug: {
+      type: 'string'
+    },
     descripcion:{
+      type: 'text',
+      required: true
+    },
+    url: {
       type: 'string',
       required: true
     },
-    createAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
+    usuarios: {
+      collection: 'Usuario',
+      via: 'archivos'
     },
-    updateAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
+    tipo: {
+      model: 'Tipo'
     },
+<<<<<<< HEAD
     rol: {
       model: 'rol'
     },
@@ -59,7 +72,29 @@ module.exports = {
     usuarios: {
       collection: 'usuario',
       via: 'archivos'
+=======
+    estado: {
+      model: 'Estado'
+    },
+    etiquetas: {
+      collection: 'Etiqueta',
+      via: 'archivos'
+    },
+    publicaciones: {
+      collection: 'Publicacion',
+      via: 'archivos'
     }
+  },
+
+  // Lifecycle Callbacks
+  beforeCreate: function (values, next) {
+    if(!values.nombre){
+      return next({err: ["Debe existir un nombre!"]});
+>>>>>>> origin/master
+    }
+    values.slug = this.capitalizeSlug(values.nombre);
+
+    next();
   }
 };
 

@@ -1,0 +1,27 @@
+<% if (nav.href && nav.nombre){ %>
+  <button href="<%= nav.href %>" data-url="<%= nav.href %>" class="uk-button uk-button-link"><%=: __(nav.nombre)|capitalize %></button>
+<% } %>
+<% if (nav.subnavs){ %>
+  <div data-uk-dropdown="{mode:'click',justify:'#soluciones-cucuta-navbar'}">
+
+    <a href="" class="<%= nav.src?'uk-navbar-brand':'uk-button uk-button-link' %>">
+      <% if (nav.src && nav.nombre){ %>
+        <img src="<%= nav.src %>" alt="<%= nav.nombre %>">
+      <% }else{ %>
+        <i class="fa fa-chevron-down"></i>
+      <% } %>
+    </a>
+
+    <div class="uk-dropdown uk-dropdown-small uk-dropdown-width-3">
+      <ul class="uk-nav uk-nav-dropdown uk-grid uk-dropdown-grid">
+        <% _.each(nav.subnavs, function(subnav){ %>
+        <li class="uk-width-1-3">
+          <a href="<%= subnav.href %>">
+            <%=: __(subnav.nombre)|capitalize %>
+          </a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+<% } %>

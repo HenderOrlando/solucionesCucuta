@@ -48,4 +48,29 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
+  '*': ['isAuthenticated', 'isAdmin'],
+  MainController: {
+    '*': true
+  }
+  /*,ArchivoController: {
+    '*': ['isAuthenticated', 'isAdmin']
+  },
+  EstadoController: {
+    '*': ['isAuthenticated', 'isAdmin']
+  },
+  EtiquetaController: {
+    '*': ['isAuthenticated', 'isAdmin']
+  },
+  PublicacionController: {
+    '*': ['isAuthenticated', 'isAdmin']
+  },
+  RolController: {
+    '*': ['isAuthenticated', 'isAdmin']
+  },
+  TipoController: {
+    '*': ['isAuthenticated', 'isAdmin']
+  },
+  UsuarioController: {
+    '*': ['isAuthenticated', 'isAdmin']
+  }*/
 };

@@ -1,0 +1,11 @@
+<% _.each(navs, function(nav, i){ %>
+  <% if (nav.li){ %>
+    <li class="uk-button-group uk-width-small-1-5 uk-width-medium-1-5">
+      <% include navItem %>
+    </li>
+  <% }else{ %>
+    <div class="uk-navbar-brand uk-width-small-1-1 uk-width-medium-1-6" data-uk-dropdown="{mode:'click'}">
+      <% include navItem %>
+    </div>
+  <% } %>
+<% }) %>

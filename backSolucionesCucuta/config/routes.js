@@ -32,9 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
+  /*'/': {
     view: 'homepage'
-  }
+  }*/
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +45,119 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-
+  '/': {
+    controller: "Main",
+    action: "index",
+    locals: {
+      layout: false
+    }
+  },
+  'get /Login': {
+    controller: 'Main',
+    action: 'loginView',
+    view: 'partials/form_login',
+    locals: {
+      layout: false
+    }
+  },
+  '/Perfil': {
+    controller: "Usuario",
+    action: "perfil",
+    view: 'usuario/perfil',
+    locals: {
+      layout: false
+    }
+  },
+  'post /Login': {
+    controller: "Main",
+    action: "login"
+  },
+  '/Logout': {
+    controller: "Main",
+    action: "logout"
+  }
+  // Get Page
+  ,'/getNavbarPage': {
+    controller: "Main",
+    action: "getNavbarPage"
+  }
+  ,'/getHeaderPage': {
+    controller: "Main",
+    action: "getHeaderPage"
+  }
+  ,'/getFooterPage': {
+    controller: "Main",
+    action: "getFooterPage"
+  }
+  ,'/getContentPage': {
+    controller: "Main",
+    action: "getContentPage"
+  }
+  // Buscador
+  ,'/Buscar/:query': {
+    controller: "Main",
+    action: "buscar",
+    skipAssets: true
+  }
+  // Publicacion
+  ,'/Publicacion/Agregar': {
+    controller: "Publicacion",
+    action: "agregar",
+    skipAssets: true
+  }
+  ,'/Publicacion/Borrar': {
+    controller: "Publicacion",
+    action: "borrar",
+    skipAssets: true
+  }
+  ,'/Publicacion/Listar': {
+    controller: "Publicacion",
+    action: "listar",
+    skipAssets: true
+  }
+  // Usuario
+  ,'/Usuario/Agregar': {
+    controller: "Usuario",
+    action: "agregar",
+    skipAssets: true
+  }
+  ,'/Usuario/Borrar': {
+    controller: "Usuario",
+    action: "borrar",
+    skipAssets: true
+  }
+  ,'/Usuario/Listar': {
+    controller: "Usuario",
+    action: "listar",
+    skipAssets: true,
+  }
+  //Count
+  ,'/Archivo/count': {
+    controller: "Archivo",
+    action: "count"
+  }
+  ,'/Estado/count': {
+    action: "count",
+    controller: "Estado"
+  }
+  ,'/Etiqueta/count': {
+    action: "count",
+    controller: "Etiqueta"
+  }
+  ,'/Publicacion/count': {
+    controller: "Publicacion",
+    action: "count"
+  }
+  ,'/Rol/count': {
+    controller: "Rol",
+    action: "count"
+  }
+  ,'/Tipo/count': {
+    controller: "Tipo",
+    action: "count"
+  }
+  ,'/Usuario/count': {
+    controller: "Usuario",
+    action: "count"
+  }
 };

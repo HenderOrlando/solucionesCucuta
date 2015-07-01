@@ -1,0 +1,341 @@
+<style type="text/css">
+  .header.uk-slidenav-position{
+    position: relative;
+    box-shadow: 0 0 10px 0 #000;
+  }
+  .uk-navbar{
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    border-radius: 0;
+    box-shadow: 0 -5px 10px -10px #000 inset;
+    height: 70px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  .uk-navbar > a{
+    height: 100%;
+  }
+  .uk-navbar > .uk-navbar-flip,
+  .uk-navbar > .uk-navbar-flip .uk-button{
+    font-size: 16px;
+  }
+  .uk-navbar-brand{
+    height: 100%;
+    padding: 0;
+  }
+  .uk-navbar-brand > img{
+    width: 90%;
+  }
+  .uk-overlay-panel{
+    padding-top: 85px;
+  }
+  img + .uk-overlay-panel{
+    padding: 20px 30px;
+  }
+  .uk-overlay-background{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8)
+  }
+  [data-uk-sticky].uk-active{
+    background: #eee;
+  }
+  ul.uk-slideshow{
+    margin-top: 70px;
+  }
+  ul.uk-slideshow > li.uk-active > .uk-cover-background{
+    background-color: #fff;
+    background-size: contain;
+  }
+  .uk-dotnav-contrast > * > * {
+    background: none repeat scroll 0 0 rgba(50, 50, 50, 0.4);
+  }
+  .uk-dotnav-contrast > * > *:active, .uk-dotnav-contrast > .uk-active > * {
+    background: none repeat scroll 0 0 rgba(15, 15, 15, 0.9);
+  }
+  .uk-form input:not([type]), .uk-form input[type="color"], .uk-form input[type="date"], .uk-form input[type="datetime-local"], .uk-form input[type="datetime"], .uk-form input[type="email"], .uk-form input[type="month"], .uk-form input[type="number"], .uk-form input[type="password"], .uk-form input[type="search"], .uk-form input[type="tel"], .uk-form input[type="text"], .uk-form input[type="time"], .uk-form input[type="url"], .uk-form input[type="week"], .uk-form select, .uk-form textarea{
+    border-style: none none solid;
+  }
+  .footer{
+    box-shadow: 0 0 10px -5px #000 inset;
+  }
+  .uk-grid + .uk-grid.footer{
+    margin-top: 0;
+  }
+  .uk-article + .uk-article{
+    padding-top: 0;
+  }
+  .content{
+    background: #eee;
+    padding: 2.5% 0;
+  }
+  .content .uk-article{
+    background: none repeat scroll 0 0 #fff;
+    box-shadow: 0 0 10px -8px #000;
+    padding-bottom: 10px;
+  }
+  .content .uk-article + .uk-article{
+    padding-top: 10px;
+  }
+  @media screen and (max-width:960px) {
+    .uk-navbar-brand{
+      height: auto;
+    }
+  }
+  @media screen and (max-width:768px) {
+    .uk-navbar{
+      height: auto;
+      position: relative;
+      display: inline-block;
+    }
+    .uk-navbar-brand{
+      width: 100%;
+    }
+    [data-uk-sticky]{
+      margin-top: -70px;
+    }
+    ul.uk-slideshow{
+      margin-top: 0;
+    }
+    .uk-overlay-panel{
+      padding-top: 15px;
+    }
+  }
+</style>
+
+<% include ../assets/templates/partials/navbar %>
+
+<% include ../assets/templates/partials/header %>
+
+<% include ../assets/templates/partials/content %>
+
+<% include ../assets/templates/partials/footer %>
+
+<!-- usuario/index.ejs fullcontent -->
+
+<nav id="soluciones-cucuta-navbar" class="uk-navbar uk-flex uk-flex-middle uk-flex-center">
+  <div class="uk-navbar-brand uk-width-small-1-1 uk-width-medium-1-6" data-uk-dropdown="{mode:'click',justify:'#soluciones-cucuta-navbar'}">
+    <a href="" class="uk-navbar-brand">
+      <img src="<%= brand.src %>" alt="<%= brand.nombre %>">
+    </a>
+
+    <div class="uk-dropdown uk-dropdown-small uk-dropdown-width-3">
+      <ul class="uk-nav uk-nav-dropdown uk-grid uk-dropdown-grid">
+        <% _.each(brand.subnavs, function(subnav){ %>
+        <li class="uk-width-1-3">
+          <a href="<%= subnav.href %>">
+            <%=: __(subnav.nombre)|capitalize %>
+          </a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+  <div class="uk-navbar-flip uk-width-small-1-1 uk-width-medium-5-6">
+    <ul class="uk-navbar-nav uk-width-small-1-1 uk-text-center">
+      <% _.each(navs, function(nav, i){ %>
+      <% if (nav.li){ %>
+      <li class="uk-button-group uk-width-small-1-5 uk-width-medium-1-5">
+        <% if (nav.href && nav.nombre){ %>
+        <button href="<%= nav.href %>" data-url="<%= nav.href %>" class="uk-button uk-button-link"><%=: __(nav.nombre)|capitalize %></button>
+        <% } %>
+        <% if (nav.subnavs){ %>
+        <div data-uk-dropdown="{mode:'click',justify:'#soluciones-cucuta-navbar'}">
+
+          <a href="" class="<%= nav.src?'uk-navbar-brand':'uk-button uk-button-link' %>">
+            <% if (nav.src && nav.nombre){ %>
+            <img src="<%= nav.src %>" alt="<%= nav.nombre %>">
+            <% }else{ %>
+            <i class="fa fa-chevron-down"></i>
+            <% } %>
+          </a>
+
+          <div class="uk-dropdown uk-dropdown-small uk-dropdown-width-3">
+            <ul class="uk-nav uk-nav-dropdown uk-grid uk-dropdown-grid">
+              <% _.each(nav.subnavs, function(subnav){ %>
+              <li class="uk-width-1-3">
+                <a href="<%= subnav.href %>">
+                  <%=: __(subnav.nombre)|capitalize %>
+                </a>
+              </li>
+              <% }) %>
+            </ul>
+          </div>
+        </div>
+        <% } %>
+
+      </li>
+      <% }else{ %>
+      <div class="uk-navbar-brand uk-width-small-1-1 uk-width-medium-1-6" data-uk-dropdown="{mode:'click'}">
+        <% if (nav.href && nav.nombre){ %>
+        <button href="<%= nav.href %>" data-url="<%= nav.href %>" class="uk-button uk-button-link"><%=: __(nav.nombre)|capitalize %></button>
+        <% } %>
+        <% if (nav.subnavs){ %>
+        <div data-uk-dropdown="{mode:'click',justify:'#soluciones-cucuta-navbar'}">
+
+          <a href="" class="<%= nav.src?'uk-navbar-brand':'uk-button uk-button-link' %>">
+            <% if (nav.src && nav.nombre){ %>
+            <img src="<%= nav.src %>" alt="<%= nav.nombre %>">
+            <% }else{ %>
+            <i class="fa fa-chevron-down"></i>
+            <% } %>
+          </a>
+
+          <div class="uk-dropdown uk-dropdown-small uk-dropdown-width-3">
+            <ul class="uk-nav uk-nav-dropdown uk-grid uk-dropdown-grid">
+              <% _.each(nav.subnavs, function(subnav){ %>
+              <li class="uk-width-1-3">
+                <a href="<%= subnav.href %>">
+                  <%=: __(subnav.nombre)|capitalize %>
+                </a>
+              </li>
+              <% }) %>
+            </ul>
+          </div>
+        </div>
+        <% } %>
+
+      </div>
+      <% } %>
+      <% }) %>
+
+      <li class="uk-width-small-1-5 uk-width-medium-1-5">
+        <form action="/Buscar" class="uk-form uk-margin-remove uk-display-inline-block uk-width-small-1-1">
+          <div class="uk-grid uk-grid-collapse">
+            <div class="uk-width-1-2">
+              <input name="query" type="text" placeholder="<%= __('buscar') %>">
+            </div>
+            <div class="uk-width-1-2">
+              <button type="submit" class="uk-button uk-button-primary"><%= __('buscar') %></button>
+            </div>
+            <input type='hidden' name='_csrf' value='<%= _csrf %>'>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div id="#inicio" class="header uk-slidenav-position" data-uk-slideshow="{animation: 'random-fx'}">
+  <ul class="uk-slideshow uk-overlay-active">
+    <% _.each(banners, function(banner){ %>
+    <li>
+      <img src="<%= banner.srcBase %><%= banner.src %>" alt="<%= banner.nombre %>">
+      <div class="uk-overlay-panel uk-overlay-background uk-overlay-right uk-overlay-slide-right uk-width-1-4">
+        <h3><%= banner.nombre %></h3>
+        <p>
+          <%= banner.descripcion %>
+        </p>
+        <button href="<%= banner.href %>" class="uk-button uk-button-primary"><%= __('conocer más') %></button>
+
+      </div>
+    </li>
+
+    <% }) %>
+  </ul>
+  <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+  <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+  <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-text-center uk-flex uk-flex-center uk-flex-medium">
+    <% _.each(banners, function(banner, i){ %>
+    <li data-uk-slideshow-item="<%= i %>"><a href=""></a></li>
+    <% }) %>
+  </ul>
+</div>
+
+
+<div class="content uk-grid">
+  <div class="uk-container-center uk-width-small-5-6 uk-width-medium-7-8 uk-width-large-9-10 uk-width-xlarge-11-12">
+    <div class="uk-grid">
+      <div class="uk-grid uk-width-small-4-6 uk-width-medium-6-8 uk-width-large-8-10 uk-width-xlarge-10-12">
+        <% _.each(articles, function(article){ %>
+        <article class="uk-article <% article.fullwidth?'uk-width-1-1':'' %>"
+        <% _.each(article.attrs, function(attr){ %>
+        <%= attr.name %><%= '=' %>"<%= attr.value %>"
+        <% }) %>>
+        <h1 class="uk-article-title" data-uk-sticky="{boundary: true, top:70, animation: 'uk-animation-slide-top'}">
+          <%= article.title %>
+        </h1>
+        <p class="uk-article-meta">
+          <% _.each(article.metas, function(meta){ %>
+          <%=: __(meta.name)|capitalize %> <%= meta.value %>"
+          <% }) %>
+        </p>
+        <% if (article.subtitle){ %>
+        <p class="uk-article-lead">
+          <%= article.subtitle %>
+        </p>
+        <% } %>
+        <% _.each(article.content, function(content){ %>
+        <p>
+          <%= content %>
+        </p>
+        <% }) %>
+        <% if (article.footer){ %>
+        <hr class="uk-article-divider">
+        <p class="uk-article-foot">
+          <%= article.footer %>
+        </p>
+        <% } %>
+
+        </article>
+
+
+        <% }) %>
+      </div>
+      <div class="uk-publicity uk-width-small-2-6 uk-width-medium-2-8 uk-width-large-2-10 uk-width-xlarge-2-12">
+        <% _.each(figures, function(figure){ %>
+        <figure class="uk-overlay uk-overlay-hover"  data-uk-scrollspy="{cls:'uk-animation-slide-right', repeat: true, delay: 200}">
+          <img class="uk-overlay-scale lazy" src="<%= figure.srcBase?figure.srcBase:'' %><%= figure.src %>" alt="<%= figure.nombre %>" width="640" height="480">
+          <figcaption class="uk-overlay-panel uk-flex uk-flex-center uk-flex-middle uk-text-center uk-overlay-fade uk-overlay-background">
+            <%= figure.nombre %>
+          </figcaption>
+          <a class="uk-position-cover" href="<%= figure.href %>"></a>
+        </figure>
+
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="footer uk-grid">
+  <% _.each(footers, function(list){ %>
+  <div class="uk-width-small-1-4">
+    <li class="uk-nav-header">
+      <a href="<%= list.href %>">
+        <%=: __(list.nombre)|capitalize %>
+        <% if (list.subtitle){ %>
+        <div><%= list.subtitle %></div>
+        <% } %>
+      </a>
+    </li>
+    <ul data-uk-nav="" class="uk-nav uk-nav-side">
+      <% _.each(list.subnavs, function(item){ %>
+      <li>
+        <a href="<%= item.href %>">
+          <%= item.nombre %>
+          <% if (item.subtitle){ %>
+          <div><%= item.subtitle %></div>
+          <% } %>
+        </a>
+      </li>
+      <% }) %>
+    </ul>
+
+  </div>
+  <% }); %>
+</div>
+
+
+<script type="text/javascript">
+
+  setTimeout(function sunrise () {
+
+    /*$("ul.uk-navbar-nav > li.uk-button-group > button[href]").on('click', function(){
+      var este = $(this);
+      window.location = $(this).attr('href');
+    });*/
+  }, 0);
+</script>

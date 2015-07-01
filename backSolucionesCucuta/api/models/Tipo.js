@@ -6,6 +6,7 @@
 */
 
 module.exports = {
+<<<<<<< HEAD
   attributes: {
     id: {
       type: 'string',
@@ -16,35 +17,53 @@ module.exports = {
       type: 'string',
       unique: true
     },
+=======
+  autoUpdatAt: true,
+  autoCreateAt: true,
+  attributes: {
+>>>>>>> origin/master
     nombre: {
       type: 'string',
       unique: true,
       required: true
     },
-    descripcion:{
+    slug: {
+      type: 'string'
+    },
+    dominio: {
       type: 'string',
+      size: 40
+    },
+    descripcion:{
+      type: 'text',
       required: true
     },
-    createAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
-    },
-    updateAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
-    },
-    usuarios: {
-      collection: 'usuario',
-      via: 'tipo'
-    },
     publicaciones: {
-      collection: 'publicacion',
+      collection: 'Publicacion',
       via: 'tipo'
     },
     archivos: {
-      collection: 'archivo',
+      collection: 'Archivo',
+      via: 'tipo'
+    },
+    etiquetas: {
+      collection: 'Etiqueta',
       via: 'tipo'
     }
+  },
+
+  // Lifecycle Callbacks
+  beforeCreate: function (values, next) {
+    if(!values.nombre){
+      return next({err: ["Debe existir un nombre!"]});
+    }
+    if(!values.dominio){
+      return next({err: ["Debe existir en un dominio!"]});
+    }
+    values.slug = this.capitalizeSlug(values.nombre);
+    values.dominio = this.capitalizeSlug(values.dominio);
+
+    next();
   }
 };
 

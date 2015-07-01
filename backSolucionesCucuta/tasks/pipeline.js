@@ -15,6 +15,11 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
+  'styles/uikit/uikit.almost-flat.min.css',
+  'styles/uikit/slideshow.almost-flat.min.css',
+  'styles/uikit/sticky.almost-flat.min.css',
+  'styles/uikit/dotnav.almost-flat.min.css',
+
   'styles/**/*.css'
 ];
 
@@ -22,16 +27,30 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-  
+
   // Load sails.io before everything else
   'js/dependencies/sails.io.js',
+  'js/dependencies/components/tinymce.min.js',
+  'js/dependencies/components/lodash.min.js',
+  'js/dependencies/components/lodash.undescore.min.js',
+  'js/dependencies/components/angular.js',
+  'js/dependencies/components/angular-sails.js',
+  'js/dependencies/components/angular-file-upload-shim.min.js',
+  'js/dependencies/components/angular-file-upload.min.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/**/*.js'
+  'js/uikit/uikit.min.js',
+  'js/uikit/uikit.js',
+  'js/uikit/core.min.js',
+  'js/uikit/utility.min.js',
+  'js/uikit/core-grid.min.js',
+  'js/uikit/slideshow.min.js',
+  'js/uikit/*.js',
+  'js/**/*.js',
 ];
 
 

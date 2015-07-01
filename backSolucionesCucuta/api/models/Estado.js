@@ -6,6 +6,7 @@
 */
 
 module.exports = {
+<<<<<<< HEAD
   attributes: {
     id: {
       type: 'string',
@@ -16,35 +17,49 @@ module.exports = {
       type: 'string',
       unique: true
     },
+=======
+  autoUpdatAt: true,
+  autoCreateAt: true,
+  attributes: {
+>>>>>>> origin/master
     nombre: {
       type: 'string',
       unique: true,
       required: true
     },
+    slug: {
+      type: 'string'
+    },
     descripcion:{
-      type: 'string',
+      type: 'text',
       required: true
     },
-    createAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
-    },
-    updateAt: {
-      type: 'datetime',
-      defaultsTo: function (){ return new Date(); }
-    },
     usuarios: {
-      collection: 'usuario',
+      collection: 'Usuario',
       via: 'estado'
     },
     publicaciones: {
-      collection: 'publicacion',
+      collection: 'Publicacion',
       via: 'estado'
     },
     archivos: {
-      collection: 'archivo',
+      collection: 'Archivo',
+      via: 'estado'
+    },
+    etiquetas: {
+      collection: 'Etiqueta',
       via: 'estado'
     }
+  },
+
+  // Lifecycle Callbacks
+  beforeCreate: function (values, next) {
+    if(!values.nombre){
+      return next({err: ["Debe existir un nombre!"]});
+    }
+    values.slug = this.capitalizeSlug(values.nombre);
+
+    next();
   }
 };
 
