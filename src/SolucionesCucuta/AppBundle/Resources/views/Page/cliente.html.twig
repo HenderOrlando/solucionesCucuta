@@ -6,7 +6,7 @@
             <ul class="uk-slideshow">
                 {% for bs in bannersSuperiores %}
                     <li class="uk-overlay-hover">
-                        <img class="uk-overlay-spin" src="{{ bs.getWebPath }}" alt="{{ bs.nombre }}">
+                        <img class="uk-overlay-spin" src="{{ asset(bs.getWebPath) }}" alt="{{ bs.nombre }}">
                         <div class="uk-overlay-panel uk-overlay-background uk-overlay-bottom uk-overlay-slide-bottom">
                             <h3>{{ bs.usuario.nombre }}</h3>
                             <p>{{ bs.descripcion?bs.descripcion:bs.usuario.descripcion }}</p>
@@ -14,17 +14,72 @@
                     </li>
                 {% endfor %}
             </ul>
-            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
-            <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom-right uk-flex-center">
-                {% for i,bs in bannersSuperiores %}
-                    <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
-                {% endfor %}
-            </ul>
+            {% if bannersSuperiores|length > 1 %}
+                <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+                <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+                <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom-right uk-flex-center">
+                    {% for i,bs in bannersSuperiores %}
+                        <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
     <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
         <h1 class="uk-text-center">{{ cliente.nombre }}</h1>
+        <div class="uk-grid uk-width-small-1-1 uk-width-medium-1-1" data-uk-grid-margin="">
+            <div class="uk-text-center uk-width-medium-1-2">
+                {% if cliente.getBannersLaterales|length %}
+                    {% if cliente.getBannersLaterales|length == 1 %}
+                        {% set archivo = cliente.getBannersLaterales|first %}
+                        <img class="uk-border-rounded" src="{{ asset(archivo.getWebPath) }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
+                    {% else %}
+                        <div class="uk-slidenav-position" uk-width data-uk-slideshow="{animation: 'random-fx'}">
+                            <ul class="uk-slideshow">
+                                {% for archivo in cliente.getBannersLaterales %}
+                                    <li class="uk-overlay">
+                                        <img class="uk-overlay-spin" src="{{ asset(archivo.getWebPath) }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
+                                        <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-ignore">
+                                            <h3>{{ archivo.nombre }}</h3>
+                                            <p>{{ archivo.descripcion }}</p>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+                            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+                            <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+                                {% for i,archivo in cliente.getBannersLaterales %}
+                                    <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="uk-width-medium-1-2 content-redes-sociales-cliente">
+                <h2>{{ cliente.email }}</h2>
+                <p>
+                    {{ cliente.descripcion }}
+                </p>
+                {% set redesSociales = cliente.getRedesSociales %}
+                {% if redesSociales|length > 0 %}
+                    <div class="redes-sociales-cliente">
+                        <div>
+                            {% for i,rs in redesSociales %}
+                                {% if rs.link %}
+                                    <a href="{{ rs.link }}" class="uk-width-1-{{ rs|length }}" data-id="{{ rs.getHash }}">
+                                {% endif %}
+                                <img src="{{ asset(rs.getWebPath) }}" data-slug="{{ rs.usuario.slug }}" data-id="{{ rs.getHash }}" class="uk-responsive-height" alt="{{ rs.nombre }}" data-uk-check-display>
+                                {% if rs.link %}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 {% endblock %}
 

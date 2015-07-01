@@ -26,6 +26,13 @@ class Usuario implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
+     * @ORM\Column(name="num_consultas", type="bigint", nullable=false)
+     */
+    private $consultas;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="username", type="string", length=255, nullable=true)
      */
     private $username;
@@ -117,6 +124,7 @@ class Usuario implements AdvancedUserInterface, \Serializable
      */
     public function __construct()
     {
+        $this->consultas = 0;
         $this->isActive = false;
         $this->roles = array();
         $this->archivos = array();
@@ -691,5 +699,40 @@ class Usuario implements AdvancedUserInterface, \Serializable
             return $archivo->getWebPath();
         }
         return '#';
+    }
+
+    /**
+     * set consultas
+     *
+     * @param integer $consultas
+     * @return Etiqueta
+     */
+    public function setConsultas($consultas)
+    {
+        $this->consultas = $consultas;
+
+        return $this;
+    }
+
+    /**
+     * Add print
+     *
+     * @return Etiqueta
+     */
+    public function addConsulta()
+    {
+        $this->consultas++;
+
+        return $this;
+    }
+
+    /**
+     * Get consultas
+     *
+     * @return integer
+     */
+    public function getConsultas()
+    {
+        return $this->consultas;
     }
 }

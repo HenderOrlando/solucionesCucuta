@@ -54,11 +54,14 @@ class UsuarioRepository extends EntityRepository
     }
 
     public function getUsuariosRol($rol, $results = true){
-        $qb = $this->createQueryBuilder('u');
+        $qb = $this->createQueryBuilder('u')
+            ->orderBy('u.nombre','ASC')
+        ;
         if(is_numeric($rol)){
             $qb->andWhere($qb->expr()->eq('u.rol',$rol));
         }elseif(is_string($rol)){
             $qb ->join('u.rol', 'ur')
+                ->orderBy('ur.nombre','ASC')
                 ->andWhere($qb->expr()->eq('ur.slug',$qb->expr()->literal($rol)));
         }
         if($results === null){
@@ -72,7 +75,10 @@ class UsuarioRepository extends EntityRepository
 
     public function getClientesBySlug($slug, $slughijo, $results = true){
         $qb = $this->createQueryBuilder('u');
-        $qb ->innerJoin('u.etiquetas', 'ue');
+        $qb
+            ->innerJoin('u.etiquetas', 'ue')
+            ->orderBy('ue.nombre, u.nombre','ASC')
+        ;
         if(is_string($slughijo)){
             $qb->where($qb->expr()->eq('ue.slug',$qb->expr()->literal($slughijo)));
         }else{

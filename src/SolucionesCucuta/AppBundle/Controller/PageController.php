@@ -2,6 +2,8 @@
 
 namespace SolucionesCucuta\AppBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Proxies\__CG__\SolucionesCucuta\AppBundle\Entity\Etiqueta;
 use SolucionesCucuta\AppBundle\Entity\Archivo;
 use SolucionesCucuta\AppBundle\Entity\Usuario;
@@ -284,7 +286,11 @@ class PageController extends Controller
         }
 
         $repository = $this->getDoctrine()->getRepository('AppBundle:Usuario');
-        $clientes = $repository->getClientesBySlug($slug, $slughijo);
+        $tmp = $request->get('slug', false);
+        $clientes = array();
+        if(!$tmp || ($tmp && $tmp !== 'empresas')){
+            $clientes = $repository->getClientesBySlug($slug, $slughijo);
+        }
 
         /*if(empty($clientes)){
             throw $this->createNotFoundException(ucfirst($slug).' no encontradas');
@@ -295,15 +301,21 @@ class PageController extends Controller
 
         $repository = $this->getDoctrine()->getRepository('AppBundle:Etiqueta');
         $menus = $repository->getEtiquetasTipo('menu');
-
+        $showInfografia = true;
         if($slughijo){
             $tag = $repository->findOneBy(array('slug' => $slughijo));
+            $showInfografia = $tag->getHijos()->count() > 0?true:false;
         }else{
             $tag = $repository->findOneBy(array('slug' => $slug));
         }
-        $tag_ = $tag;
-        if($tag){
-            $infografia = null;
+        $tag->addConsulta();
+        $this->getDoctrine()->getManager()->flush();
+        $criteria = Criteria::create()
+            ->orderBy(array('nombre' => 'ASC'))
+        ;
+        $submenus = $tag->getHijos()->matching($criteria);
+        $infografia = null;
+        if($showInfografia && $tag){
             while(is_null($infografia)){
                 $infografia = $tag->getInfografias();
                 if(count($infografia) <= 0){
@@ -323,11 +335,12 @@ class PageController extends Controller
         }
 
         return array(
+            'slug' => $slug,
             'menus' => $menus,
             'clientes' => $clientes,
             'bannersSuperiores' => $bs,
             'infografia' => $infografia,
-            'submenus' => count($tag_->getHijos())?$tag_->getHijos():array(),
+            'submenus' => count($submenus)?$submenus:array()//count($submenus->getHijos())?$submenus->getHijos():array(),
         );
     }
 
@@ -344,13 +357,17 @@ class PageController extends Controller
         }
         $repository = $this->getDoctrine()->getRepository('AppBundle:Usuario');
         $cliente = $repository->findOneBySlug($slug);
+        //$cliente = new Usuario();
 
         if(!$cliente){
             throw $this->createNotFoundException('Empresa no encontrada');
         }
+        $cliente->addConsulta();
+        $this->getDoctrine()->getManager()->flush();
 
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Archivo');
-        $bs = $repository->getArchivosTipo('banner-superior');
+        /*$repository = $this->getDoctrine()->getRepository('AppBundle:Archivo');
+        $bs = $repository->getArchivosTipo('banner-superior');*/
+        $bs = $cliente->getBannersSuperiores();
 
         $repository = $this->getDoctrine()->getRepository('AppBundle:Etiqueta');
         $menus = $repository->getEtiquetasTipo('menu');

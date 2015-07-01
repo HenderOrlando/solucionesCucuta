@@ -13,11 +13,14 @@ use Doctrine\ORM\EntityRepository;
 class EtiquetaRepository extends EntityRepository
 {
     public function getEtiquetasTipo($tipo, $results = true){
-        $qb = $this->createQueryBuilder('e');
+        $qb = $this->createQueryBuilder('e')
+            ->orderBy('e.nombre','ASC')
+        ;
         if(is_numeric($tipo)){
             $qb->andWhere($qb->expr()->eq('e.tipo',$tipo));
         }elseif(is_string($tipo)){
             $qb ->join('e.tipo', 'et')
+                ->orderBy('et.nombre','ASC')
                 ->andWhere($qb->expr()->eq('et.slug',$qb->expr()->literal($tipo)));
         }
         if($results === null){
@@ -40,6 +43,7 @@ class EtiquetaRepository extends EntityRepository
                     $qb->expr()->like('e.descripcion',$qb->expr()->literal('%'.$query.'%')). 'OR '.
                     $qb->expr()->like('e.descripcion',$qb->expr()->literal('%'.$querySlug.'%'))
                 )
+                ->orderBy('e.nombre','ASC')
             ;
         }
         else{
@@ -61,6 +65,7 @@ class EtiquetaRepository extends EntityRepository
         if($qb){
             $qb ->join('e.tipo', 'et')
                 ->andWhere($qb->expr()->eq('et.slug',$qb->expr()->literal($tipo)))
+                ->orderBy('et.nombre','ASC')
             ;
             $result = $qb->getQuery()->getResult();
         }

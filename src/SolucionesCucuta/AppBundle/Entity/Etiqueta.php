@@ -25,6 +25,13 @@ class Etiqueta
     /**
      * @var string
      *
+     * @ORM\Column(name="num_consultas", type="bigint", nullable=false)
+     */
+    private $consultas;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nombre", type="string", length=255, nullable=true)
      */
     private $nombre;
@@ -107,6 +114,7 @@ class Etiqueta
      */
     public function __construct()
     {
+        $this->consultas = 0;
         $this->createdat = $this->updatedat = new \DateTime('now');
         $this->hijos = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -143,6 +151,41 @@ class Etiqueta
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * set consultas
+     *
+     * @param integer $consultas
+     * @return Etiqueta
+     */
+    public function setConsultas($consultas)
+    {
+        $this->consultas = $consultas;
+
+        return $this;
+    }
+
+    /**
+     * Add print
+     *
+     * @return Etiqueta
+     */
+    public function addConsulta()
+    {
+        $this->consultas++;
+
+        return $this;
+    }
+
+    /**
+     * Get consultas
+     *
+     * @return integer
+     */
+    public function getConsultas()
+    {
+        return $this->consultas;
     }
 
     /**

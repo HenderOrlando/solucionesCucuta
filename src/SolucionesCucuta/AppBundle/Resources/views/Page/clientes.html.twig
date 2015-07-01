@@ -6,27 +6,30 @@
             <ul class="uk-slideshow">
                 {% for bs in bannersSuperiores %}
                     <li class="uk-overlay-hover">
-                        <img class="uk-overlay-spin" src="/{{ bs.getWebPath }}" alt="{{ bs.nombre }}">
+                        <img class="uk-overlay-spin" src="{{ asset(bs.getWebPath) }}" alt="{{ bs.nombre }}">
                         <div class="uk-overlay-panel uk-overlay-background uk-overlay-bottom uk-overlay-slide-bottom">
                             <h3>{{ bs.usuario.nombre }}</h3>
                             <p>{{ bs.descripcion?bs.descripcion:bs.usuario.descripcion }}</p>
+                            <a class="uk-position-cover" href="{{ path('cliente',{slug: bs.usuario.slug}) }}" data-id="{{ bs.getHash }}"></a>
                         </div>
                     </li>
                 {% endfor %}
             </ul>
-            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
-            <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom-right uk-flex-center">
-                {% for i,bs in bannersSuperiores %}
-                    <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
-                {% endfor %}
-            </ul>
+            {% if bannersSuperiores|length > 1 %}
+                <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+                <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+                <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom-right uk-flex-center">
+                    {% for i,bs in bannersSuperiores %}
+                        <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div>
     <div id="cliente-item" class="uk-grid uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
         <div class="uk-width-1-1 uk-grid">
-            <div class="{% if infografia is null %}uk-width-1-1{% else %}uk-width-1-2{% endif %}">
-                {% if clientes | length <= 0 %}
+            <div class="content-submenu {% if infografia is null %}uk-width-1-1{% else %}uk-width-1-2{% endif %}">
+                {% if slug != 'empresas' and clientes | length <= 0 %}
                     <form id="registroUsuario" name="registro" action="{{ url('registrarUsuario') }}" class="uk-form">
                         <div class="">
                             <label class="uk-form-label" for="">Quieres ser el primero?</label>
@@ -39,6 +42,7 @@
                     </form>
                 {% endif %}
                 {% if submenus %}
+                    <h3>Búsca en el sector que necesitas</h3>
                     <div class="uk-accordion" data-uk-accordion="{showfirst: false}">
                         {% for i,submenu in submenus %}
                             <h3 class="uk-accordion-title">
@@ -67,7 +71,7 @@
             </div>
             <div class="uk-width-1-2 {% if infografia is null %}uk-hidden{% endif %}">
                 {% if infografia %}
-                    <img class="uk-border-rounded" src="/{{ infografia.getWebPath }}" alt="{{ infografia.nombre }}" data-slug="{{ infografia.slug }}" data-id="{{ infografia.getHash }}">
+                    <img class="uk-border-rounded" src="{{ asset(infografia.getWebPath) }}" alt="{{ infografia.nombre }}" data-slug="{{ infografia.slug }}" data-id="{{ infografia.getHash }}">
                 {% endif %}
             </div>
             {% for i,cliente in clientes %}
@@ -82,16 +86,18 @@
                         </p>
                     </div>
                     <div class="uk-text-center uk-width-medium-1-2">
-                        {% if cliente.archivos|length %}
-                            {% if cliente.archivos|length == 1 %}
-                                {% set archivo = cliente.archivos | first %}
-                                <img class="uk-border-rounded" src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
+                        {% if cliente.getBannersLaterales|length %}
+                            {% if cliente.getBannersLaterales|length == 1 %}
+                                {% set archivo = cliente.getBannersLaterales|first %}
+                                <a href="{{ path('cliente',{slug: cliente.slug}) }}" data-id="{{ infografia.getHash }}">
+                                    <img class="uk-border-rounded" src="{{ asset(archivo.getWebPath) }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
+                                </a>
                             {% else %}
                                 <div class="uk-slidenav-position" uk-width data-uk-slideshow="{animation: 'random-fx'}">
                                     <ul class="uk-slideshow">
-                                        {% for archivo in cliente.archivos %}
+                                        {% for archivo in cliente.getBannersLaterales %}
                                             <li class="uk-overlay">
-                                                <img class="uk-overlay-spin" src="/{{ archivo.getWebPath }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
+                                                <img class="uk-overlay-spin" src="{{ asset(archivo.getWebPath) }}" alt="{{ archivo.nombre }}" data-slug="{{ archivo.slug }}" data-id="{{ archivo.getHash }}">
                                                 <div class="uk-overlay-panel uk-overlay-background uk-overlay-top uk-ignore">
                                                     <h3>{{ archivo.nombre }}</h3>
                                                     <p>{{ archivo.descripcion }}</p>
@@ -102,7 +108,7 @@
                                     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
                                     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
                                     <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
-                                        {% for i,archivo in cliente.archivos %}
+                                        {% for i,archivo in cliente.getBannersLaterales %}
                                             <li data-uk-slideshow-item="{{ i }}"><a href=""></a></li>
                                         {% endfor %}
                                     </ul>

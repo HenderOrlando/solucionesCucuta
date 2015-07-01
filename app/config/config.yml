@@ -37,7 +37,8 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: false
     bundles:        [AppBundle]
-    node:           /usr/bin/nodejs
+    #node:           /usr/bin/nodejs
+    node:           "%nodeurl%"
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -46,9 +47,11 @@ assetic:
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
         uglifyjs2:
-            bin: /usr/bin/uglifyjs
+            #bin: /usr/bin/uglifyjs
+            bin: "%uglifyjs%"
         uglifycss:
-            bin: /usr/bin/uglifycss
+            #bin: /usr/bin/uglifycss
+            bin: "%uglifycss%"
 
 # Doctrine Configuration
 doctrine:
