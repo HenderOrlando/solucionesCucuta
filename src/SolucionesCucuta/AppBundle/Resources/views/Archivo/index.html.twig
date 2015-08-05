@@ -4,47 +4,138 @@
 <div class="uk-width-9-10 uk-container-center">
     <h1>Lista de Archivos</h1>
     <div class="uk-overflow-container">
-        <table class="uk-table uk-table-hover uk-table-striped uk-table-middle">
-            <thead>
-                <tr>
-                    <th class="uk-text-center">Id</th>
-                    <th class="uk-text-center">Nombre</th>
-                    <th class="uk-text-center">Slug</th>
-                    {#<th class="uk-text-center">Numero de Prints</th>
-                    <th class="uk-text-center">Numero de Clicks</th>#}
-                    <th class="uk-text-center">Descripcion</th>
-                    <th class="uk-text-center">Usuario</th>
-                    <th class="uk-text-center">Tipo</th>
-                    <th class="uk-text-center">Vista Previa</th>
-                    <th class="uk-text-center">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for entity in entities %}
-                <tr>
-                    <td><a href="{{ path('archivo_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                    <td>{{ entity.nombre }}</td>
-                    <td>{{ entity.slug }}</td>
-                    {#<td>{{ entity.prints }}</td>
-                    <td>{{ entity.clicks }}</td>#}
-                    <td>{{ entity.descripcion }}</td>
-                    <td>{{ entity.usuario }}</td>
-                    <td>{{ entity.tipo }}</td>
-                    <td>
-                        <img src="{{ asset(entity.getWebPath) }}" class="uk-responsive-width uk-border-rounded" alt="{{ entity.nombre }}" width="140px" />
-                    </td>
-                    <td>
-                        <a href="{{ path('archivo_show', { 'id': entity.id }) }}" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">
-                            Mostrar
-                        </a>
-                        <a href="{{ path('archivo_edit', { 'id': entity.id }) }}" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">
-                            Editar
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        {{ form_start(form, {'attr': {'class': 'no-style'}}) }}
+            <table class="uk-table uk-table-hover uk-table-striped uk-table-middle">
+                <thead>
+                    <tr>
+                        <td colspan="40">
+                            <ul class="uk-pagination">
+                                <li class="uk-pagination-previous">
+                                    <a href="{{ path('archivo_page_current', {'pageCurrent': pageCurrent-1 < 1?pagesTotal:pageCurrent-1}) }}">
+                                        Ant.
+                                    </a>
+                                </li>
+                                {% for page in pages %}
+                                    <li class="{{ loop.index == pageCurrent?'uk-active':'' }}">
+                                        {% if loop.index == pageCurrent %}
+                                            <span>
+                                                {{ loop.index }}
+                                            </span>
+                                        {% else %}
+                                            <a href="{{ path('archivo_page_current', {'pageCurrent': loop.index}) }}">
+                                                {{ loop.index }}
+                                            </a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                                <li class="uk-pagination-next">
+                                    <a href="{{ path('archivo_page_current', {'pageCurrent': pageCurrent+1 > pagesTotal?1:pageCurrent+1}) }}">
+                                        Sig.
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        {#<th class="uk-text-center">
+                            <input type="text" placeholder="Id" class="uk-form-width-mini">
+                        </th>#}
+                        <th class="uk-text-center">
+                            {{ form_label(form.nombre) }}
+                            {{ form_widget(form.nombre, {'attr': {'placeholder': 'Nombre'}}) }}
+                        </th>
+                        <th class="uk-text-center">
+                            {{ form_label(form.slug,'nombre limpio') }}
+                            {{ form_widget(form.slug, {'attr': {'placeholder': 'Slug'}}) }}
+                        </th>
+                        <th class="uk-text-center">
+                            {{ form_widget(form.vista_o) }}
+                            {{ form_widget(form.prints, {'attr': {'placeholder': 'Impresiones', 'class': 'uk-form-width-mini'}}) }}
+                            {{ form_label(form.prints,'Vistas') }}
+                        </th>
+                        <th class="uk-text-center">
+                            {{ form_widget(form.click_o) }}
+                            {{ form_widget(form.clicks, {'attr': {'placeholder': 'Clicks', 'class': 'uk-form-width-mini'}}) }}
+                            {{ form_label(form.clicks) }}
+                        </th>
+                        <th class="uk-text-center">
+                            {{ form_label(form.descripcion) }}
+                            {{ form_widget(form.descripcion, {'attr': {'placeholder': 'Descripcion'}}) }}
+                        </th>
+                        <th class="uk-text-center">
+                            {{ form_label(form.usuario) }}
+                            {{ form_widget(form.usuario, {'attr': {'placeholder': 'Usuario'}}) }}
+                        </th>
+                        <th class="uk-text-center">
+                            {{ form_label(form.tipo) }}
+                            {{ form_widget(form.tipo, {'attr': {'placeholder': 'Tipo'}}) }}
+                        </th>
+                        <th class="uk-text-center">Vista Previa</th>
+                        <th class="uk-text-center">
+                            <button type="submit" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">Buscar</button>
+                            <button type="reset" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">Reset</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr data-id="{{ entity.id }}" data-route="archivo_show">
+                        {#<td><a href="{{ path('archivo_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                        <td>{{ entity.nombre }}</td>
+                        <td>{{ entity.slug }}</td>
+                        <td>{{ entity.prints }}</td>
+                        <td>{{ entity.clicks }}</td>
+                        <td>{{ entity.descripcion }}</td>
+                        <td>{{ entity.usuario }}</td>
+                        <td>{{ entity.tipo }}</td>
+                        <td>
+                            <img src="{{ asset(entity.getWebPath) }}" class="uk-responsive-width uk-border-rounded" alt="{{ entity.nombre }}" width="140px" />
+                        </td>
+                        <td>
+                            <a href="{{ path('archivo_show', { 'id': entity.id }) }}" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">
+                                Mostrar
+                            </a>
+                            <a href="{{ path('archivo_edit', { 'id': entity.id }) }}" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="40">
+                            <ul class="uk-pagination" data-page-current="{{ pageCurrent }}" data-pages-total="{{ pagesTotal }}">
+                                <li class="uk-pagination-previous">
+                                    <a href="{{ path('archivo_page_current', {'pageCurrent': pageCurrent-1 < 1?pagesTotal:pageCurrent-1}) }}">
+                                        Ant.
+                                    </a>
+                                </li>
+                                {% for page in pages %}
+                                    <li class="{{ loop.index == pageCurrent?'uk-active':'' }}">
+                                        {% if loop.index == pageCurrent %}
+                                            <span>
+                                                {{ loop.index }}
+                                            </span>
+                                        {% else %}
+                                            <a href="{{ path('archivo_page_current', {'pageCurrent': loop.index}) }}">
+                                                {{ loop.index }}
+                                            </a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                                <li class="uk-pagination-next">
+                                    <a href="{{ path('archivo_page_current', {'pageCurrent': pageCurrent+1 > pagesTotal?1:pageCurrent+1}) }}">
+                                        Sig.
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        {{ form_widget(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
     </div>
     <div class="uk-button-group uk-margin">
         <a href="{{ path('archivo_new') }}" class="uk-button uk-button-large">

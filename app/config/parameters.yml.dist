@@ -18,3 +18,10 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    #nodeurl: /usr/bin/nodejs
+    #uglifycss: /usr/bin/uglifycss
+    #uglifyjs: /usr/bin/uglifyjs
+    nodeurl: C:\Program Files\nodejs\node
+    uglifycss: C:\Users\Hender\AppData\Roaming\npm\node_modules\uglifycss\uglifycss
+    uglifyjs: C:\Users\Hender\AppData\Roaming\npm\node_modules\uglify-js\bin\uglifyjs

@@ -58,6 +58,13 @@ $(function(){
         var id = $(this).attr('data-id');
         ajaxSuma(id, 'print');
     });
+    $('.uk-search').on('keyup keypress', function(e) {
+        var code = e.keyCode || e.which;
+        if (code == 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
 
     $('body').on('click','a[data-id]', function(e){
         var este = $(this);

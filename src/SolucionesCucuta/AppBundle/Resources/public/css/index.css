@@ -137,10 +137,7 @@ html,
     position: relative;
 }
 .redes-sociales-cliente{
-    position: absolute;
-    height: 80px;
-    width: 100%;
-    bottom: 0;
+    height: 70px;
     text-align: right;
 }
 .redes-sociales-cliente > div{

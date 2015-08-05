@@ -15,25 +15,65 @@ use SolucionesCucuta\AppBundle\Form\UsuarioType;
  *
  * @Route("/admin/usuario")
  */
-class UsuarioController extends Controller
+class UsuarioController extends BasicController
 {
 
     /**
      * Lists all Usuario entities.
      *
      * @Route("/", name="usuario")
+     * @Route("/search", name="usuario_search")
+     * @Route("/page-{pageCurrent}", name="usuario_page_current")
+     * @Route("/page-{pageCurrent}/", name="usuario_page_current_")
+     * @Route("/items-{itemsPerPage}", name="usuario_items_per_page")
+     * @Route("/items-{itemsPerPage}/", name="usuario_items_per_page_")
+     * @Route("/items-{itemsPerPage}/page-{pageCurrent}", name="usuario_items_per_page_page_current")
+     * @Route("/items-{itemsPerPage}/page-{pageCurrent}/", name="usuario_items_per_page_page_current_")
+     * @Route("/page-{pageCurrent}/items-{itemsPerPage}", name="usuario_page_current_items_per_page")
+     * @Route("/page-{pageCurrent}/items-{itemsPerPage}/", name="usuario_page_current_items_per_page_")
      * @Method("GET")
      * @Template()
-     */
-    public function indexAction()
+     **/
+    public function indexAction(Request $request, $pageCurrent = 1, $itemsPerPage = 10)
     {
         $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('AppBundle:Usuario')->getAll();
 
-        $entities = $em->getRepository('AppBundle:Usuario')->findAll();
+        $entity = new Usuario();
+        $form = $this->createCreateForm($entity, true);
+        $form->handleRequest($request);
 
-        return array(
-            'entities' => $entities,
-        );
+        if($form->isValid()){
+            if ($entity->getUsername()) {
+                $query->andWhere($query->expr()->like('a.username', $query->expr()->literal('%' . $entity->getUsername() . '%')));
+            }
+            if ($entity->getEmail()) {
+                $query->andWhere($query->expr()->like('a.email', $query->expr()->literal('%' . $entity->getEmail() . '%')));
+            }
+            if ($entity->getNombre()) {
+                $query->andWhere($query->expr()->like('a.nombre', $query->expr()->literal('%' . $entity->getNombre() . '%')));
+            }
+            if ($entity->getRol()) {
+                $query
+                    ->join('a.rol', 'ar')
+                    ->andWhere($query->expr()->like('ar.rol', $query->expr()->literal('%' . $entity->getRol()->getSlug() . '%')));
+            }
+            if ($entity->getEstado()) {
+                $query
+                    ->join('a.estado', 'ae')
+                    ->andWhere($query->expr()->like('ae.estado', $query->expr()->literal('%' . $entity->getEstado()->getSlug() . '%')));
+            }
+            if ($entity->getSlug()) {
+                $query->andWhere($query->expr()->like('a.slug', $query->expr()->literal('%' . $entity->getSlug() . '%')));
+            }
+            if ($entity->getDescripcion()) {
+                $query->andWhere($query->expr()->like('a.descripcion', $query->expr()->literal('%' . $entity->getDescripcion() . '%')));
+            }
+        }
+
+        return array_merge($this->paginate($query, $pageCurrent, $itemsPerPage), array(
+            'form' => $form->createView(),
+        ));
     }
     /**
      * Creates a new Usuario entity.
@@ -75,16 +115,9 @@ class UsuarioController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Usuario $entity)
+    protected function createCreateForm(Usuario $entity, $search = false)
     {
-        $form = $this->createForm(new UsuarioType(), $entity, array(
-            'action' => $this->generateUrl('usuario_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
+        return parent::createCreateForm_($entity, 'usuario', $search);
     }
 
     /**

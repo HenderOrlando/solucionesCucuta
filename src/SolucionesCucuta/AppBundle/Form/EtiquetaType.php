@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EtiquetaType extends AbstractType
+class EtiquetaType extends BasicType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -23,6 +23,11 @@ class EtiquetaType extends AbstractType
             ->add('estado')
             ->add('usuarios')
         ;
+        if($this->search){
+            $builder
+                ->add('slug')
+            ;
+        }
     }
     
     /**

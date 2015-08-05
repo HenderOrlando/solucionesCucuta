@@ -2,6 +2,7 @@
 
 namespace SolucionesCucuta\AppBundle\Controller;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -15,25 +16,75 @@ use SolucionesCucuta\AppBundle\Form\TipoType;
  *
  * @Route("/admin/tipo")
  */
-class TipoController extends Controller
+class TipoController extends BasicController
 {
+
+    function paginate($dql, $currentPage, $pageSize)
+    {
+        $paginator = new Paginator($dql);
+
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($currentPage - 1)) // set the offset
+            ->setMaxResults($pageSize); // set the limit
+        $pages = array();
+        $i = ceil(count($paginator)/$pageSize);
+        while($i--){
+            array_push($pages, $i);
+        }
+        return array(
+            'entities'      => $paginator,
+            'itemsTotal'    => count($paginator),
+            'pagesTotal'    => ceil(count($paginator)/$pageSize),
+            'pages'         => $pages,
+            'pageCurrent'   => $currentPage,
+            'itemFirst'     => $pageSize * ($currentPage - 1),
+        );
+    }
 
     /**
      * Lists all Tipo entities.
      *
      * @Route("/", name="tipo")
+     * @Route("/search", name="tipo_search")
+     * @Route("/page-{pageCurrent}", name="tipo_page_current")
+     * @Route("/page-{pageCurrent}/", name="tipo_page_current_")
+     * @Route("/items-{itemsPerPage}", name="tipo_items_per_page")
+     * @Route("/items-{itemsPerPage}/", name="tipo_items_per_page_")
+     * @Route("/items-{itemsPerPage}/page-{pageCurrent}", name="tipo_items_per_page_page_current")
+     * @Route("/items-{itemsPerPage}/page-{pageCurrent}/", name="tipo_items_per_page_page_current_")
+     * @Route("/page-{pageCurrent}/items-{itemsPerPage}", name="tipo_page_current_items_per_page")
+     * @Route("/page-{pageCurrent}/items-{itemsPerPage}/", name="tipo_page_current_items_per_page_")
      * @Method("GET")
      * @Template()
-     */
-    public function indexAction()
+    **/
+    public function indexAction(Request $request, $pageCurrent = 1, $itemsPerPage = 10)
     {
         $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('AppBundle:Tipo')->getAll();
 
-        $entities = $em->getRepository('AppBundle:Tipo')->findAll();
+        $entity = new Tipo();
+        $form = $this->createCreateForm($entity, true);
+        $form->handleRequest($request);
 
-        return array(
-            'entities' => $entities,
-        );
+        if($form->isValid()){
+            if ($entity->getNombre()) {
+                $query->andWhere($query->expr()->like('a.nombre', $query->expr()->literal('%' . $entity->getNombre() . '%')));
+            }
+            if ($entity->getSlug()) {
+                $query->andWhere($query->expr()->like('a.slug', $query->expr()->literal('%' . $entity->getSlug() . '%')));
+            }
+            if ($entity->getDominio()) {
+                $query->andWhere($query->expr()->gte('a.dominio', $entity->getDominio()));
+            }
+            if ($entity->getDescripcion()) {
+                $query->andWhere($query->expr()->like('a.descripcion', $query->expr()->literal('%' . $entity->getDescripcion() . '%')));
+            }
+        }
+
+        return array_merge($this->paginate($query, $pageCurrent, $itemsPerPage), array(
+            'form' => $form->createView(),
+        ));
     }
     /**
      * Creates a new Tipo entity.
@@ -69,16 +120,9 @@ class TipoController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Tipo $entity)
+    protected function createCreateForm($entity, $search = false)
     {
-        $form = $this->createForm(new TipoType(), $entity, array(
-            'action' => $this->generateUrl('tipo_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
+        return parent::createCreateForm_($entity, 'tipo', $search);
     }
 
     /**

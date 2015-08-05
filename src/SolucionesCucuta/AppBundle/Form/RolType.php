@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RolType extends AbstractType
+class RolType extends BasicType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,11 +16,15 @@ class RolType extends AbstractType
     {
         $builder
             ->add('nombre')
-            ->add('slug')
             ->add('descripcion')
-            ->add('createdat')
-            ->add('updatedat')
+            /*->add('createdat')
+            ->add('updatedat')*/
         ;
+        if($this->search){
+            $builder
+                ->add('slug')
+            ;
+        }
     }
     
     /**

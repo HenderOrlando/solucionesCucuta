@@ -15,25 +15,49 @@ use SolucionesCucuta\AppBundle\Form\RolType;
  *
  * @Route("/admin/rol")
  */
-class RolController extends Controller
+class RolController extends BasicController
 {
 
     /**
      * Lists all Rol entities.
      *
      * @Route("/", name="rol")
+     * @Route("/search", name="rol_search")
+     * @Route("/page-{pageCurrent}", name="rol_page_current")
+     * @Route("/page-{pageCurrent}/", name="rol_page_current_")
+     * @Route("/items-{itemsPerPage}", name="rol_items_per_page")
+     * @Route("/items-{itemsPerPage}/", name="rol_items_per_page_")
+     * @Route("/items-{itemsPerPage}/page-{pageCurrent}", name="rol_items_per_page_page_current")
+     * @Route("/items-{itemsPerPage}/page-{pageCurrent}/", name="rol_items_per_page_page_current_")
+     * @Route("/page-{pageCurrent}/items-{itemsPerPage}", name="rol_page_current_items_per_page")
+     * @Route("/page-{pageCurrent}/items-{itemsPerPage}/", name="rol_page_current_items_per_page_")
      * @Method("GET")
      * @Template()
-     */
-    public function indexAction()
+     **/
+    public function indexAction(Request $request, $pageCurrent = 1, $itemsPerPage = 10)
     {
         $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('AppBundle:Rol')->getAll();
 
-        $entities = $em->getRepository('AppBundle:Rol')->findAll();
+        $entity = new Rol();
+        $form = $this->createCreateForm($entity, true);
+        $form->handleRequest($request);
 
-        return array(
-            'entities' => $entities,
-        );
+        if($form->isValid()){
+            if ($entity->getNombre()) {
+                $query->andWhere($query->expr()->like('a.nombre', $query->expr()->literal('%' . $entity->getNombre() . '%')));
+            }
+            if ($entity->getSlug()) {
+                $query->andWhere($query->expr()->like('a.slug', $query->expr()->literal('%' . $entity->getSlug() . '%')));
+            }
+            if ($entity->getDescripcion()) {
+                $query->andWhere($query->expr()->like('a.descripcion', $query->expr()->literal('%' . $entity->getDescripcion() . '%')));
+            }
+        }
+
+        return array_merge($this->paginate($query, $pageCurrent, $itemsPerPage), array(
+            'form' => $form->createView(),
+        ));
     }
     /**
      * Creates a new Rol entity.
@@ -69,16 +93,9 @@ class RolController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Rol $entity)
+    protected function createCreateForm(Rol $entity, $search = false)
     {
-        $form = $this->createForm(new RolType(), $entity, array(
-            'action' => $this->generateUrl('rol_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
+        return parent::createCreateForm_($entity, 'rol', $search);
     }
 
     /**

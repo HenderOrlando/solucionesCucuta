@@ -15,25 +15,62 @@ use SolucionesCucuta\AppBundle\Form\PublicacionType;
  *
  * @Route("/admin/publicacion")
  */
-class PublicacionController extends Controller
+class PublicacionController extends BasicController
 {
 
     /**
      * Lists all Publicacion entities.
      *
      * @Route("/", name="publicacion")
+     * @Route("/search", name="publicacion_search")
+     * @Route("/page-{pageCurrent}", name="publicacion_page_current")
+     * @Route("/page-{pageCurrent}/", name="publicacion_page_current_")
+     * @Route("/items-{itemsPerPage}", name="publicacion_items_per_page")
+     * @Route("/items-{itemsPerPage}/", name="publicacion_items_per_page_")
+     * @Route("/items-{itemsPerPage}/page-{pageCurrent}", name="publicacion_items_per_page_page_current")
+     * @Route("/items-{itemsPerPage}/page-{pageCurrent}/", name="publicacion_items_per_page_page_current_")
+     * @Route("/page-{pageCurrent}/items-{itemsPerPage}", name="publicacion_page_current_items_per_page")
+     * @Route("/page-{pageCurrent}/items-{itemsPerPage}/", name="publicacion_page_current_items_per_page_")
      * @Method("GET")
      * @Template()
-     */
-    public function indexAction()
+     **/
+    public function indexAction(Request $request, $pageCurrent = 1, $itemsPerPage = 10)
     {
         $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('AppBundle:Publicacion')->getAll();
 
-        $entities = $em->getRepository('AppBundle:Publicacion')->findAll();
+        $entity = new Publicacion();
+        $form = $this->createCreateForm($entity, true);
+        $form->handleRequest($request);
 
-        return array(
-            'entities' => $entities,
-        );
+        if($form->isValid()){
+            if ($entity->getTitulo()) {
+                $query->andWhere($query->expr()->like('a.titulo', $query->expr()->literal('%' . $entity->getTitulo() . '%')));
+            }
+            if ($entity->getSubtitulo()) {
+                $query->andWhere($query->expr()->like('a.subtitulo', $query->expr()->literal('%' . $entity->getSubtitulo() . '%')));
+            }
+            if ($entity->getSlug()) {
+                $query->andWhere($query->expr()->like('a.slug', $query->expr()->literal('%' . $entity->getSlug() . '%')));
+            }
+            if ($entity->getContenido()) {
+                $query->andWhere($query->expr()->gte('a.contenido', $entity->getContenido()));
+            }
+            if ($entity->getTipo()) {
+                $query
+                    ->join('a.tipo', 'ar')
+                    ->andWhere($query->expr()->like('ar.tipo', $query->expr()->literal('%' . $entity->getTipo()->getSlug() . '%')));
+            }
+            if ($entity->getEstado()) {
+                $query
+                    ->join('a.estado', 'ae')
+                    ->andWhere($query->expr()->like('ae.estado', $query->expr()->literal('%' . $entity->getEstado()->getSlug() . '%')));
+            }
+        }
+
+        return array_merge($this->paginate($query, $pageCurrent, $itemsPerPage), array(
+            'form' => $form->createView(),
+        ));
     }
     /**
      * Creates a new Publicacion entity.
@@ -69,16 +106,9 @@ class PublicacionController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Publicacion $entity)
+    protected function createCreateForm(Publicacion $entity, $search = false)
     {
-        $form = $this->createForm(new PublicacionType(), $entity, array(
-            'action' => $this->generateUrl('publicacion_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
+        return parent::createCreateForm_($entity, 'publicacion', $search);
     }
 
     /**

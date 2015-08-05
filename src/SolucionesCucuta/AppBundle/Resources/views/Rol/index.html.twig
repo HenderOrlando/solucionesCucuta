@@ -4,20 +4,62 @@
     <div class="uk-width-9-10 uk-container-center">
         <h1>Lista de Roles</h1>
         <div class="uk-overflow-container">
+            {{ form_start(form, {'attr': {'class': 'no-style'}}) }}
             <table class="uk-table uk-table-hover uk-table-striped uk-table-middle">
                 <thead>
                 <tr>
-                    <th class="uk-text-center">Id</th>
-                    <th class="uk-text-center">Nombre</th>
-                    <th class="uk-text-center">Slug</th>
-                    <th class="uk-text-center">Descripcion</th>
-                    <th class="uk-text-center">Acciones</th>
+                    <td colspan="40">
+                        <ul class="uk-pagination" data-page-current="{{ pageCurrent }}" data-pages-total="{{ pagesTotal }}">
+                            <li class="uk-pagination-previous">
+                                <a href="{{ path('rol_page_current', {'pageCurrent': pageCurrent-1 < 1?pagesTotal:pageCurrent-1}) }}">
+                                    Ant.
+                                </a>
+                            </li>
+                            {% for page in pages %}
+                                <li class="{{ loop.index == pageCurrent?'uk-active':'' }}">
+                                    {% if loop.index == pageCurrent %}
+                                        <span>
+                                                {{ loop.index }}
+                                            </span>
+                                    {% else %}
+                                        <a href="{{ path('rol_page_current', {'pageCurrent': loop.index}) }}">
+                                            {{ loop.index }}
+                                        </a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            <li class="uk-pagination-next">
+                                <a href="{{ path('rol_page_current', {'pageCurrent': pageCurrent+1 > pagesTotal?1:pageCurrent+1}) }}">
+                                    Sig.
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    {#<th class="uk-text-center">Id</th>#}
+                    <th class="uk-text-center">
+                        {{ form_label(form.nombre) }}
+                        {{ form_widget(form.nombre, {'attr': {'placeholder': 'Nombre'}}) }}
+                    </th>
+                    <th class="uk-text-center">
+                        {{ form_label(form.slug,'Nombre Limpio') }}
+                        {{ form_widget(form.slug, {'attr': {'placeholder': 'Slug'}}) }}
+                    </th>
+                    <th class="uk-text-center">
+                        {{ form_label(form.descripcion) }}
+                        {{ form_widget(form.descripcion, {'attr': {'placeholder': 'Descripcion'}}) }}
+                    </th>
+                    <th class="uk-text-center">
+                        <button type="submit" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">Buscar</button>
+                        <button type="reset" class="uk-button uk-button-large uk-width-1-1 uk-margin-small-bottom">Reset</button>
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for entity in entities %}
                     <tr>
-                        <td><a href="{{ path('rol_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        {#<td><a href="{{ path('rol_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
                         <td>{{ entity.nombre }}</td>
                         <td>{{ entity.slug }}</td>
                         <td>{{ entity.descripcion }}</td>
@@ -32,7 +74,41 @@
                     </tr>
                 {% endfor %}
                 </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="40">
+                        <ul class="uk-pagination" data-page-current="{{ pageCurrent }}" data-pages-total="{{ pagesTotal }}">
+                            <li class="uk-pagination-previous">
+                                <a href="{{ path('rol_page_current', {'pageCurrent': pageCurrent-1 < 1?pagesTotal:pageCurrent-1}) }}">
+                                    Ant.
+                                </a>
+                            </li>
+                            {% for page in pages %}
+                                <li class="{{ loop.index == pageCurrent?'uk-active':'' }}">
+                                    {% if loop.index == pageCurrent %}
+                                        <span>
+                                                {{ loop.index }}
+                                            </span>
+                                    {% else %}
+                                        <a href="{{ path('rol_page_current', {'pageCurrent': loop.index}) }}">
+                                            {{ loop.index }}
+                                        </a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            <li class="uk-pagination-next">
+                                <a href="{{ path('rol_page_current', {'pageCurrent': pageCurrent+1 > pagesTotal?1:pageCurrent+1}) }}">
+                                    Sig.
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                </tfoot>
+                </tfoot>
             </table>
+            {{ form_widget(form._token) }}
+            {{ form_end(form, {'render_rest': false}) }}
         </div>
         <div class="uk-button-group uk-margin">
             <a href="{{ path('rol_new') }}" class="uk-button uk-button-large">

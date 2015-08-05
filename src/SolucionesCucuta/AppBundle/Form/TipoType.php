@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TipoType extends AbstractType
+class TipoType extends BasicType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -19,6 +19,11 @@ class TipoType extends AbstractType
             ->add('dominio')
             ->add('descripcion')
         ;
+        if($this->search){
+            $builder
+                ->add('slug')
+            ;
+        }
     }
     
     /**

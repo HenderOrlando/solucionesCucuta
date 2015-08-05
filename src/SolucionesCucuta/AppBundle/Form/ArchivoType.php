@@ -6,8 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ArchivoType extends AbstractType
+class ArchivoType extends BasicType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -25,6 +26,27 @@ class ArchivoType extends AbstractType
             ->add('publicacion')
             ->add('link')
         ;
+        if($this->search){
+            $opts = array(
+                'mapped' => false,
+                'choices'    => array(
+                    '<'  => '(<) Menor que',
+                    '<=' => '(<=) Menor o igual que',
+                    '>'  => '(>) Mayor que',
+                    '>=' => '(>=) Mayor o igual que',
+                    '='  => '(=) Igual que',
+                ),
+                'preferred_choices' => array('='),
+                'required'  => false
+            );
+            $builder
+                ->add('prints')
+                ->add('clicks')
+                ->add('slug')
+                ->add('vista_o', 'choice', $opts)
+                ->add('click_o','choice', $opts)
+            ;
+        }
     }
     
     /**

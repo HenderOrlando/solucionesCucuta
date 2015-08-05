@@ -6,35 +6,39 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PublicacionType extends BasicType
+class BasicType extends AbstractType
 {
+    protected $search;
+
+    public function __construct ($search = false){
+        $this->search = $search;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('titulo')
-            ->add('subtitulo')
+        /*$builder
+            ->add('nombre')
+            ->add('descripcion')
             ->add('tipo')
             ->add('estado')
             ->add('etiquetas')
+            ->add('file')
+            ->add('usuario')
+            ->add('publicacion')
+            ->add('link')
         ;
         if($this->search){
             $builder
-                ->add('contenido')
+                ->add('prints')
+                ->add('clicks')
                 ->add('slug')
+                ->add('vita_')
             ;
-        }else{
-            $builder
-                ->add('contenido', null, array(
-                    'attr' => array(
-                        'data-uk-htmleditor' => '{markdown:true, lblPreview: \'Vista Previa\', lblCodeview: \'Código\'}'
-                    )
-                ))
-            ;
-        }
+        }*/
     }
     
     /**
@@ -42,9 +46,9 @@ class PublicacionType extends BasicType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'SolucionesCucuta\AppBundle\Entity\Publicacion'
-        ));
+        /*$resolver->setDefaults(array(
+            'data_class' => 'SolucionesCucuta\AppBundle\Entity\Archivo'
+        ));*/
     }
 
     /**
@@ -52,6 +56,6 @@ class PublicacionType extends BasicType
      */
     public function getName()
     {
-        return 'solucionescucuta_appbundle_publicacion';
+        return 'solucionescucuta_appbundle_basic';
     }
 }

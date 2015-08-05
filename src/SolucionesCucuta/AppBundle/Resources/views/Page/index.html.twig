@@ -61,7 +61,7 @@
                         </li>
                     {%  endfor %}
                     <li class="uk-height-1-1 uk-vertical-align">
-                        <form action="{{ path('search') }}" class="uk-search" data-uk-search="{msgResultsHeader: 'Resltados',msgMoreResults: 'Más Resultados',flipDropdown:true, source:'{{ path('search') }}'}">
+                        <form action="{{ path('search') }}" class="uk-search" data-uk-search="{msgResultsHeader: 'Resultados',msgMoreResults: 'Más Resultados',flipDropdown:true, source:'{{ path('search') }}'}">
                             <input class="uk-search-field" type="search" placeholder="que busca?" autocomplete="off">
                             <div class="uk-dropdown uk-dropdown-flip uk-dropdown-search" aria-expanded="false"></div>
                         </form>
@@ -78,7 +78,7 @@
     </nav>
     <div id="offcanvas" class="uk-offcanvas">
         <div class="uk-offcanvas-bar">
-            <form class="uk-search" data-uk-search="{msgResultsHeader: 'Resltados de la Búsqueda',msgMoreResults: 'Más Resultados',flipDropdown:true, source:'{{ path('search') }}'}">
+            <form class="uk-search" data-uk-search="{msgResultsHeader: 'Resultados de la Búsqueda',msgMoreResults: 'Más Resultados',flipDropdown:true, source:'{{ path('search') }}'}">
                 <input class="uk-search-field" type="search" placeholder="que busca?" autocomplete="off">
                 <div class="uk-dropdown uk-dropdown-search" aria-expanded="false"></div>
             </form>

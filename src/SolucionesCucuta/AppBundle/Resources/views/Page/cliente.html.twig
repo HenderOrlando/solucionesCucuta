@@ -57,14 +57,14 @@
                     {% endif %}
                 {% endif %}
             </div>
-            <div class="uk-width-medium-1-2 content-redes-sociales-cliente">
+            <div class="uk-width-medium-1-2 content-redes-sociales-cliente uk-position-relative">
                 <h2>{{ cliente.email }}</h2>
                 <p>
                     {{ cliente.descripcion }}
                 </p>
                 {% set redesSociales = cliente.getRedesSociales %}
                 {% if redesSociales|length > 0 %}
-                    <div class="redes-sociales-cliente">
+                    <div class="redes-sociales-cliente uk-position-bottom-right uk-width">
                         <div>
                             {% for i,rs in redesSociales %}
                                 {% if rs.link %}
