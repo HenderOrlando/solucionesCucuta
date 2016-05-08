@@ -1,0 +1,219 @@
+/**
+ * importer.less
+ *
+ * By default, new Sails projects are configured to compile this file
+ * from LESS to CSS.  Unlike CSS files, LESS files are not compiled and
+ * included automatically unless they are imported below.
+ *
+ * The LESS files imported below are compiled and included in the order
+ * they are listed.  Mixins, variables, etc. should be imported first
+ * so that they can be accessed by subsequent LESS stylesheets.
+ *
+ * (Just like the rest of the asset pipeline bundled in Sails, you can
+ * always omit, customize, or replace this behavior with SASS, SCSS,
+ * or any other Grunt tasks you like.)
+ */
+
+
+
+// For example:
+//
+// @import 'variables/colors.less';
+// @import 'mixins/foo.less';
+// @import 'mixins/bar.less';
+// @import 'mixins/baz.less';
+//
+// @import 'styleguide.less';
+// @import 'pages/login.less';
+// @import 'pages/signup.less';
+//
+// etc.
+@import 'slide.less';
+@import 'scrollbar.less';
+@import 'pempodatetimepicker.less';
+
+.md-solucionescucutablank-theme{
+    /*color: rgb(66, 66, 66);
+    background: #fff;*/
+    .md-datepicker-input-container{
+        > button{
+            &.md-triangle-button{
+                &.md-icon-button{
+                    background: transparent !important;
+                }
+            }
+        }
+    }
+}
+.button-group {
+    .md-button{
+        margin: 20px 0;
+        //padding: 3px 15px 3px 15px;
+        &:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+        &:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+        &:not(:first-child){
+            &:not(:last-child){
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+.search {
+    padding: 8px;
+    font-size: 18px;
+    text-transform: uppercase;
+     md-input-container {
+        /*margin-bottom: -20px;
+        margin-top: 0;
+        &.md-input-focused,
+        &.md-input-has-value{
+            margin-top: 18px;
+        }*/
+        > input {
+            color: #ffffff;
+        }
+        > .md-error-spacer {
+            display: none;
+        }
+        &.md-solucionescucutablank-theme,
+        &.md-solucionescucuta-theme {
+            color: rgb(244,67,54);
+            .md-input {
+                border-color: rgb(244,67,54);
+            }
+            label,
+            .md-input {
+                color: rgb(244,67,54);
+                text-shadow: none;
+            }
+        }
+    }
+}
+
+.md-overflow-hidden{
+    overflow: hidden;
+}
+.md-overflow-x{
+    overflow-x: auto;
+}
+.md-overflow-y{
+    overflow-y: auto;
+}
+
+.md-toolbar-tools{
+    .logo{
+        height: 52px;
+    }
+    .search{
+        font-size: 12px;
+    }
+}
+
+.md-width-25{
+    width: 25%;
+}
+.md-width-50{
+    width: 50%;
+}
+.md-width-75{
+    width: 75%;
+}
+
+.md-width-100{
+    width: 100%;
+}
+
+.layout-padding-only{
+    padding: 8px;
+}
+
+img{
+    width: auto;
+    height: auto;
+    &.fixed-width{
+        width: 100%;
+    }
+    &.fixed-height{
+        height: 100%;
+    }
+    /*width: 100%;
+    height: 100%;*/
+}
+
+md-table-pagination{
+    &.md-table-pagination{
+        padding-top: 10px;
+        > * {
+            height: auto;
+            padding: 10px 0;
+        }
+    }
+}
+
+md-input-container{
+    &.md-solucionescucuta-theme {
+        .md-input{
+            color: #000;
+            text-shadow: none;
+        }
+    }
+}
+
+.md-select-header-container {
+    .md-header-searchbox{
+        border: none;
+        outline: none;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+    }
+    .md-select-header{
+        box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+        padding-left: 10.667px;
+        height: 48px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: auto;
+    }
+    md-content{
+        ._md{
+            max-height: 240px;
+        }
+    }
+}
+
+.md-cell{
+    &.md-selected{
+        background-color: #E4E4E4;
+    }
+}
+
+.md-text-button-left{
+    text-align: left;
+    > .md-button{
+        text-align: left;
+    }
+}
+
+.md-dialog-container{
+    z-index: 65536;
+}
+.md-open-menu-container{
+    z-index: 65537;
+}
+form{
+    &.search-file{
+        > div{
+            > md-input-container{
+                margin: 0;
+            }
+        }
+    }
+}
