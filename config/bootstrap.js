@@ -32,6 +32,7 @@ module.exports.bootstrap = function(cb) {
     cb();
 };
 
+/*
 function load(seed){
     var
         modelo = sails.models[seed],
@@ -439,3 +440,4 @@ function load(seed){
     }
 
 }
+*/

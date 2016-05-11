@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf176a6e-f8a9-4ea8-85fe-9d07ca082699" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/solucionesCucuta.iml" afterPath="$PROJECT_DIR$/.idea/solucionesCucuta.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controllers/ArchivoController.js" afterPath="$PROJECT_DIR$/api/controllers/ArchivoController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controllers/IndexController.js" afterPath="$PROJECT_DIR$/api/controllers/IndexController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/controllers/adminedit.js" afterPath="$PROJECT_DIR$/assets/js/controllers/adminedit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/controllers/pempofilemanager.js" afterPath="$PROJECT_DIR$/assets/js/controllers/pempofilemanager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/styles/importer.less" afterPath="$PROJECT_DIR$/assets/styles/importer.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/templates/adminedit.html" afterPath="$PROJECT_DIR$/assets/templates/adminedit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/templates/filemanager.html" afterPath="$PROJECT_DIR$/assets/templates/filemanager.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/bootstrap.js" afterPath="$PROJECT_DIR$/config/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.js" afterPath="$PROJECT_DIR$/config/routes.js" />
     </list>
     <ignored path="solucionesCucuta.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,22 +24,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bootstrap.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bootstrap.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/bootstrap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36562073">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <element signature="e#1603#42396#0" expanded="false" />
-                <element signature="e#42420#45434#0" expanded="false" />
-                <element signature="e#45460#52053#0" expanded="false" />
-                <element signature="e#52078#81827#0" expanded="false" />
-                <element signature="e#81848#83584#0" expanded="false" />
-                <element signature="e#83609#84318#0" expanded="false" />
-                <element signature="e#84343#85151#0" expanded="false" />
-                <element signature="e#85173#93741#0" expanded="false" />
-                <element signature="e#93786#110722#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bower.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bower.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.021156559">
+              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,7 +52,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/backSolucionesCucuta/views/partials/form_login.ejs" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/templates/Usuario/list-usuarios.html" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/api/controllers/ArchivoController.js" />
         <option value="$PROJECT_DIR$/backSolucionesCucuta/assets/js/app.js" />
@@ -114,6 +102,7 @@
         <option value="$PROJECT_DIR$/backSolucionesCucuta/views/homepage.ejs" />
         <option value="$PROJECT_DIR$/.sailsrc" />
         <option value="$PROJECT_DIR$/config/bootstrap.js" />
+        <option value="$PROJECT_DIR$/bower.json" />
       </list>
     </option>
   </component>
@@ -418,19 +407,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/bootstrap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36562073">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#1603#42396#0" expanded="false" />
-            <element signature="e#42420#45434#0" expanded="false" />
-            <element signature="e#45460#52053#0" expanded="false" />
-            <element signature="e#52078#81827#0" expanded="false" />
-            <element signature="e#81848#83584#0" expanded="false" />
-            <element signature="e#83609#84318#0" expanded="false" />
-            <element signature="e#84343#85151#0" expanded="false" />
-            <element signature="e#85173#93741#0" expanded="false" />
-            <element signature="e#93786#110722#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.021156559">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
