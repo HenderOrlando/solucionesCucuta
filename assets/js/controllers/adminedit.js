@@ -813,10 +813,13 @@
             //ngUpload.click();
         }
 
-        function openFilemanager(attr, key, obj){
+        function openFilemanager(attr, key, obj, $event){
+            console.log($event)
             $rootScope.openFilemanager({
                 fullScreen: false,
-                attr: attr
+                attr: attr,
+                openFrom: $event.currentTarget,
+                closeTo: $event.currentTarget
             },{
                 value: obj[key],
                 title: key

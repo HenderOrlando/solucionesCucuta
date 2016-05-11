@@ -9,14 +9,9 @@ var
     fs = require('fs'),
     path = require('path'),
     ClientFtp = require('jsftp'),
+    Promise = require('bluebird'),
     pathUploads = '/uploads',
-    ftp = new ClientFtp({
-        host: 'ftp.camilopuello.com',
-        port: '21',
-        user: 'disk@solucionescucuta.com',
-        pass: '();g%eKpN5dQ'
-        //,debugMode: true // Se debe capturar el evento
-    })
+    ftp = null
     ;
 /*ftp.on('jsftp_debug', function(eventType, data) {
     console.log('DEBUG: ', eventType);
@@ -31,6 +26,15 @@ module.exports = {
         var este = this;
         return pathUploads + '/' + filename;
     },
+    connectFTP: function connectFTP(){
+        return new ClientFtp({
+            host: 'ftp.camilopuello.com',
+            port: '21',
+            user: 'disk@solucionescucuta.com',
+            pass: '();g%eKpN5dQ'
+            //,debugMode: true // Se debe capturar el evento
+        })
+    },
     getFile: function getFile(req, res){
         var
             este = this,
@@ -41,6 +45,7 @@ module.exports = {
         if(filename){
             //'/test_file.txt'
             if(_.isString(filename) && filename.length){
+                ftp = this.connectFTP();
                 ftp.get(este.getPathFile(filename), function(err, socket) {
                     console.log(err)
                     // error.code = 550 # on no such file or directory
@@ -83,6 +88,7 @@ module.exports = {
         if(filename){
             //'/test_file.txt'
             if(_.isString(filename) && filename.length){
+                ftp = this.connectFTP();
                 ftp.get(este.getPathFile(filename), function(err, socket) {
                     // error.code = 550 # on no such file or directory
                     if (err){
@@ -118,74 +124,97 @@ module.exports = {
         }
     },
     putFile: function putFile(req, res){
-
-        sails.log.error('Req', req)
-        sails.log.error('Req File -> ', req.file)
-        sails.log.error('Req Files ->', req.files)
-        sails.log.error('File => ',req.file('file'))
-        sails.log.error('Files => ',req.file('files'))
-
-        var
-            este = this,
-            file = req.file('file')._files[0];
-        if(file){
-            var stream = file.stream,
-            contentType = stream.headers['content-type'],
-            params = req.params.all(),
-            filename = params.filename || stream.filename,
-            size = stream.byteCount,
-            ext = stream.filename.split('.')
-        ;
-            if(filename) {
-                ext = ext[ext.length - 1];
-                if (_.isString(ext) && ext.length) {
-                    ext = '.' + ext;
-                } else {
-                    ext = '';
+        try{
+            var
+                este = this,
+                //params = req.params.all(),
+                archivos = [],
+                promises = {},
+                files = req.file('file')
+                ;
+            files.upload(function(err, uploaded){
+                if(err){
+                    res.negotiate(err);
                 }
-                if (filename.indexOf(ext) < 0) {
-                    filename += ext;
-                }
-                if (filename[0] === '.') {
-                    filename[0] = '_';
-                }
-                return Tipo.findOne({detalles: contentType}).exec(function (err, tipo) {
-                    if (err) {
-                        return res.negotiate(err);
-                    }
-                    var filename_ = este.generateFilename() + ext;
-                    Archivo.create({
-                        nombre: filename,
-                        filename: filename_,
-                        tipo: tipo.id,
-                        size: size,
-                        ext: ext,
-                        src: 'http://localhost:1337/files/' + filename_
-                    }).exec(function (err, archivo) {
-                        if (err) {
-                            return res.negotiate(err);
-                        }
-                        //res.ok(archivo);
-                        ftp.put(stream, este.getPathFile(archivo.filename), function (hadErr) {
-                            if (hadErr) {
-                                sails.log.error(hadErr);
-                                sails.log.error('There was an error retrieving the file.');
-                                return res.negotiate(hadErr);
+                else if(uploaded){
+                    if(uploaded.length <= 0){
+                        res.badRequest('File not found');
+                    }else{
+                        var rta = [];
+                        _.forEach(uploaded, function(file, key){
+                            rta.push(file);
+                            var
+                                contentType = file.type,
+                                filename = file.filename,
+                                size = file.size,
+                                ext = filename.split('.'),
+                                filename_ = ''
+                            ;
+                            if(filename) {
+                                ext = ext[ext.length - 1];
+                                if (_.isString(ext) && ext.length) {
+                                    ext = '.' + ext;
+                                } else {
+                                    ext = '';
+                                }
+                                if (filename.indexOf(ext) < 0) {
+                                    filename += ext;
+                                }
+                                if (filename[0] === '.') {
+                                    filename[0] = '_';
+                                }
+                                filename_ = este.generateFilename() + ext;
+                                promises[file.filename] =
+                                    API.Model(Tipo).findOne({detalles: contentType}).then(function (tipo) {
+                                        return  API.Model(Archivo).create({
+                                            nombre: filename,
+                                            filename: filename_,
+                                            tipo: tipo.id,
+                                            size: size,
+                                            ext: ext,
+                                            src: 'http://localhost:1337/files/' + filename_
+                                        }).then(function (archivo) {
+                                            if (err) {
+                                                sails.log.error(archivo)
+                                                //return err;
+                                            }else{
+                                                ftp = este.connectFTP();
+                                                ftp.put(file.fd, este.getPathFile(archivo.filename), function (hadErr) {
+                                                    if (hadErr) {
+                                                        // delete archivo
+                                                        sails.log.error(hadErr);
+                                                        return hadErr;
+                                                    }
+                                                });
+                                                return archivo;
+                                            }
+                                        });
+                                    });
                             }
-                            este.closeSessionFtp(res, archivo);
                         });
-                    });
-                });
-            }
+                        Promise.props(promises).then(function(rta){
+                            res.json({
+                                uploadeds: rta
+                            });
+                            //este.closeSessionFtp(res, archivos);
+                        }, function(err){
+                            res.negotiate(err);
+                        });
+                        //res.json(rta);
+                    }
+                }else{
+                    throw 'Files not found';
+                }
+            });
+        }catch(e){
+            res.notFound();
         }
-        return res.notFound();
-        //res.send(req.sessionID);
     },
     putFileForm: function putFileForm(req, res){
         var este = this;
         res.writeHead(200, {'content-type': 'text/html'});
         res.end(
-            '<form action="/file-form" enctype="multipart/forms-data" method="post">'+
+            '<form action="/upload" enctype="multipart/forms-data" method="post">'+
             '<input id="filename" type="text" name="filename"><br>'+
             '<input id="file" type="file" name="file"><br>'+
             '<input type="submit" value="Upload">'+
@@ -200,6 +229,7 @@ module.exports = {
             ;
         if(filename){
             if(_.isString(filename) && filename.length){
+                ftp = this.connectFTP();
                 ftp.raw.dele(este.getPathFile(filename), function(err, data){
                     if(err || data.isError){
                         return res.negotiate(err);
@@ -216,6 +246,7 @@ module.exports = {
         var este = this;
         //ftp.ls('/', function(err, list){
         //ftp.raw.cd();
+        ftp = this.connectFTP();
         ftp.ls(pathUploads, function(err, list){
             if(err){
                 return res.negotiate(err);

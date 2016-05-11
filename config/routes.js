@@ -63,8 +63,8 @@ module.exports.routes = {
     // Index
     '/session': 'IndexController.session',
     'get /files/:filesname': 'ArchivoController.openFile',
-    'post /file-form': 'ArchivoController.putFile',
     '/file-form': 'ArchivoController.putFileForm',
+    'post /upload': 'ArchivoController.putFile',
     /*'get /files': 'ArchivoController.getFile',
     'get /download/:filesname': 'ArchivoController.getFile',
     'post /files': 'ArchivoController.putFile',

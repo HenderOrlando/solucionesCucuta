@@ -19,7 +19,9 @@
             "$translatePartialLoader",
             "$mdDialog",
             "$mdMedia",
+            "$timeout",
             "Upload",
+            "$http",
             "attrs",
             "$q",
             FilemanagerCtrl
@@ -31,7 +33,9 @@
         $translatePartialLoader,
         $mdDialog,
         $mdMedia,
+        $timeout,
         Upload,
+        $http,
         attrs,
         $q
     ) {
@@ -101,7 +105,15 @@
             filter: filterQuery
         };
 
-        vm.upload = upload;
+        vm.upload           = upload;
+        vm.fileUpload       = null;
+        vm.filesUpload      = [];
+        vm.changeFilesUpload= changeFilesUpload;
+
+        vm.outFilesUpload   = outFilesUpload
+        vm.isImage          = isImage;
+        vm.isAudio          = isAudio;
+        vm.isVideo          = isVideo;
 
         $rootScope.addWatch(function(){
             return $mdMedia('max-width: 500px');
@@ -350,22 +362,168 @@
             vm.onlySelected = true;
         }
 
+        function isFileType(file, type){
+            var isFile = false;
+            if(type.indexOf('/') < 0){
+                type = type + '/';
+            }
+            if(file.type){
+                isFile = file.type.indexOf(type) > -1;
+            }
+            if(file.tipo){
+                isFile = file.tipo.detalles.indexOf(type) > -1;
+            }
+            return isFile;
+        }
 
+        function isImage(file){
+            return isFileType(file, 'image');
+        }
 
-        function upload(files) {
-            console.log(files);
-            Upload.upload({
-                url: '/file-form',
-                //data: {'username': $scope.username}
-                file: files
-            }).then(function (resp) {
-                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-            }, function (resp) {
-                console.log('Error status: ' + resp.status);
-            }, function (evt) {
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        function isAudio(file){
+            return isFileType(file, 'audio');
+        }
+
+        function isVideo(file){
+            return isFileType(file, 'video');
+        }
+
+        function outFilesUpload($event, file){
+            $event.preventDefault();
+            $event.stopPropagation();
+            vm.files = vm.files.filter(function(val){
+                var found = true;
+                if(val.name){
+                    found = file.name !== val.name;
+                }
+                return found;
             });
+            vm.filesUpload = vm.filesUpload.filter(function(val){
+                var found = true;
+                if(val.name){
+                    found = file.name !== val.name;
+                }
+                return found;
+            });
+        }
+
+        function changeFilesUpload($files, $file, $newFiles, $duplicateFiles, $invalidFiles, $event){
+            if(vm.fileupload){
+                vm.filesUpload = vm.filesUpload.concat($files);
+                vm.filesUpload = vm.filesUpload.map(function(file, k){
+                    file.id = k;
+                    return file;
+                });
+                vm.files = vm.files.concat($files);
+            }
+            /*
+            console.log($files)
+            console.log($file)
+            console.log($newFiles)
+            console.log($duplicateFiles)
+            console.log($invalidFiles)
+            console.log(vm.files)
+            */
+        }
+
+        function upload($event) {
+            console.log(vm.filesUpload)
+            Upload.upload({
+                file: vm.filesUpload,
+                url: '/upload',
+                arrayKey: ''
+            }).then(successUpload(), errorUpload(), progressUpload());
+            /*var h = h || 0;
+            if(vm.filesUpload[h]){
+                Upload.upload({
+                    file: vm.filesUpload[h],
+                    url: '/upload',
+                    arrayKey: ''
+                }).then(successUpload(vm.filesUpload[h]), errorUpload(vm.filesUpload[h]), progressUpload(vm.filesUpload[h]));
+            }*/
+            /*for(var h = 0; h < vm.filesUpload.length; h++){
+                Upload.upload({
+                    file: vm.filesUpload[h],
+                    url: '/upload',
+                    arrayKey: ''
+                }).then(successUpload(vm.filesUpload[h]), errorUpload(vm.filesUpload[h]), progressUpload(vm.filesUpload[h]));
+            }*/
+
+            function errorUpload(){
+                return function (err) {
+                    console.log('Error status: ', err);
+                }
+            }
+
+            function progressUpload(){
+                return function (evt) {
+                    console.log(evt)
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ', progressPercentage + '% ');
+                }
+            }
+
+            function successUpload(){
+                return function (resp) {
+                    //console.log(resp)
+                    var files = resp.data.uploadeds;
+                    angular.forEach(files, function(file){
+                        if(file.id){
+                            vm.filesUpload = vm.filesUpload.filter(function(file_){
+                                return file_.name !== file.nombre;
+                            });
+                            vm.files = vm.files.filter(function(file_){
+                                var founded = true;
+                                if(!file_.src){
+                                    founded = file_.name !== name;
+                                }
+                                return founded;
+                            });
+                            Archivo.read({id: file.id}).then(function(file){
+                                $timeout(function(){
+                                    vm.files.push(file);
+                                },1500);
+                                //upload($event);
+                            });
+                        }
+                    });
+                }
+            }
+
+            /*for(var h = 0; h < vm.filesUpload.length; h++){
+                Upload.upload({
+                    file: vm.filesUpload[h],
+                    url: '/upload'
+                }).then(function (resp) {
+                    console.log(resp)
+                    var names = '';
+                    if(_.isArray(resp.config.file) && resp.config.file){
+                        names = resp.config.file.map(function(file){
+                            return file.name;
+                        }).join(', ');
+                    }else{
+                        names = resp.config.file.name || evt.config.data.file.name;
+                    }
+                    console.log('Success ', names, ' uploaded. Response: ', resp.data);
+                }, function (err) {
+                    console.log('Error status: ', err);
+                }, function (evt) {
+                    console.log(evt)
+                    var
+                        progressPercentage = parseInt(100.0 * evt.loaded / evt.total),
+                        names = ''
+                    ;
+                    if(_.isArray(evt.config.file) && evt.config.file.length){
+                        names = evt.config.file.map(function(file){
+                            return file.name;
+                        }).join(', ');
+                    }else{
+                        names = evt.config.file.name || evt.config.data.file.name;
+                    }
+                    console.log('progress: ', progressPercentage + '% ' + names);
+                });
+
+            }*/
         }
     }
 })();

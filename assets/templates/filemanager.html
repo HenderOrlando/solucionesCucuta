@@ -157,11 +157,13 @@
     <md-dialog-content
         flex
         layout="column"
-        ngf-drop="filemanager.upload($files)"
-        class="drop-box"
-        ngf-drag-over-class="'dragover'"
+        ngf-drop
+        ngf-drag-over-class="'md-drag-over'"
+        ng-model="filemanager.fileupload"
+        ngf-change="filemanager.changeFilesUpload($files, $file, $newFiles, $duplicateFiles, $invalidFiles, $event)"
         ngf-multiple="true"
         ngf-allow-dir="true"
+        ngf-accept="*"
     >
         <md-divider></md-divider>
         <md-content flex>
@@ -176,20 +178,63 @@
                 >
                     <md-button
                         ng-click="filemanager.selectFile($event, file)"
-                        ng-class="{'md-accent md-hue-1': filemanager.hasFileSelected(file) }"
-                        arialabel="file.nombre"
+                        ng-class="{
+                            'md-hue-1'  : filemanager.hasFileSelected(file),
+                            'md-accent' : filemanager.hasFileSelected(file) && file.src,
+                            'md-warn'   : filemanager.hasFileSelected(file) && !file.src
+                        }"
+                        aria-label="file.nombre || file.name"
                         layout-fill
                         class="md-raised"
                     >
-                        <img
-                            class="md-width-100"
-                            ng-if="filemanager.meta.filetype === 'image'"
-                            ng-src="{{ ::file.src }}"
-                        />
-                        <md-grid-tile-footer>
-                            <h3>
-                                {{file.nombre}}
-                            </h3>
+                        <div layout-fill class="preview-file">
+                            <div
+                                layout-fill
+                                ng-if="file.src && filemanager.isImage(file)"
+                                style="background-image: url('{{ ::file.src }}')"
+                            ></div>
+                            <audio
+                                layout-fill
+                                ng-if="file.src && filemanager.isAudio(file)"
+                                class="md-width-100"
+                                ng-src="{{ ::file.src }}"
+                            ></audio>
+                            <video
+                                layout-fill
+                                ng-if="file.src && filemanager.isVideo(file)"
+                                ng-src="{{ ::file.src }}"
+                            ></video>
+                            <div
+                                layout-fill
+                                ng-if="!file.src && filemanager.isImage(file)"
+                                ngf-thumbnail="file"
+                                ngf-as-background="true"
+                            ></div>
+                            <audio
+                                layout-fill
+                                ng-if="!file.src && filemanager.isAudio(file)"
+                                ngf-src="file"
+                            ></audio>
+                            <!--ngf-background="file"-->
+                            <video
+                                layout-fill
+                                ng-if="!file.src && filemanager.isVideo(file)"
+                                ngf-src="file"
+                            ></video>
+                            <!--ngf-background="file"-->
+                        </div>
+                        <md-grid-tile-footer layout="row">
+                            <md-button
+                                aria-label="delete-file-upload"
+                                ng-click="filemanager.outFilesUpload($event, file)"
+                                ng-if="!file.src"
+                                class="md-raised md-warn md-icon-button"
+                            >
+                                <md-icon md-svg-icon="close"></md-icon>
+                            </md-button>
+                            <span>
+                                {{ file.nombre || file.name }}
+                            </span>
                         </md-grid-tile-footer>
                     </md-button>
                 </md-grid-tile>
@@ -263,18 +308,38 @@
         <div layout="column">
             <div layout="row" layout-align="center center">
                 <md-button
+                    ng-if="filemanager.filesUpload.length > 0"
+                    class="md-raised"
+                    aria-label="upload"
+                    ng-click="filemanager.upload($event)"
+                    ng-class="{'md-icon-button': !mdMedia('gt-sm')}"
+                >
+                    <md-icon md-svg-icon="upload"></md-icon>
+                    <span ng-if="mdMedia('gt-sm')">
+                        Subir
+                    </span>
+                </md-button>
+                <md-button
                     class="md-warn md-raised"
                     aria-label="cerrar"
                     ng-click="filemanager.cancel($event)"
+                    ng-class="{'md-icon-button': !mdMedia('gt-sm')}"
                 >
-                    Cerrar
+                    <md-icon md-svg-icon="close"></md-icon>
+                    <span ng-if="mdMedia('gt-sm')">
+                        Cerrar
+                    </span>
                 </md-button>
                 <md-button
                     class="md-primary md-raised"
                     aria-label="ok"
                     ng-click="filemanager.ok($event)"
+                    ng-class="{'md-icon-button': !mdMedia('gt-sm')}"
                 >
-                    Ok
+                    <md-icon md-svg-icon="check"></md-icon>
+                    <span ng-if="mdMedia('gt-sm')">
+                        Ok
+                    </span>
                 </md-button>
             </div>
         </div>
